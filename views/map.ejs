@@ -1,0 +1,195 @@
+<script type="text/javascript" src="http://tile.cloudmade.com/wml/latest/web-maps-lite.js"></script>
+
+<script type="text/javascript">
+
+    function resizeEvent(event)
+    {
+      $('#map').height($(window).height() - $('footer').height() - $('#quickbar').height());
+
+      $('.white_content').width($(window).width() * 0.8);
+      $('.white_content').height($(window).height() * 0.8);
+
+      $('.white_content').css("left", ($(window).width() - $('.white_content').width()) / 2);
+      $('.white_content').css("top", ($(window).height() - $('.white_content').height()) / 2);
+    }
+
+    var APIKEY = 'c4a96f80767b4bff94b2e65fdda49f10',
+    	map,
+    	layer_map,
+        layer_sights,
+        layer_wiki;
+
+    $(function()
+    {
+      resizeEvent();
+
+      $('#panorama').width($('.white_content').innerHeight() * 5.83);
+
+
+      $('.point').click(
+      function()
+      {
+        $('.bubble').animate({opacity: 0.85}, 125);
+      });
+    });
+
+    function drawMap(position)
+    {
+      var cloudmade = new CM.Tiles.CloudMade.Web({key: APIKEY, styleId: 30822});
+      map = new CM.Map('map', cloudmade);
+
+      var cityBounds = new CM.LatLngBounds(new CM.LatLng(48.3275, 10.8301), new CM.LatLng(48.4153, 10.9592));
+
+      // Init
+      map.setCenter(cityBounds.getCenter(), 16);
+
+
+      CM.Event.addListener(map, "zoomend", function()
+      {
+        if (map.getZoom() < map.getBoundsZoomLevel(cityBounds)) map.setZoom(map.getBoundsZoomLevel(cityBounds));
+	  });
+
+      map.addControl(new CM.ScaleControl());
+      map.addControl(new CM.OverviewMapControl(), new CM.ControlPosition(CM.BOTTOM_RIGHT, new CM.Size(20, 20)));
+      
+      
+      
+      
+      
+      var sidebar = new CM.SearchSidebar({key: APIKEY});
+      map.setSidebar(sidebar);
+      map.openSidebar();
+      
+      CM.Event.addListener(sidebar, "sidebaropened", function()
+      {
+	    $('.mapNav').css('left', '200px');
+	    alert("open");
+      });
+
+      var marker = new CM.Marker(new CM.LatLng(48.36895, 10.8974));
+      map.addOverlay(marker);
+
+      CM.Event.addListener(marker, "click", function()
+      {
+        marker.openInfoWindow(
+	        '<a href="javascript:void(0)" onclick="showLightbox(\'box_rathaus\')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>' +
+		    '<span class="editable" contenteditable="true">Das Augsburger Rathaus</span>' +
+            '<hr class="divider" />' +
+		    '<p class="editable" contenteditable="true">Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.</p>' +
+            '<hr class="divider" />' +
+            '<span><a href="javascript:void(0)" onclick="showLightbox(\'box_rathaus\')">Hier klicken für genauere Informationen</a></span>');
+
+        $('.wml-info-window').attr({opacity: 0.0});
+        $('.wml-info-window').animate({opacity: 0.85}, 125);
+      });
+
+      var wikimarker = new CM.Marker(new CM.LatLng(48.368, 10.8974));
+      map.addOverlay(wikimarker);
+
+      CM.Event.addListener(wikimarker, "click", function()
+      {
+        marker.openInfoWindow(
+	        '<a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>' +
+		    '<span>Wikipedia: Augsburg</span>' +
+            '<hr class="divider" />' +
+		    '<p>Zeigt den Wikipedia-Artikel über Augsburg.</p>' +
+            '<hr class="divider" />' +
+            '<span><a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')">Hier klicken für genauere Informationen</a></span>');
+
+        $('.wml-info-window').attr({opacity: 0.0});
+        $('.wml-info-window').animate({opacity: 0.85}, 125);
+      });
+      
+      var geomarker = new CM.Marker(new CM.LatLng(position.coords.latitude, position.coords.longitude));
+	  map.addOverlay(geomarker);
+    }
+    
+    $(document).ready(function() 
+    { 
+		if (Modernizr.geolocation)
+		{
+			navigator.geolocation.getCurrentPosition(drawMap, function(msg) { alert(msg); } );
+		} 
+    });
+
+    if (window.addEventListener)
+	window.addEventListener('resize', resizeEvent, false);
+    else
+    {
+	    if (window.attachEvent)
+		    window.attachEvent('onresize', resizeEvent);
+    }
+
+    function showLightbox(id)
+    {
+      $('#'+id).css('display', 'block');
+      $('#fade').css('display', 'block');
+
+      $('#fade').animate({opacity: 0.8}, 500);
+    }
+
+    function hideLightbox(id)
+    {
+      $('#fade').animate({opacity: 0.0}, 500, 'linear',
+        function()
+        {
+          $('#'+id).css('display', 'none');
+          $('#fade').css('display', 'none');
+        });
+    }
+
+    function hideAllLightboxes()
+    {
+      $('#fade').animate({opacity: 0.0}, 500, 'linear',
+      function()
+      {
+        $('.white_content').css('display', 'none');
+        $('#fade').css('display', 'none');
+      });
+
+    }
+  </script>
+  
+<div id="map"></div>
+
+<div class="mapNav non-mobile">
+  <div class="navBtn navBtn0" onmousedown="javascript: void map.panBy(new CM.Size(0, -map.getSize().height / 4));"></div>
+  <div class="navBtn navBtn1" onmousedown="javascript: void map.panBy(new CM.Size(map.getSize().width / 4, 0));"></div>
+  <div class="navBtn navBtn2" onmousedown="javascript: void map.panBy(new CM.Size(0, map.getSize().height / 4));"></div>
+  <div class="navBtn navBtn3" onmousedown="javascript: void map.panBy(new CM.Size(-map.getSize().width / 4, 0));"></div>
+</div>
+
+<div id="quickbar">
+  <ul class="map_buttons">
+	  <li><span>Quick Bar</span></li>
+	  <li><a href="#" rel="p-1160-730">Augsburger Rathaus</a></li>
+	  <li><a href="#" rel="p-1200-650">Panorama</a></li>
+  </ul>
+</div>
+
+<div id="box_augsburg_wiki" class="white_content">
+       <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_augsburg_wiki')">Close</span>
+
+       <iframe src="http://de.wikipedia.org/wiki/Augsburg?printable=yes" width="100%" height="100%">
+       </iframe>
+    </div>
+
+    <div id="box_rathaus" class="white_content">
+      <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_rathaus')">Close</span>
+      <img class="box_bg" src="content/big_rathaus.jpg" width="100%" height="100%" />
+
+    </div>
+
+    <div id="box_puppenkiste" class="white_content">
+      <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_puppenkiste')">Close</span>
+      <img class="box_bg" src="content/big_puppenkiste.jpg" width="100%" height="100%" />
+
+    </div>
+
+    <div id="box_panorama" class="white_content">
+      <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_panorama')">Close</span>
+      <img class="box_bg" id="panorama" src="content/big_panorama.jpg" width="583%" height="100%" />
+
+    </div>
+
+    <div id="fade" class="black_overlay" onclick="javascript:hideAllLightboxes()"></div>

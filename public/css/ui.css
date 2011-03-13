@@ -1,0 +1,138 @@
+.circleButton
+{
+	position: absolute;
+
+	transition: all 300ms ease-in-out;
+	-webkit-transition: all 300ms ease-in-out;
+	-moz-transition: all 300ms ease-in-out;
+	-o-transition: all 300ms ease-in-out;
+	-ms-transition: all 300ms ease-in-out;
+	
+	transform: scale(0.75, 0.75);
+	-webkit-transform: scale(0.75, 0.75);
+	-moz-transform: scale(0.75, 0.75);
+	-o-transform: scale(0.75, 0.75);
+	-ms-transform: scale(0.75, 0.75);
+
+	background-color: #f8f8f8;
+	background-repeat: no-repeat;
+	padding: 12px;
+	
+	cursor: pointer;
+	
+	border-radius: 50% 50% 50% 50%;
+	-moz-border-radius: 50%;
+	-webkit-border-radius: 50%;
+	
+	border: 1px solid #bf930f;
+	
+	box-shadow: 0px 0px 12px #444;
+	-webkit-box-shadow: 0px 0px 12px #444;
+	-moz-box-shadow: 0px 0px 12px #444;
+	-ms-box-shadow: 0px 0px 12px #444;
+}
+
+.circleButton:hover
+{
+	background-color: #fcfcfc;
+	border: 1px solid #888;
+
+	box-shadow: 0px 0px 6px #888;
+	-webkit-box-shadow: 0px 0px 6px #888;
+	-moz-box-shadow: 0px 0px 6px #888;
+	-ms-box-shadow: 0px 0px 6px #888;
+	
+	transform: scale(1.0, 1.0);
+	-webkit-transform: scale(1.0, 1.0);
+	-moz-transform: scale(1.0, 1.0);
+	-o-transform: scale(1.0, 1.0);
+	-ms-transform: scale(1.0, 1.0);
+}
+
+.notification
+{
+  background-color: #e0e0e0;
+  
+  transition: all 300ms;
+  -webkit-transition: all 300ms;
+  -moz-transition: all 300ms;
+  -o-transition: all 300ms;
+  -ms-transition: all 300ms;
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#e0e0e0'); /* for IE */
+  background: -webkit-linear-gradient(top,  #fefefe, #e0e0e0); /* Webkit nightly */
+  background: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#e0e0e0)); /* for webkit browsers */
+  background: -moz-linear-gradient(top,  #fefefe, #e0e0e0); /* for firefox 3.6+ */
+
+  position: absolute; 
+  margin: 12px; 
+  z-index: 10;
+  
+  border-radius: 20px 20px 20px 20px;
+  -moz-border-radius: 20px;
+  -webkit-border-radius: 20px;
+  
+  border: 1px solid #bf930f;
+  
+  box-shadow: 0px 0px 6px #888;
+  -webkit-box-shadow: 0px 0px 6px #888;
+  -moz-box-shadow: 0px 0px 6px #888;
+  -ms-box-shadow: 0px 0px 6px #888;
+
+  -moz-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  opacity: 0.6;
+
+  width: 120px;
+  height: 33px;
+}
+
+.notification:hover
+{
+  -moz-opacity: 1.0;
+  -khtml-opacity: 1.0;
+  opacity: 1.0;
+}
+
+.notificationClose
+{
+  display: block !important;
+  position: absolute !important;
+  top: -10.6666666666667px !important;
+  right: -10.6666666666667px !important;
+  height: 0 !important;
+  width: 24px !important;
+  padding: 24px 0 0 0 !important;
+  overflow: hidden;
+  background: #000000 none !important;
+  border: 2.72727272727273px solid #ffffff;
+  color: #fff !important;
+  font-weight: normal !important;
+  -moz-border-radius: 24px;
+  -webkit-border-radius: 24px;
+  border-radius: 24px;
+  box-shadow: 0 0 6px #000000, 1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), 1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3);
+  -ms-box-shadow: 0 0 6px #000000, 1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), 1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3);
+  -moz-box-shadow: 0 0 6px #000000, 1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), 1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3);
+  -webkit-box-shadow: 0 0 6px #000000, 1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px 1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), 1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3), -1.63636363636364px -1.63636363636364px 1.63636363636364px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+  text-decoration: none !important;
+}
+
+.notificationClose:before
+{
+  content: "\D7" !important;
+  display: block !important;
+  text-align: center !important;
+  width: 24px !important;
+  position: absolute !important;
+  top: -2.4px !important;
+  left: 0 !important;
+  font-size: 24px !important;
+  line-height: 24px !important;
+  color: #fff !important;
+  font-family: "Helvetica Neue", Consolas, Verdana, Tahoma, Calibri, Helvetica, Menlo, "Droid Sans", sans-serif;
+}

@@ -1,0 +1,359 @@
+<!doctype html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Play The City Augsburg</title>
+
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <link href="css/style.css" rel="stylesheet" type="text/css" />
+  <link href="css/map.css" rel="stylesheet" type="text/css" />
+  <link href="css/lightbox.css" rel="stylesheet" type="text/css" />
+
+  <script src="js/lib/modernizr-1.6.min.js"></script>
+  <script type="text/javascript" src="http://tile.cloudmade.com/wml/0.4/web-maps-lite.js"></script>
+
+
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="js/lib/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+
+  <script type="text/javascript">
+
+    function resizeEvent(event)
+    {
+      $('.citymap').height($(window).height() - $('header').height() - $('footer').height() - $('#quickbar').height() - 4);
+
+      $('.white_content').width($(window).width() * 0.8);
+      $('.white_content').height($(window).height() * 0.8);
+
+      $('.white_content').css("left", ($(window).width() - $('.white_content').width()) / 2);
+      $('.white_content').css("top", ($(window).height() - $('.white_content').height()) / 2);
+    }
+
+    var APIKEY = 'c4a96f80767b4bff94b2e65fdda49f10',
+    	map,
+    	layer_map,
+        layer_sights,
+        layer_wiki;
+
+    $(function()
+    {
+      resizeEvent();
+
+      $('#panorama').width($('.white_content').innerHeight() * 5.83);
+
+
+      $('.point').click(
+      function()
+      {
+        $('.bubble').animate({opacity: 0.85}, 125);
+      });
+    });
+
+    function drawMap()
+    {
+      /*map = new OpenLayers.Map("map",
+      	{
+        projection: new OpenLayers.Projection("EPSG:900913"),
+        displayProjection: new OpenLayers.Projection("EPSG:4326"),
+        controls:
+          [
+          new OpenLayers.Control.ScaleLine(),
+          new OpenLayers.Control.Permalink('Permalink'),
+          new OpenLayers.Control.LayerSwitcher(),
+          new OpenLayers.Control.OverviewMap(),
+          new OpenLayers.Control.KeyboardDefaults(),
+          new OpenLayers.Control.MouseDefaults(),
+          new OpenLayers.Control.MousePosition()],
+        restrictedExtent:
+          new OpenLayers.Bounds(1205840.15306, Lat2Merc(48.327),
+          						1218528.69975, 6175110.86552),
+        theme: "css/map.css"});
+
+      layer_map = new OpenLayers.Layer.OSM();
+
+
+      //layer_sights = new OpenLayers.Layer.Markers("Address", { projection: new OpenLayers.Projection("EPSG:4326"),
+   	  //                                        visibility: true, displayInLayerSwitcher: false });
+
+
+      layer_sights = new OpenLayers.Layer.Markers("Sehenswürdigkeiten", { projection: new OpenLayers.Projection("EPSG:4326"), visibility: true});
+
+      var size = new OpenLayers.Size(90,45);
+      var offset = new OpenLayers.Pixel(-(size.w / 2), -(size.h / 2));
+      var icon = new OpenLayers.Icon('content/icon_rathaus.png', size, offset);
+
+      var ll = new OpenLayers.LonLat(Lon2Merc(10.89865), Lat2Merc(48.36893))
+
+      marker = new OpenLayers.Marker(ll, icon);*/
+
+      /*var feature = new OpenLayers.Feature(layer_sights, ll);
+      feature.data.icon = icon;
+      feature.closeBox = true;
+      feature.popupClass = OpenLayers.Class(OpenLayers.Popup, {minSize: new OpenLayers.Size(400, 180) } );
+      feature.data.popupContentHTML = "smoking hot...";
+      feature.data.overflow = "hidden";
+
+
+      var marker = new OpenLayers.Marker(ll);
+      marker.feature = feature;
+
+      var markerClick = function(evt) {
+          if (this.popup == null) {
+              this.popup = this.createPopup(this.closeBox);
+              map.addPopup(this.popup);
+              this.popup.show();
+          } else {
+              this.popup.toggle();
+          }
+          OpenLayers.Event.stop(evt);
+      };
+      marker.events.register("mousedown", feature, markerClick);*/
+
+      /*var popup = new OpenLayers.Popup(null,
+                   ll,
+                   new OpenLayers.Size(200,200),
+                   "example popup",
+                   false, null);
+
+	  map.addPopup(popup); */
+
+      //layer_sights.addMarker(marker);
+
+
+      //layer_wiki = new OpenLayers.Layer.Markers("Wikipedia", { projection: new OpenLayers.Projection("EPSG:4326"), visibility: true});
+
+      /*var markerClick = function(evt) {
+        if (this.popup == null) {
+            this.popup = this.createPopup(this.closeBox);
+            map.addPopup(this.popup);
+            this.popup.show();
+        } else {
+            this.popup.toggle();
+        }
+        OpenLayers.Event.stop(evt);
+      };
+      marker.events.register("mousedown", feature, markerClick);  */
+
+
+      //map.events.register("zoomend", map, function()
+      //{
+      //  if (map.zoom < 14) map.zoom = 14;
+	  //});
+
+      //addMarker(map_layer, 10.8974, 48.36895, '<div class="point puppenkiste"><a href="javascript:void(0)" onclick="showLightbox()"><img class="teaser" src="content/teaser_puppenkiste.jpg"/></a><span>Die Augsburger Puppenkiste</span><hr class="divider" /><p>Die Augsburger Puppenkiste ist ein seit 1948 bestehendes Marionettentheater, beheimatet im Heilig-Geist–Spital. Bekannt ist es besonders durch seine Fernseh-produktionen und Marionetten z.B. Urmel, Jim Knopf und Lukas der Lokomotivführer. 2001 eröffnete das Museum „die Kiste“.</p><hr class="divider" /><span><a href="javascript:void(0)" onclick="showLightbox()">Hier klicken für genauere Informationen</a></span></div>');
+      //addMarker(layer_sights, 10.8974, 48.36895, 'Schön!');
+
+      /*map.addLayer(layer_map);
+      map.addLayer(layer_sights);
+
+      jumpTo(10.8974, 48.36895, 16);*/
+
+
+      var cloudmade = new CM.Tiles.CloudMade.Web({key: APIKEY, styleId: 30822});
+      map = new CM.Map('map', cloudmade);
+
+      var cityBounds = new CM.LatLngBounds(new CM.LatLng(48.3275, 10.8301), new CM.LatLng(48.4153, 10.9592));
+
+      // Init
+      map.setCenter(cityBounds.getCenter(), 16);
+
+
+      CM.Event.addListener(map, "zoomend", function()
+      {
+        if (map.getZoom() < map.getBoundsZoomLevel(cityBounds)) map.setZoom(map.getBoundsZoomLevel(cityBounds));
+	  });
+
+      map.addControl(new CM.ScaleControl());
+      map.addControl(new CM.OverviewMapControl(), new CM.ControlPosition(CM.BOTTOM_RIGHT, new CM.Size(20, 20)));
+
+      var sidebar = new CM.SearchSidebar({key: APIKEY});
+      map.setSidebar(sidebar);
+      map.openSidebar();
+
+      var marker = new CM.Marker(new CM.LatLng(48.36895, 10.8974));
+      map.addOverlay(marker);
+
+      CM.Event.addListener(marker, "click", function()
+      {
+        marker.openInfoWindow(
+	        '<a href="javascript:void(0)" onclick="showLightbox(\'box_rathaus\')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>' +
+		    '<span>Das Augsburger Rathaus</span>' +
+            '<hr class="divider" />' +
+		    '<p>Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.</p>' +
+            '<hr class="divider" />' +
+            '<span><a href="javascript:void(0)" onclick="showLightbox(\'box_rathaus\')">Hier klicken für genauere Informationen</a></span>');
+
+        $('.wml-info-window').attr({opacity: 0.0});
+        $('.wml-info-window').animate({opacity: 0.85}, 125);
+      });
+
+      var wikimarker = new CM.Marker(new CM.LatLng(48.368, 10.8974));
+      map.addOverlay(wikimarker);
+
+      CM.Event.addListener(wikimarker, "click", function()
+      {
+        marker.openInfoWindow(
+	        '<a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>' +
+		    '<span>Wikipedia: Augsburg</span>' +
+            '<hr class="divider" />' +
+		    '<p>Zeigt den Wikipedia-Artikel über Augsburg.</p>' +
+            '<hr class="divider" />' +
+            '<span><a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')">Hier klicken für genauere Informationen</a></span>');
+
+        $('.wml-info-window').attr({opacity: 0.0});
+        $('.wml-info-window').animate({opacity: 0.85}, 125);
+      });
+
+    }
+
+    if (window.addEventListener)
+	window.addEventListener('resize', resizeEvent, false);
+    else
+    {
+	    if (window.attachEvent)
+		    window.attachEvent('onresize', resizeEvent);
+    }
+
+    function showLightbox(id)
+    {
+      $('#'+id).css('display', 'block');
+      $('#fade').css('display', 'block');
+
+      $('#fade').animate({opacity: 0.8}, 500);
+    }
+
+    function hideLightbox(id)
+    {
+      $('#fade').animate({opacity: 0.0}, 500, 'linear',
+        function()
+        {
+          $('#'+id).css('display', 'none');
+          $('#fade').css('display', 'none');
+        });
+    }
+
+    function hideAllLightboxes()
+    {
+      $('#fade').animate({opacity: 0.0}, 500, 'linear',
+      function()
+      {
+        $('.white_content').css('display', 'none');
+        $('#fade').css('display', 'none');
+      });
+
+    }
+  </script>
+</head>
+
+<body onload="drawMap()" onselectstart="return false;">
+    <div id="fb-root"></div>
+    <script>
+      // Async facebook load
+
+      window.fbAsyncInit = function() {
+        FB.init({appId: 128537823866304, status: true, cookie: true,
+                 xfbml: true});
+      };
+      (function() {
+        var e = document.createElement('script'); e.async = true;
+        e.src = document.location.protocol + '//connect.facebook.net/de_DE/all.js';
+        document.getElementById('fb-root').appendChild(e);
+      }());
+    </script>
+
+
+    <header>
+      <img src="content/logo.png" style="margin: 2px;" />
+      <fb:login-button show-faces="true" width="200" max-rows="1"></fb:login-button>
+    </header>
+
+	<div id="content">
+    	<div id="map" class="citymap"></div>
+
+        <div class="mapNav">
+          <div class="navBtn navBtn0" onmousedown="javascript: void map.panBy(new CM.Size(0, -map.getSize().height / 4));"></div>
+          <div class="navBtn navBtn1" onmousedown="javascript: void map.panBy(new CM.Size(map.getSize().width / 4, 0));"></div>
+          <div class="navBtn navBtn2" onmousedown="javascript: void map.panBy(new CM.Size(0, map.getSize().height / 4));"></div>
+          <div class="navBtn navBtn3" onmousedown="javascript: void map.panBy(new CM.Size(-map.getSize().width / 4, 0));"></div>
+        </div>
+                     
+		<!--<div class="citymap">
+			<img src="content/augsburg.png" alt="powered by OpenStreetMap" width="2103" height="1899" />
+			<div class="point puppenkiste" id="p-1325-1230">
+              <a href="javascript:void(0)" onclick="showLightbox('box_rathaus')"><img class="teaser" src="content/teaser_puppenkiste.jpg"/></a>
+			    <span>Die Augsburger Puppenkiste</span>
+                <hr class="divider" />
+			    <p>Die Augsburger Puppenkiste ist ein seit 1948 bestehendes Marionettentheater, beheimatet im Heilig-Geist–Spital. Bekannt ist es besonders durch seine Fernseh-produktionen und Marionetten z.B. Urmel, Jim Knopf und Lukas der Lokomotivführer. 2001 eröffnete das Museum „die Kiste“.</p>
+                <hr class="divider" />
+                <span><a href="javascript:void(0)" onclick="showLightbox('box_puppenkiste')">Hier klicken für genauere Informationen</a></span>
+            </div>
+			<div class="point rathaus" id="p-1160-730">
+              <a href="javascript:void(0)" onclick="showLightbox('box_rathaus')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>
+			    <span>Das Augsburger Rathaus</span>
+                <hr class="divider" />
+			    <p>Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.</p>
+                <hr class="divider" />
+                <span><a href="javascript:void(0)" onclick="showLightbox('box_rathaus')">Hier klicken für genauere Informationen</a></span>
+            </div>
+			<div class="point panorama" id="p-1200-650">
+              <a href="javascript:void(0)" onclick="showLightbox('box_panorama')"><img class="teaser" src="content/teaser_panorama.jpg"/></a>
+			    <span>Augsburg Panorama</span>
+                <hr class="divider" />
+			    <p>Erleben Sie Augsburg als Panorama aus der Perspektive des Perlachturms.</p>
+                <hr class="divider" />
+                <span><a href="javascript:void(0)" onclick="showLightbox('box_panorama')">Hier klicken</a></span>
+            </div>
+		</div>-->
+
+        <div id="quickbar">
+		  <ul class="map_buttons">
+        	  <li><span>Quick Bar</span></li>
+			  <li><a href="#" rel="p-1160-730">Augsburger Rathaus</a></li>
+			  <li><a href="#" rel="p-1200-650">Panorama</a></li>
+		  </ul>
+        </div>
+	</div>
+
+    <footer>
+      (C) 2009 - 2011 Play The City - <a>Mitwirkende</a> - <a>Impressum</a>
+    </footer>
+
+    <div id="box_augsburg_wiki" class="white_content">
+       <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_augsburg_wiki')">Close</span>
+
+       <iframe src="http://de.wikipedia.org/wiki/Augsburg?printable=yes" width="100%" height="100%">
+       </iframe>
+    </div>
+
+    <div id="box_rathaus" class="white_content">
+      <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_rathaus')">Close</span>
+      <img class="box_bg" src="content/big_rathaus.jpg" width="100%" height="100%" />
+
+    </div>
+
+    <div id="box_puppenkiste" class="white_content">
+      <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_puppenkiste')">Close</span>
+      <img class="box_bg" src="content/big_puppenkiste.jpg" width="100%" height="100%" />
+
+    </div>
+
+    <div id="box_panorama" class="white_content">
+      <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_panorama')">Close</span>
+      <img class="box_bg" id="panorama" src="content/big_panorama.jpg" width="583%" height="100%" />
+
+    </div>
+
+    <div id="fade" class="black_overlay" onclick="javascript:hideAllLightboxes()"></div>
+</body>
+</html>

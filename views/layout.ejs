@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html lang="en" class="no-js ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html lang="en" class="no-js ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html lang="en" class="no-js ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html lang="en" class="no-js ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--> <html lang="en" class="no-js"> <!--<![endif]-->
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  
+	<% if (typeof(title) == 'undefined') { %>
+		<title>Play The City</title>
+	<% } else if (title != '') { %>
+		<title>Play The City - <%=title%></title>
+	<% } %>
+	
+	<meta name="description" content="">
+	<meta name="author" content="Play The City">
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="shortcut icon" href="favicon.ico">
+	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+    
+    <link rel='stylesheet' type="text/css" href='css/style.css' />
+    <link rel='stylesheet' type="text/css" href='css/ui.css' />
+    <link rel="stylesheet" type="text/css" href="css/lightbox.css" />
+    
+    <% if (stylesheet) { %>
+		<link rel='stylesheet' type="text/css" href='css/<%= stylesheet %>.css' />
+    <% } %>
+    
+    <!--[if lt IE 9]>
+		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+    
+    <script src="js/lib/modernizr-1.7.min.js"></script>
+
+	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
+	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/lib/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
+	
+	<script src="js/PTC.UI.js"></script>
+	
+	<script>
+		// http://blog.mixable.de/jquery-unterschied-zwischen-document-ready-und-window-load/
+		// Hide load div after everything has been loaded
+		$(window).load(function() 
+		{
+			$('#loading').hide();
+		});
+	</script>
+  </head>
+  <body>
+    <div id="fb-root"></div>
+  
+	<div id="loginbox">
+		<script>
+		var loginbox = new PTC.UI.Notification('#loginbox', true);
+		
+		$(document).ready(function()
+		{
+			loginbox.setWidth('250px', '350px');
+			loginbox.setHeight('100px', '60px');
+			
+		
+			 window.fbAsyncInit = function() {
+				FB.init({ appId:'194632083901827', cookie:true, 
+				status:true, xfbml:true });
+				
+				$('#fb_loginbutton').css('padding-top', '4px');
+                $('#fb_loginbutton').css('padding-bottom', '4px');
+				
+				// User already logged in
+				FB.getLoginStatus(function(response) 
+				{
+				  if (response.session) 
+				  {
+					loginbox.expand();
+					$('#login_input').hide();
+					
+					$('#fb_loginbutton').css('padding-top', '0px');
+					$('#fb_loginbutton').css('padding-bottom', '0px');
+				  }
+				});
+				
+				FB.Event.subscribe('auth.sessionChange', function(response) 
+				{
+				  // Logged in -> Clicked "Login"
+				  if (response.session) 
+				  {
+					loginbox.expand();
+					$('#login_input').hide();
+					
+					$('#fb_loginbutton').css('padding-top', '0px');
+                    $('#fb_loginbutton').css('padding-bottom', '0px');
+				  }
+				  else // Logged out -> Login-Button visible
+				  {
+					loginbox.collapse();
+					
+					$('#fb_loginbutton').css('padding-top', '4px');
+					$('#fb_loginbutton').css('padding-bottom', '4px');
+				  }
+				});
+				
+			  };
+			  (function() {
+				var e = document.createElement('script'); e.async = true;
+				e.src = document.location.protocol +
+				  '//connect.facebook.net/de_DE/all.js';
+				document.getElementById('fb-root').appendChild(e);
+			  }());
+		});
+
+		
+         //FB.ui({ method: 'feed', 
+            //message: 'Facebook for Websites is super-cool'});
+      </script>
+	
+		<span id="loginboxClose" class="notificationClose" title="Close" onclick="javascript:loginbox.hide();">Close</span>
+		<div id="login_input" style="margin-left: 10px;">
+			<p>
+				<label for="Bauteil_1">E-Mail-Adresse</label>
+				<input type="email" id="Bauteil_1" name="Bauteil_1" />
+			</p>
+			<p>
+				<label for="Wert_1">Passwort</label>
+				<input id="Wert_1" name="Wert_1" />
+			</p>
+			<span>Anmelden</span>
+		</div>
+		<div style="overflow:hidden;">
+			<fb:login-button show-faces="true" width="320" max-rows="1" id="fb_loginbutton" style="margin-left: 10px;"></fb:login-button>
+		</div>
+	</div>
+  
+	<div id="content">
+		<%- body %>
+		
+		<div id="loading">
+			<img id="logo_small" src="content/logo_small.png" alt="Logo" />
+			<img id="loader" src="content/loader.gif" alt="Laden..." />
+		</div>
+	</div>
+	
+	<footer class="non-mobile">
+      (C) 2009 - 2011 Play The City - <a href="/credits">Mitwirkende</a> - <a href="/contact">Impressum / Kontakt</a>
+    </footer>
+  </body>
+</html>
