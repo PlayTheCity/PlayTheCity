@@ -49,6 +49,105 @@
 	-ms-transform: scale(1.0, 1.0);
 }
 
+input
+{
+  border: 0px;
+  height: 22px;
+  
+  border-radius: 6px 6px 6px 6px;
+  -moz-border-radius: 6px;
+  -webkit-border-radius: 6px;
+  
+  box-shadow: 0px 0px 6px #888;
+  -webkit-box-shadow: 0px 0px 6px #888;
+  -moz-box-shadow: 0px 0px 6px #888;
+  -ms-box-shadow: 0px 0px 6px #888;
+  
+  margin-top: 4px;
+  margin-bottom: 4px;
+  
+  padding-left: 6px;
+  font-weight: bold;
+  
+  -moz-user-select: text !important;
+  -webkit-user-select: text !important;
+  user-select: text !important;
+  
+  cursor: text !important;
+}
+
+.labelinside
+{
+  position: absolute;
+  margin-left: 8px;
+  margin-top: 8px;
+  
+  font-weight: bold;
+  cursor: text;
+}
+
+
+
+.text_button a
+{
+  -moz-box-shadow: 0px 0px 8px #696969;
+  -webkit-box-shadow: 0px 0px 8px #696969;
+  -ms-box-shadow: 0px 0px 8px #696969;
+  box-shadow: 0px 0px 8px #696969;
+
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;
+  border-radius: 8px;
+  
+  cursor: pointer;
+
+  display:block;
+  float:left;
+  font-size:12px;
+  margin-right:4px;
+  outline:none;
+  padding:8px;
+  text-decoration:none;
+
+  background: #111;
+  color: #fff;
+
+  border: 1px solid #664f08;
+  
+  transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -webkit-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
+
+  background: #EDEDED;
+  color: #111;
+  
+  font-weight: bold;
+}
+
+.text_button a:hover
+{
+  background: #111111;
+  color: #fff;
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#565656', endColorstr='#111111'); /* for IE */
+  background: -webkit-gradient(linear, left top, left bottom, from(#565656), to(#111111)); /* for webkit browsers */
+  background: -moz-linear-gradient(top, #565656, #111111); /* for firefox 3.6+ */
+}
+
+.text_button a:active
+{
+  background: #454545;
+  color: #fff;
+
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#111111', endColorstr='#565656'); /* for IE */
+  background: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#565656)); /* for webkit browsers */
+  background: -moz-linear-gradient(top, #111111, #565656); /* for firefox 3.6+ */
+}
+
+
+
 .notification
 {
   background-color: #e0e0e0;

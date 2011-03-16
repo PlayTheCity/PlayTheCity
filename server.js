@@ -102,7 +102,7 @@ app.get('/games', function(req, res)
 
 if (!module.parent) 
 {
-  app.listen(80);
+  app.listen(3000); // 80 would be Standard HTTP port
   console.log("Express server listening on port %d", app.address().port)
 }
 

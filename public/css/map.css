@@ -440,27 +440,8 @@ ul.map_buttons li {
 float:left;
 }
 
-.map_buttons a
+.map_buttons
 {
-  border: 1px solid #111;
-
-  -moz-transition-property: background, color;
-  -moz-transition-duration: 500ms;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-property: background, color;
-  -webkit-transition-duration: 500ms;
-  -webkit-transition-timing-function: ease-out;
-  -o-transition-property: background, color;
-  -o-transition-duration: 500ms;
-  -o-transition-timing-function: ease-out;
-
-  -moz-box-shadow:0 0 20px #696969;
-  -webkit-box-shadow:0 0 20px #696969;
-
-  -moz-border-radius:8px;
-  -webkit-border-radius:8px;
-  border-radius:8px;
-
   display:block;
   float:left;
   font-size:11px;
@@ -469,6 +450,26 @@ float:left;
   outline:none;
   padding:0 15px;
   text-decoration:none;
+  
+  -moz-box-shadow:0 0 20px #696969;
+  -webkit-box-shadow:0 0 20px #696969;
+  -ms-box-shadow:0 0 20px #696969;
+  box-shadow:0 0 20px #696969;
+
+  -moz-border-radius:8px;
+  -webkit-border-radius:8px;
+  border-radius:8px;
+}
+
+.map_buttons a
+{
+  border: 1px solid #664f08;
+  
+  transition: all 300ms ease-out;
+  -moz-transition: all 300ms ease-out;
+  -webkit-transition: all 300ms ease-out;
+  -ms-transition: all 300ms ease-out;
+  -o-transition: all 300ms ease-out;
 
   background: #EDEDED;
   color: #111;
@@ -497,22 +498,6 @@ float:left;
 .map_buttons span
 {
   border: 1px solid #111;
-
-  -moz-box-shadow:0 0 20px #696969;
-  -webkit-box-shadow:0 0 20px #696969;
-
-  -moz-border-radius:8px;
-  -webkit-border-radius:8px;
-  border-radius:8px;
-
-  display:block;
-  float:left;
-  font-size:11px;
-  line-height:28px;
-  margin-right:4px;
-  outline:none;
-  padding:0 15px;
-  text-decoration:none;
 
   background: #111;
   color: #fff;

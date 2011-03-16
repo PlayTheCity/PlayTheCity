@@ -9,9 +9,34 @@
 if (typeof PTC == 'undefined') var PTC = {};
 if (typeof (PTC.UI) == 'undefined') PTC.UI = {};
 
+// TODO: Use desktop notifications where available
 
 // Animation Interval: 300ms
 const animInterval = 300;
+
+/*
+ * Play The City Lightbox pseudo-class
+ * 
+ * 
+ */
+
+PTC.UI.Lightbox = (function()
+{
+	var 
+	show = function()
+	{
+		
+	},
+	hide = function()
+	{
+		
+	};
+	
+	return {
+		show: show,
+		hide: hide
+	};
+});
 
 /*
  * Play The City Notification pseudo-class

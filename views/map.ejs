@@ -46,13 +46,16 @@
 
       CM.Event.addListener(map, "zoomend", function()
       {
-        if (map.getZoom() < map.getBoundsZoomLevel(cityBounds)) map.setZoom(map.getBoundsZoomLevel(cityBounds));
+        
+      
+		//alert(map.getZoom() + " " + map.getBoundsZoomLevel(cityBounds));
+      
+        //if (map.getZoom() < map.getBoundsZoomLevel(cityBounds)) map.setZoom(map.getBoundsZoomLevel(cityBounds));
+        //else map.setCenter(cityBounds.getCenter(), map.getBoundsZoomLevel(cityBounds));
 	  });
 
       map.addControl(new CM.ScaleControl());
       map.addControl(new CM.OverviewMapControl(), new CM.ControlPosition(CM.BOTTOM_RIGHT, new CM.Size(20, 20)));
-      
-      
       
       
       
