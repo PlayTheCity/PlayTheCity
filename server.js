@@ -88,12 +88,12 @@ app.get('/contact', function(req, res)
 });
 
 // Games
-app.get('/games', function(req, res)
+app.get('/quiz', function(req, res)
 {
-	res.render('games',
+	res.render('quiz',
 	{
-		stylesheet: 'games',
-		title: 'Spiele'
+		stylesheet: 'quiz',
+		title: 'Quiz'
 	});
 });
 
@@ -102,7 +102,7 @@ app.get('/games', function(req, res)
 
 if (!module.parent) 
 {
-  app.listen(3000); // 80 would be Standard HTTP port
+  app.listen(3000);
   console.log("Express server listening on port %d", app.address().port)
 }
 
