@@ -1,0 +1,66 @@
+#btnAnswer1
+{
+	width: 250px;
+	height: 50px;
+	
+	right: 600px;
+	bottom: 340px;
+}
+
+#btnAnswer2
+{
+	width: 250px;
+	height: 50px;
+	
+	right: 600px;
+	bottom: 240px;
+}
+
+#btnAnswer3
+{
+	width: 250px;
+	height: 50px;
+	
+	right: 300px;
+	bottom: 340px;
+}
+
+#btnAnswer4
+{
+	width: 250px;
+	height: 50px;
+	
+	right: 300px;
+	bottom: 240px;
+}
+
+
+#btnNext
+{
+	width: 	80px;
+	height: 25px;
+	
+	right: 300px;
+	bottom: 100px;
+}
+
+#btnRetry
+{
+	width: 	80px;
+	height: 25px;
+	
+	right: 750px;
+	bottom: 100px;
+}
+
+#boxQuestion
+{
+	width: 550px;
+	height: 25px;
+	
+	right: 300px;
+	bottom: 450px;
+}
+
+.red { color:red; }
+.green { color:green; }
