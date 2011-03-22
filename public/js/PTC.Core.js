@@ -8,47 +8,89 @@ function trunc(number) { return (number | 0); }
 if (typeof PTC == 'undefined') var PTC = {};
 
 // Temporary class, until Charybdis is included
+
 if (typeof(Platform) == "undefined")
 {
 	Platform = function()
 	{
-		var 
-		mobile = function()
+		var
+		Browser = 
 		{
-			return (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/Bada/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i));
+			get: function() { return navigator.userAgent; },
+			getName: function() { return navigator.appName; },
+			getVersion: function() { return navigator.appVersion; }
 		},
-		iOS = function()
+		
+		getName = function()
 		{
-			return ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i)));
+			return navigator.platform;
 		},
-		iPhone = function()
+		
+		is = function(value)
 		{
-			return navigator.userAgent.match(/iPhone/i);
+			if (typeof(is) === "undefined") return;
+			
+			switch (is)
+			{
+				case 'ios':
+				case 'iOS': return ((navigator.userAgent.match(/iPhone/i)) || (navigator.userAgent.match(/iPod/i)) || (navigator.userAgent.match(/iPad/i))); break; 
+				
+				case 'iphone':
+				case 'iPhone': return navigator.userAgent.match(/iPhone/i); break;
+				
+				case 'ipod':
+				case 'iPod': return navigator.userAgent.match(/iPod/i); break;
+				
+				case 'ipad':
+				case 'iPad': return navigator.userAgent.match(/iPad/i); break;
+				
+				case 'android':
+				case 'Android': return navigator.userAgent.match(/Android/i); break;
+				
+				case 'bada': 
+				case 'Bada': return navigator.userAgent.match(/Bada/i); break;
+				
+				case 'webos':
+				case 'webOS':
+				case 'WebOS': return navigator.userAgent.match(/webOS/i); break;
+				
+				case 'mobile':
+				case 'Mobile': return (navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/Bada/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)); break;
+				
+				case 'desktop':
+				case 'Desktop': return !(navigator.userAgent.match(/Android/i) || navigator.userAgent.match(/Bada/i) || navigator.userAgent.match(/webOS/i) || navigator.userAgent.match(/iPhone/i) || navigator.userAgent.match(/iPod/i) || navigator.userAgent.match(/iPad/i)); break;
+			}
 		},
-		iPod = function()
+		
+		isMobile = function()
 		{
-			return navigator.userAgent.match(/iPod/i);
+			return is('Mobile');
 		},
-		iPad = function()
+		
+		getLanguage = function()
 		{
-			return navigator.userAgent.match(/iPad/i);
-		},
-		Android = function()
-		{
-			return navigator.userAgent.match(/Android/i);
+			return navigator.language;
 		};
 		
 		return {
-			mobile: mobile,
-			iOS: iOS,
-			iPhone: iPhone,
-			iPod: iPod,
-			iPad: iPad,
-			Android: Android
+			Browser: Browser,
+			getName: getName,
+			is: is,
+			isMobile: isMobile,
+			getLanguage: getLanguage
 		};
 	}();
 }
 
+// Button interface
+/*PTC.Button =
+{
+	OnClick: function() {},
+	OnMouseDown: function() {},
+	OnMouseUp: function() {},
+	OnMouseOver: function() {},
+	OnMouseOut: function() {}
+};*/
 
 /*PlayTheCity.App = (function()
 {

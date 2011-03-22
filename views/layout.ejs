@@ -30,10 +30,6 @@
 		<link rel='stylesheet' type="text/css" href='css/<%= stylesheet %>.css' />
     <% } %>
     
-    <!--[if lt IE 9]>
-		<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-    
     <script src="js/lib/modernizr-1.7.min.js"></script>
 
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
@@ -42,7 +38,8 @@
 	<script src="js/PTC.Core.js"></script>
 	<script src="js/PTC.UI.js"></script>
 	
-	<script>
+	
+	<script>		
 		// http://blog.mixable.de/jquery-unterschied-zwischen-document-ready-und-window-load/
 		// Hide load div after everything has been loaded
 		$(window).load(function() 
@@ -52,9 +49,14 @@
 		
 		function loginHandler()
 		{
+			// Show login box
+			$('#loginbox').show();
+			
+			// Make labels a bit transparent
 			$('#lblLoginMail').css('opacity', 0.8);
 			$('#lblLoginPwd').css('opacity', 0.8);
 			
+			// Hide labels if cursor is in input box
 			$('#edtLoginMail').focusin(function()
 			{
 				$('#lblLoginMail').fadeTo(300, 0.1);
@@ -64,6 +66,7 @@
 				$('#lblLoginPwd').fadeTo(300, 0.1);
 			});
 			
+			// Show labels if input box empty and not focused
 			$('#edtLoginMail').focusout(function()
 			{
 				if ($('#edtLoginMail').val() == "") $('#lblLoginMail').fadeTo(300, 0.8);
@@ -72,18 +75,6 @@
 			{
 				if ($('#edtLoginPwd').val() == "") $('#lblLoginPwd').fadeTo(300, 0.8);
 			});
-			
-			
-			/*$('#edtLoginMail').change(function()
-			{
-				if ($('#edtLoginMail').val() != "") 
-					if ($('#edtLoginMail').css('opacity') != 0.1) $('#lblLoginMail').fadeTo(300, 0.1);
-			});
-			$('#edtLoginPwd').change(function()
-			{
-				if ($('#edtLoginPwd').val() != "") 
-					if ($('#edtLoginPwd').css('opacity') != 0.1) $('#lblLoginPwd').fadeTo(300, 0.1);
-			});*/
 		}
 		
 		// Hide non-mobile elements on mobile browsers
@@ -91,7 +82,7 @@
 		{
 			if (typeof(Platform) != "undefined")
 			{ 
-				if (Platform.mobile()) $('.non-mobile').hide();
+				if (Platform.isMobile()) $('.non-mobile').hide();
 				else loginHandler();
 			}
 			else loginHandler();
@@ -107,8 +98,8 @@
 		
 		$(document).ready(function()
 		{
-			loginbox.setWidth('212px', '350px');
-			loginbox.setHeight('150px', '70px');
+			loginbox.setWidth('222px', '350px');
+			loginbox.setHeight('160px', '70px');
 			loginbox.collapse();
 			
 		
@@ -166,26 +157,26 @@
             //message: 'Facebook for Websites is super-cool'});
       </script>
 	
-		<span id="loginboxClose" class="notificationClose" title="Close" onclick="javascript:loginbox.hide();">Close</span>
+		<span id="loginboxClose" class="close-btn-26" title="Close" onclick="javascript:loginbox.hide();">Close</span>
 		<div id="login_input" style="margin-left: 10px;">
 			<p>
 				<label for="edtLoginMail">
 					<span id="lblLoginMail" class="labelinside">E-Mail-Adresse</span>
-					<input type="text" class="input" id="edtLoginMail" name="edtLoginMail" />
+					<input type="text" class="input" id="edtLoginMail" name="edtLoginMail" required />
 				</label>
 			</p>
 			<p>
 				<label for="edtLoginPwd">
 					<span id="lblLoginPwd" class="labelinside">Passwort</span>
-					<input type="password" class="input" id="edtLoginPwd" name="edtLoginPwd" />
+					<input type="password" class="input" id="edtLoginPwd" name="edtLoginPwd" required />
 					<span><small>Passwort vergessen?</small></span>
 				</label>
 			</p>
 			<br />
 			<span class="text_button"><a>Anmelden</a></span>
 		</div>
-		<div style="overflow:hidden;">
-			<fb:login-button show-faces="true" width="320" max-rows="1" id="fb_loginbutton" style="margin-left: 10px;"></fb:login-button>
+		<div style="overflow:hidden;" width="100%">
+			<fb:login-button show-faces="true" width="320" max-rows="1" id="fb_loginbutton" style="margin-left: 10px;">Mit Facebook anmelden</fb:login-button>
 		</div>
 		<small><a href="/register">Kein Account?</a></small>
 	</div>

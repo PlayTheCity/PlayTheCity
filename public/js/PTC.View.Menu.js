@@ -1,78 +1,109 @@
 if (typeof PTC == 'undefined') var PTC = {};
+if (typeof (PTC.View) == 'undefined') PTC.View = {};
 
-function resizeView()
+// Module View
+PTC.View.Menu = function()
 {
-	$('#background').width($(window).width());
+	var
+	longestSide = 0,
+	scaleMenuFactor = 1.0,
+	imageScale = 0;
 	
-	if (Platform.mobile())
-		$('#background').height($(window).height());
-	else
-		$('#background').height($(window).height() - $('footer').height());
-	
-	var longestSide = 0,
-		scaleMenu = false,
-		scaleMenuFactor = 1.0,
-		imageScale = 0;
-	
-	
-	if ($(window).width() >= $(window).height()) 
+	resize = function()
 	{
-		longestSide = $(window).width();
+		$('#background').width($(window).width());
+	
+		if (Platform.isMobile())
+			$('#background').height($(window).height());
+		else
+			$('#background').height($(window).height() - $('footer').height());
 		
-		if ($(window).width() < $('#menu').width()) scaleMenuFactor = $(window).width() / $('#menu').width();
-	}
-	else 
-	{
-		longestSide = $(window).height();
 		
-		if ($(window).height() < $('#menu').height()) scaleMenuFactor = $(window).height() / $('#menu').height();
-	}
-	
-	if (scaleMenuFactor < 1.0)
-	{
+		if ($(window).width() >= $(window).height()) 
+		{
+			longestSide = $(window).width();
+			
+			if ($(window).width() < $('#menu').width()) scaleMenuFactor = $(window).width() / $('#menu').width();
+			else scaleMenuFactor = 1.0;
+		}
+		else 
+		{
+			longestSide = $(window).height();
+			
+			if ($(window).height() < $('#menu').height()) scaleMenuFactor = $(window).height() / $('#menu').height();
+			else scaleMenuFactor = 1.0;
+		}
+		
 		$("#menu").css({
 			'transform': 'scale(' + scaleMenuFactor + ',' + scaleMenuFactor +  ')',
 			'-moz-transform': 'scale(' + scaleMenuFactor + ',' + scaleMenuFactor +  ')',
 			'-o-transform': 'scale(' + scaleMenuFactor + ',' + scaleMenuFactor +  ')',
 			'-webkit-transform': 'scale(' + scaleMenuFactor + ',' + scaleMenuFactor +  ')'
 		});
-	}
+		
+		imageScale = ((trunc((longestSide - 1) / 512) + 1) * 512);
+		$('#background').css('background-image', 'url(../content/background_' + imageScale + '.jpg)');
+		
+		if ($(window).width() >= $(window).height()) 
+		{
+			$('#background').css('background-position-x', -((imageScale - $(window).width()) / 2) + 'px');
+			$('#background').css('background-position', -((imageScale - $(window).width()) / 2) + 'px 0px');
+		}
+		else 
+		{
+			$('#background').css('background-position-y', -((imageScale - $(window).height()) / 2) + 'px');
+			$('#background').css('background-position', '0px ' + -((imageScale - $(window).height()) / 2) + 'px');
+		}
+	},
 	
-	imageScale = ((trunc(longestSide / 512) + 1) * 512);
-	$('#background').css('background-image', 'url(../content/background_' + imageScale + '.jpg)');
+	init = function()
+	{
+		$('#background').css('opacity', 0.1);
+		
+		resize();
+		
+		// View Buttons
+
+		$('#btnProfile').click(function()
+		{
+			window.location = 'profile';
+		});
+
+		$('#btnMap').click(function()
+		{
+			window.location = 'map';
+		});
+	};
 	
-	if ($(window).width() >= $(window).height()) $('#background').css('background-position-x', -((imageScale - $(window).width()) / 2) + 'px');
-	else $('#background').css('background-position-y', -((imageScale - $(window).height()) / 2) + 'px');
-}
-
-$(document).ready(function()
-{
-	$('#background').css('opacity', 0.1);
+	$(document).ready(function() { init(); });
+	$(window).resize(function() { resize(); });
 	
-	resizeView();
-});
+	return {
+		init: init,
+		resize: resize
+	};
+}();
 
-$(window).resize(function() { resizeView(); });
 
-function OnBtnProfileMouseDown()
-{
-	//$('#btnProfile').css('background-color', '#fff3cf');
-	//$('#btnProfile').css('-webkit-transform', 'scale(0.75, 0.75)');
-}
 
-function OnBtnProfileMouseUp()
-{
-	if ($('#btnProfile').hasClass('mousedown')) $('#btnProfile').removeClass('mousedown');
-}
 
-$('#btnProfile').mousedown(function() { $(this).addClass('mousedown'); });
-
-function OnBtnProfileClick()
-{
-	window.location = 'profile';
-}
-
-function OnBtnMapClick()
+/*btnMap.OnClick = function()
 {
 	window.location = 'map';
-}
+};
+
+btnProfile.OnClick = function()
+{
+	window.location = 'profile';
+};*/
+
+/*btnProfile.OnClick = function()
+{
+	alert('profile');
+};
+
+btnMap.OnClick = function()
+{
+	alert('map');
+};*/
+

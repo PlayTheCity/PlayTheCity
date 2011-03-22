@@ -4,14 +4,26 @@
  */
 
 var express = require('express'),
-
-	app = module.exports = express.createServer();
+	app = module.exports = express.createServer(),
+	
+	mongoose = require('mongoose'),
+	express_dialect = require('express-dialect'),
+	
+	config = require('./config.js').Config,
+	dialect_options = 
+	{
+      app: app,
+      path: __dirname + config.dataDir,
+      title: 'dialect test',
+      store: 'mongodb',
+      database: 'translations'
+    };
 
 
 // Configuration
 
 app.configure(function(){
-  app.set('views', __dirname + '/views');
+  app.set('views', __dirname + config.viewDir);
   app.set('view engine', 'ejs');
   app.use(express.bodyParser());
   app.use(express.methodOverride());
@@ -21,10 +33,10 @@ app.configure(function(){
   // Enable Less later on - when we're really using Less
   // Do not activate unless you are sure what you're doing
   // It will overwrite current stylesheets
-  app.use(express.compiler({ src: __dirname + '/public', enable: ['less'] }));
+  app.use(express.compiler({ src: __dirname + config.publicDir + config.styleDir, enable: ['less'] }));
   
   app.use(app.router);
-  app.use(express.static(__dirname + '/public'));
+  app.use(express.static(__dirname + config.publicDir));
 });
 
 app.configure('development', function(){
@@ -37,6 +49,17 @@ app.configure('production', function(){
 
 
 // Routes
+
+// Error handling
+app.get('/404', function(req, res)
+{
+	throw new Error('not found');
+});
+
+app.get('/500', function(req, res)
+{
+	throw new Error('keyboard cat!');
+});
 
 // Index / Menu
 app.get('/', function(req, res)
@@ -91,6 +114,46 @@ app.get('/contact', function(req, res)
 app.get('/quiz', function(req, res)
 {
 	res.render('quiz',
+	{
+		stylesheet: 'quiz',
+		title: 'Quiz'
+	});
+});
+
+
+// Users
+app.get('/users', function(req, res)
+{
+	res.render('users',
+	{
+		stylesheet: 'quiz',
+		title: 'Quiz'
+	});
+});
+
+app.get('/users/:id', function(req, res)
+{
+	var id = req.params.id;
+	
+	if (id)
+	{
+		res.render('user' + req.params.id,
+		{
+			stylesheet: 'quiz',
+			title: 'Quiz'
+		});
+	}
+	else
+	{
+		next();
+	}
+	
+});
+
+// Pin-Data
+app.get('/pin/:id', function(req, res)
+{
+	res.render('pin' + req.params.id,
 	{
 		stylesheet: 'quiz',
 		title: 'Quiz'

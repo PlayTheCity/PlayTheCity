@@ -1,31 +1,22 @@
-/* ------ mobilymap
------------------------------------------------*/
-
-.loader {
-background:url(../content/loader.gif) no-repeat center #fff;
-}
-
 .imgCaption {
-bottom:0;
-left:0;
-color:#fff;
-
-filter:alpha(60);
--moz-opacity:0.6;
--khtml-opacity:0.6;
-opacity:0.6;
-
-background:#333;
-padding:4px;
-width:100%;
-text-align:center;
-font-size:10px;
-text-shadow:1px 1px 0 #111;
-font-weight:bold;
+  bottom: 0;
+  left: 0;
+  color: #fff;
+  opacity: 0.6;
+  -moz-opacity: 0.6;
+  -webkit-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  filter: alpha(opacity=60);
+  -ms-filter: "alpha(opacity=60)";
+  background: #333;
+  padding: 4px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  text-shadow: 1px 1px 0 #111;
+  font-weight: bold;
 }
-
-.wml-info-window-close
-{
+.wml-info-window-close {
   display: block !important;
   position: absolute !important;
   top: -10.6666666666667px !important;
@@ -51,9 +42,7 @@ font-weight:bold;
   user-select: none;
   text-decoration: none !important;
 }
-
-.wml-info-window-close:before
-{
+.wml-info-window-close:before {
   content: "\D7" !important;
   display: block !important;
   text-align: center !important;
@@ -66,362 +55,302 @@ font-weight:bold;
   color: #fff !important;
   font-family: "Helvetica Neue", Consolas, Verdana, Tahoma, Calibri, Helvetica, Menlo, "Droid Sans", sans-serif;
 }
+#mapNav {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+  background-color: #fff;
+  border: 1px solid #bf930f;
+  width: 100px;
+  height: 240px;
+  transition: all 600ms linear 0ms;
+  -webkit-transition: all 600ms linear 0ms;
+  -moz-transition: all 600ms linear 0ms;
+  -o-transition: all 600ms linear 0ms;
+  -ms-transition: all 600ms linear 0ms;
+  border-radius: 10px 10px 10px 10px;
+  -moz-border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-box-shadow: 0px 0px 12px #888888;
+  -webkit-box-shadow: 0px 0px 12px #888888;
+  -o-box-shadow: 0px 0px 12px #888888;
+  -ms-box-shadow: 0px 0px 12px #888888;
+  box-shadow: 0px 0px 12px #888888;
+  background-color: #ffffff;
+  /* Fallback */
 
-.mapNav {
-position: absolute;
-left: 12px;
-top: 160px;
+  background-image: linear-gradient(top, #fefefe, #efefef);
+  /* for future browsers */
 
-background-color: #fff;
+  background-image: -webkit-linear-gradient(top, #fefefe, #efefef);
+  /* Webkit nightly */
 
-border: 1px solid #bf930f;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#efefef));
+  /* for webkit browsers */
 
-width:100px;
-height:240px;
+  background-image: -moz-linear-gradient(top, #fefefe, #efefef);
+  /* for firefox 3.6+ */
 
-transition: all 300ms;
--moz-transition: all 300ms;
--webkit-transition: all 300ms;
--o-transition: all 300ms;
--ms-transition: all 300ms;
+  background-image: -o-linear-gradient(top, #fefefe, #efefef);
+  /* for Opera */
 
--moz-border-radius:10px;
--webkit-border-radius:10px;
-border-radius: 10px 10px 10px 10px;
-
-box-shadow: 0px 0px 12px #888;
--moz-box-shadow: 0px 0px 12px #888;
--webkit-box-shadow: 0px 0px 12px #888;
--ms-box-shadow: 0px 0px 12px #888;
-
-background: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#efefef)); /* for webkit browsers */
-background: -webkit-linear-gradient(top,  #fefefe, #efefef); /* Webkit Nightly */
-background: -moz-linear-gradient(top,  #fefefe, #efefef); /* for firefox 3.6+ */
-
-filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#fefefe', endColorstr='#efefef'),alpha(60);
--moz-opacity:0.6;
--khtml-opacity:0.6;
-opacity:0.6;
-
-cursor: default;
-
-z-index: 1000;
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fefefe,endColorstr=#efefef);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fefefe, endColorstr=#efefef)";
+  opacity: 0.6;
+  -moz-opacity: 0.6;
+  -webkit-opacity: 0.6;
+  -khtml-opacity: 0.6;
+  filter: alpha(opacity=60);
+  -ms-filter: "alpha(opacity=60)";
+  cursor: default;
+  z-index: 1000;
 }
-
-.mapNav:hover
-{
--moz-opacity:1.0;
--khtml-opacity:1.0;
-opacity:1.0;
+#mapNav:hover {
+  opacity: 1;
+  -moz-opacity: 1;
+  -webkit-opacity: 1;
+  -khtml-opacity: 1;
+  filter: alpha(opacity=100);
+  -ms-filter: "alpha(opacity=100)";
 }
-
 .navBtn {
-position:absolute;
-background-repeat:no-repeat;
-width:32px;
-height:32px;
-outline:none;
-text-indent:-9999px;
-display:block;
-z-index:7px;
+  position: absolute;
+  background-repeat: no-repeat;
+  width: 32px;
+  height: 32px;
+  outline: none;
+  text-indent: -9999px;
+  display: block;
+  z-index: 7;
 }
-
 .navBtn0 {
-top:0;
-left:34px;
-margin-top: 2px;
-background-image:url(../content/navtop.png);
+  top: 0;
+  left: 34px;
+  margin-top: 2px;
+  background-image: url(../content/navtop.png);
 }
-
 .navBtn1 {
-top:30px;
-right:0;
-margin-right: 2px;
-background-image:url(../content/navright.png);
+  top: 30px;
+  right: 0;
+  margin-right: 2px;
+  background-image: url(../content/navright.png);
 }
-
 .navBtn2 {
-bottom:0;
-left:34px;
-top: 60px;
-background-image:url(../content/navbottom.png);
+  bottom: 0;
+  left: 34px;
+  top: 60px;
+  background-image: url(../content/navbottom.png);
 }
-
 .navBtn3 {
-top:30px;
-left:0;
-margin-left: 2px;
-background-image:url(../content/navleft.png);
+  top: 30px;
+  left: 0;
+  margin-left: 2px;
+  background-image: url(../content/navleft.png);
 }
-
 /* ------ example1
 -----------------------------------------------*/
-
 #map {
-/*margin:10px 0;
+  /*margin:10px 0;
 position: absolute;
 top: 0px;
 left: 0px;*/
 
 }
-
-#map a
-{
-  -moz-transition-property: color;
-  -moz-transition-duration: 1s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-property: color;
-  -webkit-transition-duration: 1s;
-  -webkit-transition-timing-function: ease-out;
-  -o-transition-property: color;
-  -o-transition-duration: 1s;
-  -o-transition-timing-function: ease-out;
-
+#map a {
+  transition: color 300ms linear 0ms;
+  -webkit-transition: color 300ms linear 0ms;
+  -moz-transition: color 300ms linear 0ms;
+  -o-transition: color 300ms linear 0ms;
+  -ms-transition: color 300ms linear 0ms;
   color: #000;
   text-decoration: underline;
   font-weight: bold;
 }
-
-#map a:hover
-{
+#map a:hover {
   color: #6a6a6a;
 }
-
-
-
+#mapOptions {
+  width: 202px;
+  height: 220px;
+  top: 180px;
+  padding: 10px;
+  z-index: 1000;
+}
+#mapOptions .subtitle {
+  font-weight: bold;
+}
 .point {
-display:block;
-text-indent:-9999px;
-width:64px;
-height:64px;
-outline:none;
-background:url(../content/marker.png) no-repeat;
-cursor:pointer;
+  display: block;
+  text-indent: -9999px;
+  width: 64px;
+  height: 64px;
+  outline: none;
+  background: url(../content/marker.png) no-repeat;
+  cursor: pointer;
 }
-
 .rathaus {
-display:block;
-text-indent:-9999px;
-width:45px;
-height:45px;
-outline:none;
-background:url(../content/icon_rathaus.png) no-repeat;
-background-position-x: 0px;
-background-position: 0px 0px;
-cursor:pointer;
+  display: block;
+  text-indent: -9999px;
+  width: 45px;
+  height: 45px;
+  outline: none;
+  background: url(../content/icon_rathaus.png) no-repeat;
+  background-position-x: 0px;
+  background-position: 0px 0px;
+  cursor: pointer;
 }
-
-.rathaus:hover
-{
-background-position-x: -45px;
-background-position: -45px 0px;
+.rathaus:hover {
+  background-position-x: -45px;
+  background-position: -45px 0px;
 }
-
 .puppenkiste {
-display:block;
-text-indent:-9999px;
-width:63px;
-height:80px;
-outline:none;
-background:url(../content/icon_puppenkiste.png) no-repeat;
-background-position-x: 0px;
-background-position: 0px 0px;
-cursor:pointer;
+  display: block;
+  text-indent: -9999px;
+  width: 63px;
+  height: 80px;
+  outline: none;
+  background: url(../content/icon_puppenkiste.png) no-repeat;
+  background-position-x: 0px;
+  background-position: 0px 0px;
+  cursor: pointer;
 }
-
-.puppenkiste:hover
-{
-background-position-x: -63px;
-background-position: -63px 0px;
+.puppenkiste:hover {
+  background-position-x: -63px;
+  background-position: -63px 0px;
 }
-
 .panorama {
-display:block;
-text-indent:-9999px;
-width:22px;
-height:22px;
-outline:none;
-background:url(../content/icon_panorama.png) no-repeat;
-background-position-x: 0px;
-background-position: 0px 0px;
-cursor:pointer;
+  display: block;
+  text-indent: -9999px;
+  width: 22px;
+  height: 22px;
+  outline: none;
+  background: url(../content/icon_panorama.png) no-repeat;
+  background-position-x: 0px;
+  background-position: 0px 0px;
+  cursor: pointer;
 }
-
-.panorama:hover
-{
-background-position-x: -22px;
-background-position: -22px 0px;
+.panorama:hover {
+  background-position-x: -22px;
+  background-position: -22px 0px;
 }
-
-.wml-overview-map-control
-{
+.wml-overview-map-control {
   padding: 6px;
-
-  border:2px solid #fefefe !important;
-  background-color:#333;
-
-  -moz-box-shadow:0 0 20px #999;
-  -webkit-box-shadow:0 0 20px #999;
-
-  filter:alpha(80);
-  -moz-opacity:0.8;
-  -khtml-opacity:0.8;
-  opacity:0.8;
+  border: 2px solid #fefefe !important;
+  background-color: #333;
+  -moz-box-shadow: 0px 0px 12px #888888;
+  -webkit-box-shadow: 0px 0px 12px #888888;
+  -o-box-shadow: 0px 0px 12px #888888;
+  -ms-box-shadow: 0px 0px 12px #888888;
+  box-shadow: 0px 0px 12px #888888;
+  opacity: 0.8;
+  -moz-opacity: 0.8;
+  -webkit-opacity: 0.8;
+  -khtml-opacity: 0.8;
+  filter: alpha(opacity=80);
+  -ms-filter: "alpha(opacity=80)";
 }
-
-.wml-info-window-tip
-{
+.wml-info-window-tip {
   display: none !important;
 }
-
-.wml-container a
-{
-  -moz-transition-property: color;
-  -moz-transition-duration: 1s;
-  -moz-transition-timing-function: ease-out;
-  -webkit-transition-property: color;
-  -webkit-transition-duration: 1s;
-  -webkit-transition-timing-function: ease-out;
-  -o-transition-property: color;
-  -o-transition-duration: 1s;
-  -o-transition-timing-function: ease-out;
-
+.wml-container a {
+  transition: color 300ms linear 0ms;
+  -webkit-transition: color 300ms linear 0ms;
+  -moz-transition: color 300ms linear 0ms;
+  -o-transition: color 300ms linear 0ms;
+  -ms-transition: color 300ms linear 0ms;
   color: #fff !important;
 }
-
-.wml-copyright-text,
-.wml-copyright-text a
-{
+.wml-copyright-text, .wml-copyright-text a {
   color: #000 !important;
 }
-
-.wml-copyright-text a:hover
-{
+.wml-copyright-text a:hover {
   color: #888 !important;
 }
-
-.wml-container a:hover
-{
+.wml-container a:hover {
   color: #ffff00 !important;
 }
+.wml-info-window, .bubble {
+  cursor: default;
+  border: 2px solid #fefefe;
+  padding: 7px 10px;
+  background: #333;
+  color: #fff !important;
+  width: 360px;
+  font-size: 11px;
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  -moz-box-shadow: 0px 0px 12px #888888;
+  -webkit-box-shadow: 0px 0px 12px #888888;
+  -o-box-shadow: 0px 0px 12px #888888;
+  -ms-box-shadow: 0px 0px 12px #888888;
+  box-shadow: 0px 0px 12px #888888;
+  transition: all 600ms linear 0ms;
+  -webkit-transition: all 600ms linear 0ms;
+  -moz-transition: all 600ms linear 0ms;
+  -o-transition: all 600ms linear 0ms;
+  -ms-transition: all 600ms linear 0ms;
+  /* We have a nice jQuery effect here :) */
 
-.wml-info-window,
-.bubble
-{
-cursor: default;
-border:2px solid #fefefe;
-padding:7px 10px;
-background:#333;
-color:#fff !important;
-width:360px;
-font-size:11px;
-/*-- css3 --*/
--moz-border-radius:10px;
--webkit-border-radius:10px;
-border-radius:10px;
--moz-box-shadow:0 0 20px #999;
--webkit-box-shadow:0 0 20px #999;
-
--moz-transition-property: opacity, -moz-opacity, -khtml-opacity;
--moz-transition-duration: 1s;
--moz-transition-timing-function: ease-out;
--webkit-transition-property: opacity;
--webkit-transition-duration: 1s;
--webkit-transition-timing-function: ease-out;
--o-transition-property: opacity, -moz-opacity, -khtml-opacity;
--o-transition-duration: 1s;
--o-transition-timing-function: ease-out;
-
-/* We have a nice jQuery effect here :) */
-filter:alpha(0);
--moz-opacity:0.0;
--khtml-opacity:0.0;
-opacity:0.0;
+  opacity: 0;
+  -moz-opacity: 0;
+  -webkit-opacity: 0;
+  -khtml-opacity: 0;
+  filter: alpha(opacity=0);
+  -ms-filter: "alpha(opacity=0)";
 }
-
-.wml-info-window-content
-{
-  background:#333 !important;
+.wml-info-window-content {
+  background: #333 !important;
   border: 0px !important;
   padding: 4px !important;
 }
-
-.wml-info-window p,
-.wml-info-window-content p,
-.bubble p {
-margin:5px 0;
+.wml-info-window p, .wml-info-window-content p, .bubble p {
+  margin: 5px 0;
 }
-
-.wml-info-window span,
-.wml-info-window-content span,
-.bubble span
-{
-display: block;
-font-size: 12px;
-font-weight: bold;
-text-align: center;
+.wml-info-window span, .wml-info-window-content span, .bubble span {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
 }
-
-.wml-info-window a,
-.wml-info-window-content a,
-.bubble a
-{
-text-align: center;
-font-weight: bold;
-
--moz-transition-property: color;
--moz-transition-duration: 1s;
--moz-transition-timing-function: ease-out;
--webkit-transition-property: color;
--webkit-transition-duration: 1s;
--webkit-transition-timing-function: ease-out;
--o-transition-property: color;
--o-transition-duration: 1s;
--o-transition-timing-function: ease-out;
+.wml-info-window a, .wml-info-window-content a, .bubble a {
+  text-align: center;
+  font-weight: bold;
+  transition: color 300ms linear 0ms;
+  -webkit-transition: color 300ms linear 0ms;
+  -moz-transition: color 300ms linear 0ms;
+  -o-transition: color 300ms linear 0ms;
+  -ms-transition: color 300ms linear 0ms;
 }
-
-.wml-info-window a:hover,
-.wml-info-window-content a:hover,
-.bubble a:hover
-{
-color: #ffff00;
+.wml-info-window a:hover, .wml-info-window-content a:hover, .bubble a:hover {
+  color: #ffff00;
 }
-
 .bubble img {
-vertical-align:bottom;
+  vertical-align: bottom;
 }
-
-img.teaser
-{
+img.teaser {
   cursor: pointer;
   float: left;
-
   border-width: 0;
-
-  -moz-border-radius:4px;
-  -webkit-border-radius:4px;
-  border-radius:4px;
-  -moz-box-shadow:0 0 8px #ccc;
-  -webkit-box-shadow:0 0 8px #ccc;
-
+  border-radius: 4px 4px 4px 4px;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-box-shadow: 0px 0px 8px #888888;
+  -webkit-box-shadow: 0px 0px 8px #888888;
+  -o-box-shadow: 0px 0px 8px #888888;
+  -ms-box-shadow: 0px 0px 8px #888888;
+  box-shadow: 0px 0px 8px #888888;
   margin-right: 8px;
   margin-bottom: 8px;
 }
-
-hr.divider
-{
+hr.divider {
   border: 0;
   height: 1px;
   background-color: #696969;
 }
-
-
-
-#quickbar
-{
+#quickbar {
   background: #e0e0e0;
-
-  display:block;
+  display: block;
   padding-left: 4px;
   padding-right: 4px;
   padding-top: 2px;
@@ -429,87 +358,133 @@ hr.divider
   width: 100%;
   height: 28px;
 }
-
-ul.map_buttons,
+ul.map_buttons, ul.map_buttons li {
+  list-style: none;
+  margin: 0;
+}
 ul.map_buttons li {
-list-style:none;
-margin:0;
+  float: left;
 }
-
-ul.map_buttons li {
-float:left;
-}
-
-.map_buttons
+/*.map_buttons
 {
-  display:block;
-  float:left;
-  font-size:11px;
-  line-height:28px;
-  margin-right:4px;
-  outline:none;
-  padding:0 15px;
-  text-decoration:none;
   
-  -moz-box-shadow:0 0 20px #696969;
-  -webkit-box-shadow:0 0 20px #696969;
-  -ms-box-shadow:0 0 20px #696969;
-  box-shadow:0 0 20px #696969;
-
-  -moz-border-radius:8px;
-  -webkit-border-radius:8px;
-  border-radius:8px;
-}
-
-.map_buttons a
-{
-  border: 1px solid #664f08;
   
-  transition: all 300ms ease-out;
-  -moz-transition: all 300ms ease-out;
-  -webkit-transition: all 300ms ease-out;
-  -ms-transition: all 300ms ease-out;
-  -o-transition: all 300ms ease-out;
-
-  background: #EDEDED;
+  .box-shadow(0px, 0px, 12px, #888);
+  
+  .border-radius(8px);
+}*/
+.map_buttons a {
+  transition: all 600ms linear 0ms;
+  -webkit-transition: all 600ms linear 0ms;
+  -moz-transition: all 600ms linear 0ms;
+  -o-transition: all 600ms linear 0ms;
+  -ms-transition: all 600ms linear 0ms;
+  -moz-box-shadow: 0px 0px 8px #f8f8f8;
+  -webkit-box-shadow: 0px 0px 8px #f8f8f8;
+  -o-box-shadow: 0px 0px 8px #f8f8f8;
+  -ms-box-shadow: 0px 0px 8px #f8f8f8;
+  box-shadow: 0px 0px 8px #f8f8f8;
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  display: block;
+  float: left;
+  font-size: 12px;
+  margin-right: 4px;
+  outline: none;
+  padding: 8px;
+  text-decoration: none;
+  border: 1px solid #bf930f;
+  font-weight: bold;
   color: #111;
 }
-
-.map_buttons a:hover
-{
-  background: #111111;
+.map_buttons a:hover {
   color: #fff;
+  background-color: #5f5f5f;
+  /* Fallback */
 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#565656', endColorstr='#111111'); /* for IE */
-  background: -webkit-gradient(linear, left top, left bottom, from(#565656), to(#111111)); /* for webkit browsers */
-  background: -moz-linear-gradient(top, #565656, #111111); /* for firefox 3.6+ */
+  background-image: linear-gradient(top, #565656, #111111);
+  /* for future browsers */
+
+  background-image: -webkit-linear-gradient(top, #565656, #111111);
+  /* Webkit nightly */
+
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#565656), to(#111111));
+  /* for webkit browsers */
+
+  background-image: -moz-linear-gradient(top, #565656, #111111);
+  /* for firefox 3.6+ */
+
+  background-image: -o-linear-gradient(top, #565656, #111111);
+  /* for Opera */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#565656,endColorstr=#111111);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#565656, endColorstr=#111111)";
 }
-
-.map_buttons a:active
-{
-  background: #454545;
+.map_buttons a:active {
   color: #fff;
+  background-color: #3c3c3c;
+  /* Fallback */
 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#111111', endColorstr='#565656'); /* for IE */
-  background: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#565656)); /* for webkit browsers */
-  background: -moz-linear-gradient(top, #111111, #565656); /* for firefox 3.6+ */
+  background-image: linear-gradient(top, #111111, #565656);
+  /* for future browsers */
+
+  background-image: -webkit-linear-gradient(top, #111111, #565656);
+  /* Webkit nightly */
+
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#565656));
+  /* for webkit browsers */
+
+  background-image: -moz-linear-gradient(top, #111111, #565656);
+  /* for firefox 3.6+ */
+
+  background-image: -o-linear-gradient(top, #111111, #565656);
+  /* for Opera */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#111111,endColorstr=#565656);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#111111, endColorstr=#565656)";
 }
-
-.map_buttons span
-{
+.map_buttons span {
   border: 1px solid #111;
-
-  background: #111;
+  display: block;
+  float: left;
+  font-size: 11px;
+  line-height: 28px;
+  margin-right: 4px;
+  outline: none;
+  padding: 0 15px;
+  text-decoration: none;
   color: #fff;
+  background-color: #4c4c4c;
+  /* Fallback */
 
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#434343', endColorstr='#111111'); /* for IE */
-  background: -webkit-gradient(linear, left top, left bottom, from(#434343), to(#111111)); /* for webkit browsers */
-  background: -moz-linear-gradient(top,  #434343, #111111); /* for firefox 3.6+ */
+  background-image: linear-gradient(top, #434343, #111111);
+  /* for future browsers */
 
+  background-image: -webkit-linear-gradient(top, #434343, #111111);
+  /* Webkit nightly */
+
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#434343), to(#111111));
+  /* for webkit browsers */
+
+  background-image: -moz-linear-gradient(top, #434343, #111111);
+  /* for firefox 3.6+ */
+
+  background-image: -o-linear-gradient(top, #434343, #111111);
+  /* for Opera */
+
+  filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#434343,endColorstr=#111111);
+  -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#434343, endColorstr=#111111)";
+  -moz-box-shadow: 0px 0px 8px #f8f8f8;
+  -webkit-box-shadow: 0px 0px 8px #f8f8f8;
+  -o-box-shadow: 0px 0px 8px #f8f8f8;
+  -ms-box-shadow: 0px 0px 8px #f8f8f8;
+  box-shadow: 0px 0px 8px #f8f8f8;
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
   font-weight: bold;
 }
-
 a {
-color:#fff;
+  color: #fff;
 }
-
