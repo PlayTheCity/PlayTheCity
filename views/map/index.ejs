@@ -167,7 +167,9 @@
     }*/
   </script>
   
-<div id="map"></div>
+<div id="outerMap">
+	<div id="innerMap"></div>
+</div>
 
 <div id="mapNav" class="non-mobile">
   <div class="navBtn navBtn0" onmousedown="javascript:PTC.Map.getMapCanvas().panBy(new CM.Size(0, -PTC.Map.getMapCanvas().getSize().height / 4));"></div>
@@ -178,27 +180,37 @@
 
 <div id="mapOptions" class="notification non-mobile">
 	<span class="subtitle">Kartenanzeige</span><br />
-	<input type="radio" name="Zahlmethode" value="Mastercard"> Nachtmodus<br />
-    <input type="radio" name="Zahlmethode" value="Visa"> Komplett<br />
-    <input type="radio" name="Zahlmethode" value="AmericanExpress"> Essen & Trinken<br />
-    <input type="radio" name="Zahlmethode" value="AmericanExpress"> Hotels<br />
-    <input type="radio" name="Zahlmethode" value="AmericanExpress"> Einzelhandel<br />
-    <input type="radio" name="Zahlmethode" value="AmericanExpress"> Verkehrsnetz<br />
-    <input type="radio" name="Zahlmethode" value="AmericanExpress"> Ohne Extras<br />
+	<input type="radio" id="rbtnMidnight" name="rbMapOption" value="Midnight"><label for="rbtnMidnight" class="rbOption" id="lblMidnight"> Nachtmodus</label><br />
+    <input type="radio" id="rbtnAll" name="rbMapOption" value="All" checked><label for="rbtnAll" class="rbOption" id="lblAll"> Komplett</label><br />
+    <input type="radio" id="rbtnEatingOut" name="rbMapOption" value="EatingOut"><label for="rbtnEatingOut" class="rbOption" id="lblEatingOut"> Essen & Trinken</label><br />
+    <input type="radio" id="rbtnLodging" name="rbMapOption" value="Lodging"><label for="rbtnLodging" class="rbOption" id="lblLodging"> Hotels & Hostels</label><br />
+    <input type="radio" id="rbtnRetail" name="rbMapOption" value="Retail"><label for="rbtnRetail" class="rbOption" id="lblRetail"> Einzelhandel</label><br />
+    <input type="radio" id="rbtnCulture" name="rbMapOption" value="Kultur"><label for="rbtnCulture" class="rbOption" id="lblCulture"> Kultur</label><br />
+    <input type="radio" id="rbtnTransportation" name="rbMapOption" value="Transportation"><label for="rbtnTransportation" class="rbOption" id="lblTransportation"> Verkehrsnetz</label><br />
+    <input type="radio" id="rbtnNone" name="rbMapOption" value="None"><label for="rbtnNone" class="rbOption" id="lblNone"> Leer (ohne Extras)</label><br />
     <br />
     <span class="subtitle">Optionen</span><br />
-    <span class="text_button"><a href="#" onclick="javascript:PTC.Map.toggleSearchBar();">Suchleiste</a></span>
-    <span class="text_button"><a href="#" onclick="javascript:PTC.Map.toggleQuickBar();">Schnellleiste</a></span>
-    <span class="text_button"><a href="#" onclick="javascript:PTC.Map.toggleMiniMap();">Minikarte</a></span>
-    <span class="text_button"><a href="#" onclick="javascript:PTC.Map.toggleControls();">Steuerung</a></span>
+    <span class="text_button"><a href="javascript:PTC.Map.toggleSearchBar();">Suchleiste</a></span>
+    <span class="text_button"><a href="javascript:PTC.Map.toggleQuickBar();">Schnellleiste</a></span>
+    <span class="text_button"><a href="javascript:PTC.Map.toggleMiniMap();">Minikarte</a></span>
+    <span class="text_button"><a href="javascript:PTC.Map.toggleControls();">Steuerung</a></span>
+</div>
+
+<div id="bubbleWindow">
+	<a href="javascript:void(0)" onclick="showLightbox(box_rathaus)"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>
+	<span class="editable" contenteditable="true">Das Augsburger Rathaus</span>
+	<hr class="divider" />
+	<p class="editable" contenteditable="true">Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.</p>
+	<hr class="divider" />
+	<span><a href="javascript:void(0)" onclick="showLightbox(box_rathaus)">Hier klicken für genauere Informationen</a></span>
 </div>
 
 <div id="quickbar">
   <ul class="map_buttons">
 	  <li><span>Quick Bar</span></li>
 	  <li><a href="javascript:PTC.Map.centerMap()">Stadtmitte</a></li>
-	  <li><a href="#" rel="p-1160-730">Augsburger Rathaus</a></li>
-	  <li><a href="#" rel="p-1200-650">Panorama</a></li>
+	  <li><a href="javascript:PTC.Map.savePosition(); PTC.Map.loadMap(999);">Augsburger Rathaus</a></li>
+	  <li><a href="javascript:PTC.UI.Lightbox.show()">Panorama</a></li>
   </ul>
 </div>
 
@@ -221,10 +233,10 @@
 
     </div>
 
-    <div id="box_panorama" class="white_content">
+    <div id="lightboxContent">
       <span class="close-btn" title="Close" onclick="javascript:hideLightbox('box_panorama')">Close</span>
       <img class="box_bg" id="panorama" src="content/big_panorama.jpg" width="583%" height="100%" />
 
     </div>
 
-    <div id="fade" class="black_overlay" onclick="javascript:hideAllLightboxes()"></div> -->
+    <div id="lightboxFade" onclick="javascript:hideAllLightboxes()"></div> -->

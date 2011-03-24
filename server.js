@@ -7,6 +7,8 @@ var express = require('express'),
 	app = module.exports = express.createServer(),
 	
 	mongoose = require('mongoose'),
+	Schema = mongoose.Schema,
+	
 	express_dialect = require('express-dialect'),
 	
 	config = require('./config.js').Config,
@@ -21,6 +23,7 @@ var express = require('express'),
 
 
 // Configuration
+mongoose.connect('mongodb://localhost/playthecity');
 
 app.configure(function(){
   app.set('views', __dirname + config.viewDir);
@@ -45,6 +48,25 @@ app.configure('development', function(){
 
 app.configure('production', function(){
   app.use(express.errorHandler()); 
+});
+
+// Database Schemes
+var UserSchema = new Schema(
+{
+	UserName: String,
+	FirstName: String,
+	LastName: String,
+	RegisteredDate: Date,
+	LastLogin: Date,
+	Role: Number
+});
+
+var PinSchema = new Schema(
+{
+	Title: String,
+	IconImage: String,
+	Image: String,
+	Description: String
 });
 
 
@@ -165,7 +187,7 @@ app.get('/pin/:id', function(req, res)
 
 if (!module.parent) 
 {
-  app.listen(3000);
+  app.listen(parseInt(process.env.PORT) || 3000);
   console.log("Express server listening on port %d", app.address().port)
 }
 

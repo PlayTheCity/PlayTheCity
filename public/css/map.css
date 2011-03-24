@@ -57,8 +57,8 @@
 }
 #mapNav {
   position: absolute;
-  right: 20px;
-  top: 20px;
+  right: 12px;
+  top: 12px;
   background-color: #fff;
   border: 1px solid #bf930f;
   width: 100px;
@@ -149,14 +149,14 @@
 }
 /* ------ example1
 -----------------------------------------------*/
-#map {
-  /*margin:10px 0;
-position: absolute;
-top: 0px;
-left: 0px;*/
-
+#innerMap {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  height: 100%;
 }
-#map a {
+#innerMap a {
   transition: color 300ms linear 0ms;
   -webkit-transition: color 300ms linear 0ms;
   -moz-transition: color 300ms linear 0ms;
@@ -166,7 +166,7 @@ left: 0px;*/
   text-decoration: underline;
   font-weight: bold;
 }
-#map a:hover {
+#innerMap a:hover {
   color: #6a6a6a;
 }
 #mapOptions {
@@ -269,7 +269,9 @@ left: 0px;*/
 .wml-container a:hover {
   color: #ffff00 !important;
 }
-.wml-info-window, .bubble {
+#bubbleWindow {
+  display: none;
+  position: absolute;
   cursor: default;
   border: 2px solid #fefefe;
   padding: 7px 10px;
@@ -298,22 +300,24 @@ left: 0px;*/
   -khtml-opacity: 0;
   filter: alpha(opacity=0);
   -ms-filter: "alpha(opacity=0)";
+  z-index: 2000;
 }
-.wml-info-window-content {
-  background: #333 !important;
+/*.wml-info-window-content
+{
+  background:#333 !important;
   border: 0px !important;
   padding: 4px !important;
-}
-.wml-info-window p, .wml-info-window-content p, .bubble p {
+}*/
+#bubbleWindow p {
   margin: 5px 0;
 }
-.wml-info-window span, .wml-info-window-content span, .bubble span {
+#bubbleWindow span {
   display: block;
   font-size: 12px;
   font-weight: bold;
   text-align: center;
 }
-.wml-info-window a, .wml-info-window-content a, .bubble a {
+#bubbleWindow a {
   text-align: center;
   font-weight: bold;
   transition: color 300ms linear 0ms;
@@ -322,10 +326,10 @@ left: 0px;*/
   -o-transition: color 300ms linear 0ms;
   -ms-transition: color 300ms linear 0ms;
 }
-.wml-info-window a:hover, .wml-info-window-content a:hover, .bubble a:hover {
+#bubbleWindow a:hover {
   color: #ffff00;
 }
-.bubble img {
+#bubbleWindow img {
   vertical-align: bottom;
 }
 img.teaser {

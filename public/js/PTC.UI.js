@@ -6,13 +6,11 @@
  * 
  */
 
-if (typeof PTC == 'undefined') var PTC = {};
-if (typeof (PTC.UI) == 'undefined') PTC.UI = {};
+if (typeof PTC === 'undefined') var PTC = {};
+if (typeof (PTC.UI) === 'undefined') PTC.UI = {};
 
 // TODO: Use desktop notifications where available
 
-// Animation Interval: 300ms
-const animInterval = 300;
 
 /*
  * Play The City Lightbox pseudo-class
@@ -152,3 +150,64 @@ PTC.UI.Notification = (function(elementId, collapsed)
 		isCollapsed: isCollapsed
 	};
 });
+
+PTC.UI.Lightbox = function()
+{
+	var 
+	_whiteContent = '#lightboxContent',
+	_fadeContent = '#lightboxFade',
+	_innerContent = '#innerContent',
+	
+	init = function()
+	{
+		hide();
+		resize();
+	},
+	
+	resize = function()
+	{
+		$(_fadeContent).width($(window).width());
+		$(_fadeContent).height($(window).height());
+		
+		$(_whiteContent).width($(window).width() * 0.8);
+		$(_whiteContent).height($(window).height() * 0.8);
+
+		$(_whiteContent).css("left", ( ($(window).width() - $(_whiteContent).outerWidth()) / 2) + "px");
+		$(_whiteContent).css("top", ( ($(window).height() - $(_whiteContent).outerHeight()) / 2) + "px");
+	
+		$(_innerContent).width($(_whiteContent).innerWidth() - 16);
+		$(_innerContent).height($(_whiteContent).innerHeight() - 16);
+	},
+	
+	show = function(content, iframe)
+	{
+		if (iframe)
+			$(_innerContent).html('<iframe src="' + content + '" width="100%" height="100%"></iframe>');
+		else
+			if (typeof(content) != "undefined") $(_innerContent).html(content);
+		
+
+		$(_whiteContent).show();
+		$(_fadeContent).show();
+
+		$(_fadeContent).css('opacity', 0.0);
+		$(_fadeContent).animate({opacity: 0.8}, animInterval);
+	},
+	
+	hide = function()
+	{
+		$(_fadeContent).fadeOut(animInterval, "linear", function()
+		{
+			$(_whiteContent).hide();
+			$(_fadeContent).hide();
+		});
+	};
+	
+	$(document).ready(function() { init(); });
+	$(window).resize(function() { resize(); });
+	
+	return {
+		show: show,
+		hide: hide
+	};
+}();

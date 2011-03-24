@@ -42,6 +42,9 @@
 	
 	border: 1px solid @darkOrange;
 	
+	text-align: center;
+	vertical-align: middle;
+	
 	.box-shadow(0px, 0px, @circleBtnPadding, @darkShadow);
 }
 
@@ -53,6 +56,29 @@
 	.box-shadow(0px, 0px, @circleBtnPadding / 2, @lightShadow);
 	
 	.transform(scale(1.0, 1.0));
+}
+
+.circleButton span
+{
+	position: absolute;
+	
+	left: 50%;
+	top: 50%;
+	
+	margin-left: -54px;
+	margin-top: -14px;
+
+	.border-radius(4px);
+	padding: 4px;
+	
+	background: rgba(0, 0, 0, 0.8);
+	color: #fff;
+	font-weight: bold;
+	font-size: 16px;
+	height: 20px;
+	
+	.box-shadow(0px, 0px, 4px, @darkShadow);
+	width: 100px;
 }
 
 // Input box style
@@ -82,11 +108,19 @@ input[type=password]
 input[type=radio]
 {
 	border: 0px;
-	height: 14px;
+	height: 15px;
 	
 	cursor: pointer;
 	
 	color: #000;
+}
+
+.rbOption
+{
+	height: 15px;
+	width: 140px;
+
+	cursor: pointer;
 }
 
 // Label inside input

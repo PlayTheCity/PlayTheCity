@@ -1,5 +1,5 @@
-if (typeof PTC == 'undefined') var PTC = {};
-if (typeof (PTC.View) == 'undefined') PTC.View = {};
+if (typeof PTC === 'undefined') var PTC = {};
+if (typeof (PTC.View) === 'undefined') PTC.View = {};
 
 // Module View
 PTC.View.Menu = function()

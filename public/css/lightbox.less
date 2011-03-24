@@ -1,12 +1,13 @@
 @import "base.less";
 
-.black_overlay
+#lightboxFade
 {
 	display: none;
 	position: absolute;
-	top: 0%;
-	left: 0%;
-	width: 100%;
+	
+	top: 0px;
+	left: 0px;
+
 	height: 100%;
 	background-color: black;
 	z-index:20000000;
@@ -14,7 +15,7 @@
 	.opacity(0.0);
 }
 
-.white_content
+#lightboxContent
 {
 	display: none;
 	position: absolute;
@@ -33,9 +34,11 @@
 	.border-radius(8px);
 }
 
-.box_bg
+#lightboxContent #innerContent
 {
   position: absolute;
   left: 0px;
   top: 0px;
+  padding: 8px;
+  overflow: hidden;
 }

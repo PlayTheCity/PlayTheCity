@@ -2,39 +2,74 @@
 	Play The City Map
 */
 
-if (typeof PTC == 'undefined') var PTC = {};
+if (typeof PTC === 'undefined') var PTC = {};
 
 PTC.Map = function()
 {
 	var
 	APIKEY = 'c4a96f80767b4bff94b2e65fdda49f10',
 	map,
-	mapId = 'map',
-	maploader,
+	innerMapId = 'innerMap',
+	outerMapId = 'outerMap',
+	defaultStyle = 30822,
+	_styleId = 0,
+	_firstInit = true,
+	mapLoader,
 	cityBounds,
 	geopin,
 	pins,
 	miniMapVisible = true,
+	sidebarVisible = false,
 	miniMapControl,
+	markerClick,
+	savedPosition,
+	savedZoom,
+	dragStart,
 	wpId,
 	
-	loadMap = function()
+	firstInitMap = function()
+	{
+		cityBounds = new CM.LatLngBounds(new CM.LatLng(48.3275, 10.8301), new CM.LatLng(48.4153, 10.9592));
+		savedPosition = cityBounds.getCenter();
+		savedZoom = 16;
+		
+		_firstInit = false;
+	}
+
+	loadMap = function(style)
 	{
 		if (typeof(CM) === "undefined") return;
-		clearInterval(mapLoader); //< CM is available, remove interval
-		
-		var cloudmade;
-		if (Platform.isMobile())
-			cloudmade = new CM.Tiles.CloudMade.Mobile({key: APIKEY});
 		else
-			cloudmade = new CM.Tiles.CloudMade.Web({key: APIKEY, styleId: 30822});
+			clearInterval(mapLoader); //< CM is available, remove interval
 		
-		map = new CM.Map(mapId, cloudmade);
+		
+		if (typeof(style) === "undefined") style = defaultStyle;
+		
+		if (style == _styleId) return;
+		else _styleId = style;
+		
+		
+		if (_firstInit) firstInitMap();
+		
+		// If there is already a map, remove that one
+		if ($('#' + innerMapId).hasClass('wml-wrapper'))
+		{
+			$('#' + innerMapId).remove();
+			
+			// Append a fresh one :)
+			$('#' + outerMapId).append('<div id=' + innerMapId + '></div>');
+		}
+		
+		var cloudmade = (Platform.isMobile()) ? (new CM.Tiles.CloudMade.Mobile({key: APIKEY})) : (new CM.Tiles.CloudMade.Web({key: APIKEY, styleId: _styleId}));
 
-		cityBounds = new CM.LatLngBounds(new CM.LatLng(48.3275, 10.8301), new CM.LatLng(48.4153, 10.9592));
+		//if (map) map = null;
+		
+		map = new CM.Map(innerMapId, cloudmade);
 
 		// Init
-		map.setCenter(cityBounds.getCenter(), 16);
+		map.setCenter(savedPosition, savedZoom);
+		
+		// 30822: PTC Standard Map
 		
 		CM.Event.addListener(map, "zoomend", function()
 		{
@@ -44,9 +79,11 @@ PTC.Map = function()
 
 		map.addControl(new CM.ScaleControl());
 		
-		miniMapControl = new CM.OverviewMapControl();
-		map.addControl(miniMapControl, new CM.ControlPosition(CM.BOTTOM_RIGHT, new CM.Size(20, 20)));
-		  
+		if (miniMapVisible)
+		{
+			miniMapControl = new CM.OverviewMapControl();
+			map.addControl(miniMapControl, new CM.ControlPosition(CM.BOTTOM_RIGHT, new CM.Size(12, 20)));
+		}  
 		  
 		  
 		var searchSidebar = new CM.SearchSidebar({key: APIKEY});
@@ -56,49 +93,112 @@ PTC.Map = function()
 		{
 			CM.Event.addListener(map, "sidebaropened", function()
 			{
-				$('#loginbox').animate({left: '+=220'}, 300);
-				$('#mapOptions').animate({left: '+=220'}, 300);
+				$('#loginbox').animate({left: '+=220'}, animInterval);
+				$('#mapOptions').animate({left: '+=220'}, animInterval);
 			});
 			  
 			CM.Event.addListener(map, "sidebarclosed", function()
 			{
-				$('#loginbox').animate({left: '-=220'}, 300);
-				$('#mapOptions').animate({left: '-=220'}, 300);
+				$('#loginbox').animate({left: '-=220'}, animInterval);
+				$('#mapOptions').animate({left: '-=220'}, animInterval);
 			});
 		}
+		
+		CM.Event.addListener(map, "movestart", function()
+		{
+			if ($('#bubbleWindow').is(':visible'))
+			{
+				var point = map.fromLatLngToContainerPixel(markerClick);
+			
+				$('#bubbleWindow').css('left', point.x - ($('#bubbleWindow').outerWidth() / 2) + 'px');
+				$('#bubbleWindow').css('top', point.y - $('#bubbleWindow').outerHeight() - 48 + 'px');
+			}
+		});
+		
+		CM.Event.addListener(map, "dragstart", function()
+		{
+			dragStart = map.getBounds();
+		});
+		
+		CM.Event.addListener(map, "dragend", function()
+		{
+			if (!cityBounds.contains(map.getBounds()))
+			{
+				/*var boundX, boundY;
+				
+				if (!cityBounds.contains(map.getBounds().getNorthEast()))
+				{	
+					boundX = (map.getBounds().getNorthEast().lat() < cityBounds.getNorthEast().lat()) ? cityBounds.getNorthEast().lat() : dragStart.getNorthEast().lat();
+					boundY = (map.getBounds().getNorthEast().lng() < cityBounds.getNorthEast().lng()) ? cityBounds.getNorthEast().lng() : dragStart.getNorthEast().lng();
+					
+					dragStart.extend(new CM.LatLng(boundX, boundY));
+				}
+				
+				if (!cityBounds.contains(map.getBounds().getSouthWest()))
+				{
+					boundX = (map.getBounds().getSouthWest().lat() > cityBounds.getSouthWest().lat()) ? cityBounds.getSouthWest().lat() : dragStart.getSouthWest().lat();
+					boundY = (map.getBounds().getSouthWest().lng() > cityBounds.getSouthWest().lng()) ? cityBounds.getSouthWest().lng() : dragStart.getSouthWest().lng();
+					
+					dragStart.extend(new CM.LatLng(boundX, boundY));
+				}*/
+				
+				map.panTo(dragStart.getCenter());
+			}
+		});
+		
+		CM.Event.addListener(map, "click", function()
+		{
+			$('#bubbleWindow').fadeOut(animInterval, function() { $('#bubbleWindow').hide(); });
+		});
 		  
 		map.setSidebar(searchSidebar);
+		
+		if (sidebarVisible) map.openSidebar();
+		
 		
 		var marker = new CM.Marker(new CM.LatLng(48.36895, 10.8974));
 
 		  CM.Event.addListener(marker, "click", function()
 		  {
-			marker.openInfoWindow(
+			/*marker.openInfoWindow(
 				'<a href="javascript:void(0)" onclick="showLightbox(\'box_rathaus\')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>' +
 				'<span class="editable" contenteditable="true">Das Augsburger Rathaus</span>' +
 				'<hr class="divider" />' +
 				'<p class="editable" contenteditable="true">Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.</p>' +
 				'<hr class="divider" />' +
-				'<span><a href="javascript:void(0)" onclick="showLightbox(\'box_rathaus\')">Hier klicken für genauere Informationen</a></span>');
+				'<span><a href="javascript:void(0)" onclick="showLightbox(\'box_rathaus\')">Hier klicken für genauere Informationen</a></span>');*/
+			
+			markerClick = marker.getLatLng();
+			var point = map.fromLatLngToContainerPixel(marker.getLatLng());
+			
+			$('#bubbleWindow').css('left', point.x - ($('#bubbleWindow').outerWidth() / 2) + 'px');
+			$('#bubbleWindow').css('top', point.y - $('#bubbleWindow').outerHeight() - 48 + 'px');
 
-			$('.wml-info-window').attr({opacity: 0.0});
-			$('.wml-info-window').animate({opacity: 0.85}, 125);
+			$('#bubbleWindow').show();
+			$('#bubbleWindow').css({opacity: 0.0});
+			$('#bubbleWindow').animate({opacity: 0.85}, animInterval);
 		  });
 
 		  var wikimarker = new CM.Marker(new CM.LatLng(48.368, 10.8974));
 
 		  CM.Event.addListener(wikimarker, "click", function()
 		  {
-			marker.openInfoWindow(
+			/*marker.openInfoWindow(
 				'<a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>' +
 				'<span>Wikipedia: Augsburg</span>' +
 				'<hr class="divider" />' +
 				'<p>Zeigt den Wikipedia-Artikel über Augsburg.</p>' +
 				'<hr class="divider" />' +
-				'<span><a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')">Hier klicken für genauere Informationen</a></span>');
+				'<span><a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')">Hier klicken für genauere Informationen</a></span>');*/
 
-			$('.wml-info-window').attr({opacity: 0.0});
-			$('.wml-info-window').animate({opacity: 0.85}, 125);
+			var point = map.fromLatLngToDivPixel(wikimarker.getLatLng());
+			alert(point.x);
+			$('#bubbleWindow').css('left', point.x + 'px');
+			$('#bubbleWindow').css('top', point.y + 'px');
+
+			$('#bubbleWindow').show();
+			$('#bubbleWindow').attr({opacity: 0.0});
+			$('#bubbleWindow').animate({opacity: 0.85}, amimInterval);
 		  });
 		
 		map.addOverlay(marker);
@@ -113,7 +213,7 @@ PTC.Map = function()
 		
 		
 		
-		if (!wpId) checkGeoPosition();
+		checkGeoPosition();
 	},
 	
 	// TODO: Change alert into PTC.UI.Notification
@@ -143,16 +243,15 @@ PTC.Map = function()
 			alert('Geolocation not available');
 	},
 	
+	savePosition = function()
+	{
+		savedPosition = map.getBounds().getCenter();
+		savedZoom = map.getZoom();
+	}
+	
 	resize = function()
 	{
-		$('#map').height($(window).height() - $('footer').height() - $('#quickbar').height());
-		//map.checkResize();
-
-		$('.white_content').width($(window).width() * 0.8);
-		$('.white_content').height($(window).height() * 0.8);
-
-		$('.white_content').css("margin-left", (- $('.white_content').width() / 2) + "px");
-		$('.white_content').css("margin-top", (- $('.white_content').height() / 2) + "px");
+		$('#' + outerMapId).height($(window).height() - $('footer').height() - $('#quickbar').height());
 	},
 	
 	init = function()
@@ -176,11 +275,38 @@ PTC.Map = function()
 		else
 			window.addEventListener('load', async_load, false);
 		})();
+		
+		// View Events
+		refreshMap = function(nameString, style)
+		{
+			$('#rbtn' + nameString).attr('checked', 'checked');
+			savePosition();
+			loadMap(style);
+		};
+		
+		
+		OnRbMidnightClick = function() { refreshMap('Midnight', 999);  };
+		OnRbAllClick = function() { refreshMap('All', 30822); };
+		OnRbEatingOutClick = function() { refreshMap('EatingOut', 33976); };
+		OnRbLodgingClick = function() { refreshMap('Lodging', 33981); };
+		OnRbRetailClick = function() { refreshMap('Retail', 33977); };
+		OnRbCultureClick = function() { refreshMap('Culture', 33982); };
+		OnRbTransportationClick = function() { refreshMap('Transportation', 33929); };
+		OnRbNoneClick = function() { refreshMap('None', 33973); };
+		
+		$('#lblMidnight,#rbtnMidnight').click(OnRbMidnightClick);
+		$('#lblAll,#rbtnAll').click(OnRbAllClick);
+		$('#lblEatingOut,#rbtnEatingOut').click(OnRbEatingOutClick);
+		$('#lblLodging,#rbtnLodging').click(OnRbLodgingClick);
+		$('#lblRetail,#rbtnRetail').click(OnRbRetailClick);
+		$('#lblCulture,#rbtnCulture').click(OnRbCultureClick);
+		$('#lblTransportation,#rbtnTransportation').click(OnRbTransportationClick);
+		$('#lblNone,#rbtnNone').click(OnRbNoneClick);
 	},
 	
 	centerMap = function()
 	{
-		map.setCenter(cityBounds.getCenter(), map.getZoom());
+		map.panTo(cityBounds.getCenter());
 	},
 	
 	getMapCanvas = function()
@@ -190,6 +316,7 @@ PTC.Map = function()
 	
 	toggleSearchBar = function()
 	{
+		sidebarVisible =! sidebarVisible;
 		map.toggleSidebar();
 	},
 	
@@ -198,11 +325,11 @@ PTC.Map = function()
 		if ($('#quickbar').height() == 0)
 		{
 			$('#quickbar').show();
-			$('#quickbar').animate({height: '28px'}, 300, "linear", function() { resize(); });
+			$('#quickbar').animate({height: '28px'}, animInterval, "linear", function() { resize(); });
 		}
 		else
-			$('#quickbar').animate({height: '0px'}, 300, "linear", function() { $('#quickbar').hide(); resize(); });
-	};
+			$('#quickbar').animate({height: '0px'}, animInterval, "linear", function() { $('#quickbar').hide(); resize(); });
+	},
 	
 	toggleMiniMap = function()
 	{
@@ -223,17 +350,22 @@ PTC.Map = function()
 		$('#mapNav').toggle();
 	};
 	
+	// Attach module
+	$(document).ready(function() { init(); });
+	$(window).resize(function() { resize(); });
+	
 	return {
 		init: init,
 		resize: resize,
+		loadMap: loadMap,
+		
+		savePosition: savePosition,
 		centerMap: centerMap,
 		getMapCanvas: getMapCanvas,
+		
 		toggleSearchBar: toggleSearchBar,
 		toggleQuickBar: toggleQuickBar,
 		toggleMiniMap: toggleMiniMap,
 		toggleControls: toggleControls
 	}
 }();
-
-$(document).ready(function() { PTC.Map.init(); });
-$(window).resize(function() { PTC.Map.resize(); });

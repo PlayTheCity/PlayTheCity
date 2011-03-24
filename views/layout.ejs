@@ -20,7 +20,21 @@
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="apple-touch-icon" href="apple-touch-icon.png">
+	<link rel="apple-touch-icon" href="touch-icon.png">
+	
+	<!-- iOS 4.2+ icons for different resolutions -->
+	<link rel="apple-touch-icon" sizes="72x72" href="touch-icon-ipad.png" />
+	<link rel="apple-touch-icon" sizes="114x114" href="touch-icon-iphone4.png" />
+
+	<!-- iOS 3+: full-screen startup splash screen image (must be 320x460) -->
+	<link rel="apple-touch-startup-image" href="startup.png">
+
+	<!-- enable full-screen mode -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+
+	<!-- controls the appearance of the status bar in full-screen mode -->
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
     
     <link rel='stylesheet' type="text/css" href='css/style.css' />
     <link rel='stylesheet' type="text/css" href='css/ui.css' />
@@ -35,6 +49,7 @@
 	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.5.1/jquery.min.js"></script>
 	<script>!window.jQuery && document.write(unescape('%3Cscript src="js/lib/jquery-1.5.1.min.js"%3E%3C/script%3E'))</script>
 	
+	<script src="js/PTC.Const.js"></script>
 	<script src="js/PTC.Core.js"></script>
 	<script src="js/PTC.UI.js"></script>
 	
@@ -168,7 +183,7 @@
 			<p>
 				<label for="edtLoginPwd">
 					<span id="lblLoginPwd" class="labelinside">Passwort</span>
-					<input type="password" class="input" id="edtLoginPwd" name="edtLoginPwd" required />
+					<input type="password" class="input" id="edtLoginPwd" name="edtLoginPwd" required /><br />
 					<span><small>Passwort vergessen?</small></span>
 				</label>
 			</p>
@@ -176,8 +191,9 @@
 			<span class="text_button"><a>Anmelden</a></span>
 		</div>
 		<div style="overflow:hidden;" width="100%">
-			<fb:login-button show-faces="true" width="320" max-rows="1" id="fb_loginbutton" style="margin-left: 10px;">Mit Facebook anmelden</fb:login-button>
+			<fb:login-button show-faces="true" width="320" max-rows="1" id="fb_loginbutton" style="margin-left: 10px;"></fb:login-button>
 		</div>
+		<br />
 		<small><a href="/register">Kein Account?</a></small>
 	</div>
   
@@ -191,6 +207,14 @@
 	</div>
 	
 	<div id="achievement_box"><span id="ach_title">Achievement unlocked</span><br/><span id="ach_text">Some text</span></div>
+	
+	<div id="lightboxContent">
+      <div id="innerContent"></div>
+      
+      <span class="close-btn-48" title="Close" onclick="javascript:PTC.UI.Lightbox.hide()">Close</span>
+    </div>
+
+    <div id="lightboxFade" onclick="javascript:PTC.UI.Lightbox.hide()"></div>
 	
 	<footer class="non-mobile">
       (C) 2009 - 2011 Play The City - <a href="/credits">Mitwirkende</a> - <a href="/contact">Impressum / Kontakt</a>
