@@ -58,8 +58,8 @@ PTC.View.Menu = function()
 			'<font size="+1"><b>Willkommen bei Play The City</b></font><br /><br />' + 
 			'<img src="' + PTC.Asset('small', PTC.AssetType.Logo) + '"><br /><br />' + 
 			'Die Play The City Webversion befindet sich noch im frühen Alphazustand. Einige Funktionen werden vermutlich nicht funktionieren. Generell wird jede zweite Woche eine Version veröffentlicht. Der nächste Release ist für den 9. April 2011 geplant.<br />' +
-			'<a href="http://blog.playthecity.info">Play The City Blog</a><br />' +
-			'<a href="http://forum.playthecity.info">Play The City Forum</a><br />' + 
+			'<a href="http://blog.playthecity.info" target="_blank">Play The City Blog</a><br />' +
+			'<a href="http://forum.playthecity.info" target="_blank">Play The City Forum</a><br />' + 
 			'<br /><br /><br /><a href="javascript:PTC.UI.Lightbox.hide();">Dieses Fenster schließen</a>');
 		
 		
@@ -89,10 +89,10 @@ PTC.View.Menu = function()
 			PTC.UI.Lightbox.setSize(0.4, 0.8);
 			PTC.UI.Lightbox.show(
 				'<font size="+1"><b>Treten Sie mit uns in Verbindung</b></font><br /><br />' + 
-				'<a href="http://blog.playthecity.info">Play The City Blog</a><br />' +
-				'<a href="http://forum.playthecity.info">Play The City Forum</a><br />' + 
-				'<a href="http://twitter.com/PlayTheCityDE"><img src="' + PTC.Asset('twitter', PTC.AssetType.Button) + '"></a><br />' + 
-				'<a href="http://www.facebook.com/pages/Play-The-City/189917224362579"><img src="' + PTC.Asset('facebook', PTC.AssetType.Button) + '"></a><br />' +
+				'<a href="http://blog.playthecity.info" target="_blank">Play The City Blog</a><br />' +
+				'<a href="http://forum.playthecity.info" target="_blank">Play The City Forum</a><br />' + 
+				'<a href="http://twitter.com/PlayTheCityDE" target="_blank"><img src="' + PTC.Asset('twitter', PTC.AssetType.Button) + '"></a><br />' + 
+				'<a href="http://www.facebook.com/pages/Play-The-City/189917224362579" target="_blank"><img src="' + PTC.Asset('facebook', PTC.AssetType.Button) + '"></a><br />' +
 				'<br /><br /><br /><a href="javascript:PTC.UI.Lightbox.hide();">Dieses Fenster schließen</a>');
 		});
 		
@@ -110,27 +110,4 @@ PTC.View.Menu = function()
 		resize: resize
 	};
 }();
-
-
-
-
-/*btnMap.OnClick = function()
-{
-	window.location = 'map';
-};
-
-btnProfile.OnClick = function()
-{
-	window.location = 'profile';
-};*/
-
-/*btnProfile.OnClick = function()
-{
-	alert('profile');
-};
-
-btnMap.OnClick = function()
-{
-	alert('map');
-};*/
 

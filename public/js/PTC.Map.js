@@ -80,7 +80,8 @@ PTC.Map = function()
 			  
 			$('#slider_arrow').css('top', (map.getZoom() / map.getBoundsZoomLevel(cityBounds)) * $('#slider').height() - $('#slider').height());
 			
-		
+			$('.treasure').show();
+			
 			if (map.getZoom() > 16)
 			{
 				if (showTreasures) $('.treasure').show();
@@ -121,11 +122,11 @@ PTC.Map = function()
 		}
 		
 		t1pos = new CM.LatLng(48.36895, 10.8978);
-		t2pos = new CM.LatLng(48.47934, 10.3125);
-		t3pos = new CM.LatLng(48.17463, 10.7341);
-		t4pos = new CM.LatLng(48.47934, 10.3125);
-		t5pos = new CM.LatLng(48.12354, 10.4753);
-		t6pos = new CM.LatLng(48.32135, 10.9365);
+		t2pos = new CM.LatLng(48.37934, 10.8725);
+		t3pos = new CM.LatLng(48.36463, 10.8541);
+		t4pos = new CM.LatLng(48.37934, 10.8725);
+		t5pos = new CM.LatLng(48.39354, 10.8753);
+		t6pos = new CM.LatLng(48.38135, 10.8965);
 		
 		CM.Event.addListener(map, "move", function()
 		{
@@ -354,7 +355,15 @@ PTC.Map = function()
 		$('#lblTransportation,#rbtnTransportation').click(OnRbTransportationClick);
 		$('#lblNone,#rbtnNone').click(OnRbNoneClick);
 		
-		$('#chbTreasure').click(function() { showTreasures =! showTreasures; });
+		$('#chbTreasure').click(function() 
+		{ 
+			showTreasures =! showTreasures; 
+			if (map.getZoom() > 16)
+			{
+				if ($('.treasures').is(':visible') && showTreasures) $('.treasures').hide();
+				else $('.treasures').show();
+			}
+		});
 	},
 	
 	centerMap = function()
@@ -426,4 +435,5 @@ PTC.Map = function()
 function treasureClick(id)
 {
 	$('#' + id + '').css('background-image', 'url(../content/icons/treasure_open.png)');
+	PTC.Achievement.show('Schatzsucher');
 }
