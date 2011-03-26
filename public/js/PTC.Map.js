@@ -86,6 +86,11 @@ PTC.Map = function()
 				if (showTreasures) $('.treasure').show();
 				else $('.treasure').hide();
 			}
+			else
+			{
+				$('.treasure').hide();
+			}
+			
 		});
 
 		map.addControl(new CM.ScaleControl());
@@ -115,6 +120,13 @@ PTC.Map = function()
 			});
 		}
 		
+		t1pos = new CM.LatLng(48.36895, 10.8978);
+		t2pos = new CM.LatLng(48.47934, 10.3125);
+		t3pos = new CM.LatLng(48.17463, 10.7341);
+		t4pos = new CM.LatLng(48.47934, 10.3125);
+		t5pos = new CM.LatLng(48.12354, 10.4753);
+		t6pos = new CM.LatLng(48.32135, 10.9365);
+		
 		CM.Event.addListener(map, "move", function()
 		{
 			if ($('#bubbleWindow').is(':visible'))
@@ -127,9 +139,29 @@ PTC.Map = function()
 			
 			if (map.getZoom() > 16)
 			{
-				var tp = map.fromLatLngToContainerPixel(new CM.LatLng(48.36895, 10.8978));
-				$('#t1').css('left', tp.x);
-				$('#t1').css('top', tp.x);
+				var tp1 = map.fromLatLngToContainerPixel(t1pos);
+				$('#t1').css('left', tp1.x);
+				$('#t1').css('top', tp1.y);
+				
+				var tp2 = map.fromLatLngToContainerPixel(t2pos);
+				$('#t2').css('left', tp2.x);
+				$('#t2').css('top', tp2.y);
+				
+				var tp3 = map.fromLatLngToContainerPixel(t3pos);
+				$('#t3').css('left', tp3.x);
+				$('#t3').css('top', tp3.y);
+				
+				var tp4 = map.fromLatLngToContainerPixel(t4pos);
+				$('#t4').css('left', tp4.x);
+				$('#t4').css('top', tp4.y);
+				
+				var tp5 = map.fromLatLngToContainerPixel(t5pos);
+				$('#t5').css('left', tp5.x);
+				$('#t5').css('top', tp5.y);
+				
+				var tp6 = map.fromLatLngToContainerPixel(t5pos);
+				$('#t6').css('left', tp6.x);
+				$('#t6').css('top', tp6.y);
 			}
 		});
 		
@@ -210,7 +242,7 @@ PTC.Map = function()
 				'<span><a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')">Hier klicken für genauere Informationen</a></span>');*/
 
 			markerClick = wikimarker.getLatLng();
-			var point = map.fromLatLngToContainerPixel(marker.getLatLng());
+			var point = map.fromLatLngToContainerPixel(wikimarker.getLatLng());
 			
 			$('#bubbleWindow').css('left', point.x - ($('#bubbleWindow').outerWidth() / 2) + 'px');
 			$('#bubbleWindow').css('top', point.y - $('#bubbleWindow').outerHeight() - 48 + 'px');
@@ -390,3 +422,8 @@ PTC.Map = function()
 		toggleControls: toggleControls
 	}
 }();
+
+function treasureClick(id)
+{
+	$('#' + id + '').css('background-image', 'url(../content/icons/treasure_open.png)');
+}

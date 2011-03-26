@@ -189,10 +189,10 @@ PTC.UI.Lightbox = function()
 		$(_fadeContent).height($(window).height());
 		
 		if (_sizeX <= 1.0) $(_whiteContent).width($(window).width() * _sizeX);
-		else $(_whiteContent).width(_sizeX + 16);
+		else $(_whiteContent).width(_sizeX + 'px');
 		
 		if (_sizeY <= 1.0) $(_whiteContent).height($(window).height() * _sizeY);
-		else $(_whiteContent).height(_sizeY + 16);
+		else $(_whiteContent).height(_sizeY + 'px');
 
 
 		$(_whiteContent).css("left", ( ($(window).width() - $(_whiteContent).outerWidth()) / 2) + "px");

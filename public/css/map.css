@@ -208,18 +208,25 @@
 .treasure {
   display: none;
   position: absolute;
-  background-image: url(../content/icon/treasure.png);
+  cursor: pointer;
+  background-image: url(../content/icons/treasure.png);
   background-repeat: no-repeat;
   width: 64px;
   height: 64px;
-  z-index: 200;
+  z-index: 5;
 }
 #panoramaview {
+  transition: all 600ms linear 0ms;
+  -webkit-transition: all 600ms linear 0ms;
+  -moz-transition: all 600ms linear 0ms;
+  -o-transition: all 600ms linear 0ms;
+  -ms-transition: all 600ms linear 0ms;
   background-image: url(../content/scalable/panorama_512.jpg);
-  background-repeat: no-repeat;
-  background-size: 100%;
-  margin-left: -1400px;
+  background-repeat: repeat-x;
+  background-size: auto 100%;
+  margin-left: -16px;
   margin-top: -8px;
+  background-position: 1400px 0px;
   height: 512px;
   width: 2983px;
 }

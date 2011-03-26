@@ -232,31 +232,36 @@
 	  <script>
 	  panorama = '<div id="panoramaview"></div>' +
 	  '<div class="navBtn navBtn1" onclick="javascript:movePanoramaRight();" style="top: 50%; margin-top: -16px;"></div>' +
-	  '<div class="navBtn navBtn3" onclick="javascript:movePanoramaLeft();" style="top: 50%; margin-top: -16px;"></div>';
+	  '<div class="navBtn navBtn3" onclick="javascript:movePanoramaLeft();" style="top: 50%; margin-top: -16px;"></div>' + 
+	  '<br /><center><font size="+1"><b>Augsburg Panorama</b></font></center>';
+	  
+	  var posx;
+	  
+	  function updatePanorama()
+	  {
+		$('#panoramaview').css('background-position', posx + 'px 0px');
+	  }
 	  
 	  function movePanoramaLeft()
-	  {	    
-		if (parseInt($('#panoramaview').css('margin-left')) < -16)
-		{
-			if (parseInt($('#panoramaview').css('margin-left')) < -333)
-				$('#panoramaview').animate({marginLeft: '+=333px'}, animInterval * 2);
-			else
-				$('#panoramaview').animate({marginLeft: '+=' + (parseInt($('#panoramaview').css('margin-left')) * (-1) - 16) + 'px'}, animInterval * 2);
-		}
+	  {	    		
+		posx = posx + 300;
+		updatePanorama();
 	  }
 	  
 	  function movePanoramaRight()
 	  {
-
-		$('#panoramaview').animate({marginLeft: '-=333px'}, animInterval * 2);
-			
+		posx = posx - 300;
+		updatePanorama();
 	  }
 	  
 	  function showPanorama()
 	  {
-		if ($(window).height() > 550)
-			PTC.UI.Lightbox.setSize(0.8, 512);
-		else
+	    posx = 1400;
+	    updatePanorama();
+	  
+		//if ($(window).height() > 520)
+			//PTC.UI.Lightbox.setSize(0.8, 512);
+		//else
 			PTC.UI.Lightbox.resetSize();
 			
 		PTC.UI.Lightbox.show(panorama);

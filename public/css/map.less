@@ -217,25 +217,31 @@ height: 100%;
 {
 	display: none;
 	position: absolute;
+	
+	cursor: pointer;
 
-	background-image: url(../content/icon/treasure.png);
+	background-image: url(../content/icons/treasure.png);
 	background-repeat: no-repeat;
 
 	width: 64px;
 	height: 64px;
 	
-	z-index: 200;
+	z-index: 5;
 }
 
 #panoramaview
 {
+	.transition;
+
 	background-image: url(../content/scalable/panorama_512.jpg);
-	background-repeat: no-repeat;
-	background-size: 100%;
+	background-repeat: repeat-x;
+	background-size: auto 100%;
 	
-	margin-left: -1400px;
+	margin-left: -16px;
 	margin-top: -8px;
-	
+
+	background-position: 1400px 0px;
+
 	height: 512px;
 	width: 2983px;
 }
