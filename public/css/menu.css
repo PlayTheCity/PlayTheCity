@@ -11,7 +11,7 @@
   height: 400px;
 }
 #logo {
-  background-image: url(../content/logo_menu.png);
+  background-image: url(../content/logo/menu.png);
   width: 390px;
   height: 216px;
   position: absolute;
@@ -24,33 +24,47 @@
   -webkit-transform: scale(0.75, 0.75);
 }
 #btnProfile {
-  background-image: url('../content/btnProfile.png');
+  background-image: url('../content/buttons/profile.png');
   background-position: 12px 12px;
+  background-size: 112px;
   width: 112px;
   height: 112px;
   left: 32px;
   bottom: 32px;
 }
 #btnMap {
-  background-image: url('../content/btnMap.png');
+  background-image: url('../content/buttons/map.png');
+  background-position-x: 12px;
+  background-position-y: 6px;
   width: 128px;
   height: 128px;
   left: 144px;
   bottom: 168px;
 }
-#btnGame {
+#btnGames {
+  background-image: url('../content/buttons/games.png');
+  background-position-x: 14px;
+  background-position-y: 6px;
   width: 128px;
   height: 128px;
   left: 324px;
   bottom: 224px;
 }
-#btnUnnamed {
+#btnCommunity {
+  background-image: url('../content/buttons/community.png');
+  background-position-x: 12px;
+  background-position-y: 12px;
+  background-size: 112px;
   width: 112px;
   height: 112px;
   right: 152px;
   top: 72px;
 }
-#btnOptions {
+#btnSettings {
+  background-image: url('../content/buttons/settings.png');
+  background-position-x: 16px;
+  background-position-y: 9px;
+  background-size: 96px;
   width: 96px;
   height: 96px;
   right: 40px;

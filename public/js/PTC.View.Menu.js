@@ -4,10 +4,7 @@ if (typeof (PTC.View) === 'undefined') PTC.View = {};
 // Module View
 PTC.View.Menu = function()
 {
-	var
-	longestSide = 0,
-	scaleMenuFactor = 1.0,
-	imageScale = 0;
+	var scaleMenuFactor = 1.0;
 	
 	resize = function()
 	{
@@ -18,21 +15,32 @@ PTC.View.Menu = function()
 		else
 			$('#background').height($(window).height() - $('footer').height());
 		
+		$('#background').css('background-image', 'url(' + PTC.Asset('background', PTC.AssetType.Scale) + ')');
+	
 		
-		if ($(window).width() >= $(window).height()) 
+		switch (getDisplayOrientation)
 		{
-			longestSide = $(window).width();
-			
-			if ($(window).width() < $('#menu').width()) scaleMenuFactor = $(window).width() / $('#menu').width();
-			else scaleMenuFactor = 1.0;
+			case DisplayOrientation.Portrait:
+			{
+				scaleMenuFactor = ($(window).height() < $('#menu').height()) ? getScaleFactor($('#menu').height(), $(window).height()) : 1.0;
+				
+				$('#background').css('background-position-x', -((nextImgDim() - $(window).height()) / 2) + 'px');
+				$('#background').css('background-position', '0px ' + -((nextImgDim() - $(window).height()) / 2) + 'px');
+				
+				break;
+			}
+			case DisplayOrientation.Landscape:
+			{	
+				scaleMenuFactor = ($(window).width() < $('#menu').width()) ? getScaleFactor($('#menu').width(), $(window).width()) : 1.0;
+				
+				$('#background').css('background-position-y', -((nextImgDim() - $(window).width()) / 2) + 'px');
+				$('#background').css('background-position', -((nextImgDim() - $(window).width()) / 2) + 'px 0px');
+				
+				break;
+			}
 		}
-		else 
-		{
-			longestSide = $(window).height();
-			
-			if ($(window).height() < $('#menu').height()) scaleMenuFactor = $(window).height() / $('#menu').height();
-			else scaleMenuFactor = 1.0;
-		}
+		
+		
 		
 		$("#menu").css({
 			'transform': 'scale(' + scaleMenuFactor + ',' + scaleMenuFactor +  ')',
@@ -41,24 +49,21 @@ PTC.View.Menu = function()
 			'-webkit-transform': 'scale(' + scaleMenuFactor + ',' + scaleMenuFactor +  ')'
 		});
 		
-		imageScale = ((trunc((longestSide - 1) / 512) + 1) * 512);
-		$('#background').css('background-image', 'url(../content/background_' + imageScale + '.jpg)');
-		
-		if ($(window).width() >= $(window).height()) 
-		{
-			$('#background').css('background-position-x', -((imageScale - $(window).width()) / 2) + 'px');
-			$('#background').css('background-position', -((imageScale - $(window).width()) / 2) + 'px 0px');
-		}
-		else 
-		{
-			$('#background').css('background-position-y', -((imageScale - $(window).height()) / 2) + 'px');
-			$('#background').css('background-position', '0px ' + -((imageScale - $(window).height()) / 2) + 'px');
-		}
 	},
 	
 	init = function()
 	{
-		$('#background').css('opacity', 0.1);
+		PTC.UI.Lightbox.setSize(0.4, 0.8);
+		PTC.UI.Lightbox.show(
+			'<font size="+1"><b>Willkommen bei Play The City</b></font><br /><br />' + 
+			'<img src="' + PTC.Asset('small', PTC.AssetType.Logo) + '"><br /><br />' + 
+			'Die Play The City Webversion befindet sich noch im frühen Alphazustand. Einige Funktionen werden vermutlich nicht funktionieren. Generell wird jede zweite Woche eine Version veröffentlicht. Der nächste Release ist für den 9. April 2011 geplant.<br />' +
+			'<a href="http://blog.playthecity.info">Play The City Blog</a><br />' +
+			'<a href="http://forum.playthecity.info">Play The City Forum</a><br />' + 
+			'<br /><br /><br /><a href="javascript:PTC.UI.Lightbox.hide();">Dieses Fenster schließen</a>');
+		
+		
+		$('#background').css('opacity', 0.2);
 		
 		resize();
 		
@@ -72,6 +77,28 @@ PTC.View.Menu = function()
 		$('#btnMap').click(function()
 		{
 			window.location = 'map';
+		});
+		
+		$('#btnGames').click(function()
+		{
+			window.location = 'quiz';
+		});
+		
+		$('#btnCommunity').click(function()
+		{
+			PTC.UI.Lightbox.setSize(0.4, 0.8);
+			PTC.UI.Lightbox.show(
+				'<font size="+1"><b>Treten Sie mit uns in Verbindung</b></font><br /><br />' + 
+				'<a href="http://blog.playthecity.info">Play The City Blog</a><br />' +
+				'<a href="http://forum.playthecity.info">Play The City Forum</a><br />' + 
+				'<a href="http://twitter.com/PlayTheCityDE"><img src="' + PTC.Asset('twitter', PTC.AssetType.Button) + '"></a><br />' + 
+				'<a href="http://www.facebook.com/pages/Play-The-City/189917224362579"><img src="' + PTC.Asset('facebook', PTC.AssetType.Button) + '"></a><br />' +
+				'<br /><br /><br /><a href="javascript:PTC.UI.Lightbox.hide();">Dieses Fenster schließen</a>');
+		});
+		
+		$('#btnSettings').click(function()
+		{
+			window.location = 'settings';
 		});
 	};
 	

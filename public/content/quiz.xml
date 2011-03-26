@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <Questions>
+  <Question title="Was ist dieses so genannte Augsburg?" type="Allgemein" building="" richtig="Stadt">
+    <Answer>Land</Answer>
+    <Answer>Fluss</Answer>
+    <Answer>Baum</Answer>
+    <Answer>Stadt</Answer>
+  </Question>
+  <Question title="Welches Gebaeude erbauten die Fugger?" type="Sehenswuerdigkeiten" building="" richtig="Fuggerei">
+    <Answer>Rathaus</Answer>
+    <Answer>Fuggerei</Answer>
+    <Answer>Kirche</Answer>
+    <Answer>Dom</Answer>
+  </Question>
+  <Question title="Wie hoch ist der Perlachturm?" type="Sehenswuerdigkeiten" building="" richtig="70m">
+    <Answer>60m</Answer>
+    <Answer>62m</Answer>
+    <Answer>70m</Answer>
+    <Answer>72m</Answer>
+  </Question>
+  <Question title="Wer hat das Augburger Rathaus erbaut?" type="Sehenswuerdigkeiten" building="" richtig="Elias Holl" >
+    <Answer>Burkhard Engelberg</Answer>
+    <Answer>Franz Xavier Kleinhans</Answer>
+    <Answer>Elias Holl</Answer>
+    <Answer>Jakob Fugger</Answer>
+  </Question>
+<Question title="Wann wurde die Anna-Kirche erbaut?" type="Sehenswuerdigkeiten" building="" richtig="1321">
+    <Answer>1156</Answer>
+    <Answer>1321</Answer>
+    <Answer>1589</Answer>
+    <Answer>1622</Answer>
+  </Question>
+  <Question title="Welcher beruehmte Saal befindet sich im Augsburger Rathaus?" type="Sehenswuerdigkeiten" building="" richtig="Der goldene Saal">
+    <Answer>Der blaue Saal</Answer>
+    <Answer>Der gruene Saal</Answer>
+    <Answer>Der rote Saal</Answer>
+    <Answer>Der goldene Saal</Answer>
+  </Question>
+  <Question title="Wie heissen die drei Schutzpatrone der Stadt Augsburg?" type="Allgemein" building="" richtig="Ulrich, Afra, Simpertus">
+    <Answer>Ulrich, Afra, Anna</Answer>
+    <Answer>Ulrich, Afra, Simpertus</Answer>
+    <Answer>Afra, Anna, Simpertus</Answer>
+    <Answer>Ulrich, Afra, Elias</Answer>
+  </Question>
+  <Question title="Was ist die Fuggerei?" type="Sehenswuerdigkeiten" building="" richtig="Sozialsiedlung">
+    <Answer>Kirche</Answer>
+    <Answer>Waisenhaus</Answer>
+    <Answer>Sozialsiedlung</Answer>
+    <Answer>Hauptsitz der Fugger</Answer>
+  </Question>
+  <Question title="Welche dieser Persoenlichkeiten ist nicht in Augsburg geboren?" type="Allgemein" building="" richtig="Wolfgang Amadeus Mozart">
+    <Answer>Bertolt Brecht</Answer>
+    <Answer>Wolfgang Amadeus Mozart</Answer>
+    <Answer>Jürgen Möllemann</Answer>
+    <Answer>Armin Veh</Answer>
+  </Question>
+ <Question title="Wie alt ist ungefaehr Augsburg?" type="Allgemein" building="" richtig="2000 Jahre">
+    <Answer>500 Jahre</Answer>
+    <Answer>1000 Jahre</Answer>
+    <Answer>1500 Jahre</Answer>
+    <Answer>2000 Jahre</Answer>
+  </Question>
+  <Question title="Welches Gebaeude ist abgebildet?" type="Bilder" building="Annakirche" richtig="Die St.-Anna-Kirche">
+    <Answer>Dom Unserer Lieben Frau</Answer>
+    <Answer>Die St.-Anna-Kirche</Answer>
+    <Answer>Die Basilika St. Ulrich und Afra</Answer>
+    <Answer>Die Fuggerei</Answer>
+  </Question>
+  <Question title="Welches Gebaeude ist abgebildet?" type="Bilder" building="St. Ulrich" richtig="Die Basilika St. Ulrich und Afra">
+    <Answer>Die Basilika St. Ulrich und Afra</Answer>
+    <Answer>Die Fuggerei</Answer>
+    <Answer>Dom Unserer Lieben Frau</Answer>
+    <Answer>Die St.-Anna-Kirche</Answer>
+  </Question>
+  <Question title="Welches Gebaeude ist abgebildet?" type="Bilder" building="Dom" richtig="Dom Unserer Lieben Frau">
+    <Answer>Die St.-Anna-Kirche</Answer>
+    <Answer>Dom Unserer Lieben Frau</Answer>
+    <Answer>Die Basilika St. Ulrich und Afra</Answer>
+    <Answer>Das Zeughaus</Answer>
+  </Question>
+  <Question title="Welches Gebaeude ist abgebildet?" type="Bilder" building="Zeughaus" richtig="Zeughaus">
+    <Answer>Zeughaus</Answer>
+    <Answer>Mozarthaus</Answer>
+    <Answer>Das Rote Tor</Answer>
+    <Answer>Bertolt Brecht Haus</Answer>
+  </Question>
+  <Question title="Welches Gebaeude ist abgebildet?" type="Bilder" building="Maximilianmuseum" richtig="Maximilianmuseum">
+    <Answer>Die Fuggerei</Answer>
+    <Answer>Mozarthaus</Answer>
+    <Answer>Zeughaus</Answer>
+    <Answer>Maximilianmuseum</Answer>
+  </Question>
+ </Questions>

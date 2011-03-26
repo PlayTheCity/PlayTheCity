@@ -51,6 +51,7 @@
 	
 	<script src="js/PTC.Const.js"></script>
 	<script src="js/PTC.Core.js"></script>
+	<script src="js/PTC.Achievements.js"></script>
 	<script src="js/PTC.UI.js"></script>
 	
 	
@@ -113,6 +114,12 @@
 		
 		$(document).ready(function()
 		{
+			PTC.Achievements.initialize('playthecity');
+			PTC.Achievements.register('Schöne Aussicht', 'Stadtplan: Das Panorama ansehen.');
+			PTC.Achievements.register('Schatzsucher', 'Stadtplan: Einen Schatz finden.');
+			PTC.Achievements.register('Glückstreffer', 'Quiz: Eine Frage richtig beantworten.');
+			PTC.Achievements.register('Superhirn', 'Quiz: Alle Fragen richtig beantworten.');
+			
 			loginbox.setWidth('222px', '350px');
 			loginbox.setHeight('160px', '70px');
 			loginbox.collapse();
@@ -201,12 +208,12 @@
 		<%- body %>
 		
 		<div id="loading">
-			<img id="logo_small" src="content/logo_small.png" alt="Logo" />
+			<img id="logo_small" src="content/logo/small.png" alt="Logo" />
 			<img id="loader" src="content/loader.gif" alt="Laden..." />
 		</div>
 	</div>
 	
-	<div id="achievement_box"><span id="ach_title">Achievement unlocked</span><br/><span id="ach_text">Some text</span></div>
+	<div id="achievement_box" class="notification"><span id="ach_title">Achievement unlocked</span><br/><span id="ach_text">Some text</span></div>
 	
 	<div id="lightboxContent">
       <div id="innerContent"></div>

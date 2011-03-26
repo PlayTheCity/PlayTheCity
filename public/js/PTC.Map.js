@@ -26,6 +26,7 @@ PTC.Map = function()
 	savedZoom,
 	dragStart,
 	wpId,
+	showTreasures = true,
 	
 	firstInitMap = function()
 	{
@@ -69,12 +70,22 @@ PTC.Map = function()
 		// Init
 		map.setCenter(savedPosition, savedZoom);
 		
+		
 		// 30822: PTC Standard Map
 		
 		CM.Event.addListener(map, "zoomend", function()
 		{
 			if (map.getBoundsZoomLevel(cityBounds) >= map.getZoom())
 			  map.setCenter(cityBounds.getCenter(), map.getBoundsZoomLevel(cityBounds));
+			  
+			$('#slider_arrow').css('top', (map.getZoom() / map.getBoundsZoomLevel(cityBounds)) * $('#slider').height() - $('#slider').height());
+			
+		
+			if (map.getZoom() > 16)
+			{
+				if (showTreasures) $('.treasure').show();
+				else $('.treasure').hide();
+			}
 		});
 
 		map.addControl(new CM.ScaleControl());
@@ -104,7 +115,7 @@ PTC.Map = function()
 			});
 		}
 		
-		CM.Event.addListener(map, "movestart", function()
+		CM.Event.addListener(map, "move", function()
 		{
 			if ($('#bubbleWindow').is(':visible'))
 			{
@@ -112,6 +123,13 @@ PTC.Map = function()
 			
 				$('#bubbleWindow').css('left', point.x - ($('#bubbleWindow').outerWidth() / 2) + 'px');
 				$('#bubbleWindow').css('top', point.y - $('#bubbleWindow').outerHeight() - 48 + 'px');
+			}
+			
+			if (map.getZoom() > 16)
+			{
+				var tp = map.fromLatLngToContainerPixel(new CM.LatLng(48.36895, 10.8978));
+				$('#t1').css('left', tp.x);
+				$('#t1').css('top', tp.x);
 			}
 		});
 		
@@ -191,14 +209,15 @@ PTC.Map = function()
 				'<hr class="divider" />' +
 				'<span><a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')">Hier klicken für genauere Informationen</a></span>');*/
 
-			var point = map.fromLatLngToDivPixel(wikimarker.getLatLng());
-			alert(point.x);
-			$('#bubbleWindow').css('left', point.x + 'px');
-			$('#bubbleWindow').css('top', point.y + 'px');
+			markerClick = wikimarker.getLatLng();
+			var point = map.fromLatLngToContainerPixel(marker.getLatLng());
+			
+			$('#bubbleWindow').css('left', point.x - ($('#bubbleWindow').outerWidth() / 2) + 'px');
+			$('#bubbleWindow').css('top', point.y - $('#bubbleWindow').outerHeight() - 48 + 'px');
 
 			$('#bubbleWindow').show();
-			$('#bubbleWindow').attr({opacity: 0.0});
-			$('#bubbleWindow').animate({opacity: 0.85}, amimInterval);
+			$('#bubbleWindow').css({opacity: 0.0});
+			$('#bubbleWindow').animate({opacity: 0.85}, animInterval);
 		  });
 		
 		map.addOverlay(marker);
@@ -302,6 +321,8 @@ PTC.Map = function()
 		$('#lblCulture,#rbtnCulture').click(OnRbCultureClick);
 		$('#lblTransportation,#rbtnTransportation').click(OnRbTransportationClick);
 		$('#lblNone,#rbtnNone').click(OnRbNoneClick);
+		
+		$('#chbTreasure').click(function() { showTreasures =! showTreasures; });
 	},
 	
 	centerMap = function()

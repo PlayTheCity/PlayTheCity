@@ -169,6 +169,13 @@
   
 <div id="outerMap">
 	<div id="innerMap"></div>
+	
+	<div id="t1" class="treasure" onclick="javascript:treasureClick(t1)"></div>
+	<div id="t2" class="treasure" onclick="javascript:treasureClick(t2)"></div>
+	<div id="t3" class="treasure" onclick="javascript:treasureClick(t3)"></div>
+	<div id="t4" class="treasure" onclick="javascript:treasureClick(t4)"></div>
+	<div id="t5" class="treasure" onclick="javascript:treasureClick(t5)"></div>
+	<div id="t6" class="treasure" onclick="javascript:treasureClick(t6)"></div>
 </div>
 
 <div id="mapNav" class="non-mobile">
@@ -176,9 +183,16 @@
   <div class="navBtn navBtn1" onmousedown="javascript:PTC.Map.getMapCanvas().panBy(new CM.Size(PTC.Map.getMapCanvas().getSize().width / 4, 0));"></div>
   <div class="navBtn navBtn2" onmousedown="javascript:PTC.Map.getMapCanvas().panBy(new CM.Size(0, PTC.Map.getMapCanvas().getSize().height / 4));"></div>
   <div class="navBtn navBtn3" onmousedown="javascript:PTC.Map.getMapCanvas().panBy(new CM.Size(-PTC.Map.getMapCanvas().getSize().width / 4, 0));"></div>
+
+  <div id="slider">
+	<div id="slider_arrow"></div>
+  </div>  
+
+  <div id="btnZoomIn" class="navBtn" onmousedown="javascript:PTC.Map.getMapCanvas().zoomIn();"></div>
+  <div id="btnZoomOut" class="navBtn" onmousedown="javascript:PTC.Map.getMapCanvas().zoomOut();"></div>
 </div>
 
-<div id="mapOptions" class="notification non-mobile">
+<div id="mapOptions" class="notification">
 	<span class="subtitle">Kartenanzeige</span><br />
 	<input type="radio" id="rbtnMidnight" name="rbMapOption" value="Midnight"><label for="rbtnMidnight" class="rbOption" id="lblMidnight"> Nachtmodus</label><br />
     <input type="radio" id="rbtnAll" name="rbMapOption" value="All" checked><label for="rbtnAll" class="rbOption" id="lblAll"> Komplett</label><br />
@@ -189,6 +203,9 @@
     <input type="radio" id="rbtnTransportation" name="rbMapOption" value="Transportation"><label for="rbtnTransportation" class="rbOption" id="lblTransportation"> Verkehrsnetz</label><br />
     <input type="radio" id="rbtnNone" name="rbMapOption" value="None"><label for="rbtnNone" class="rbOption" id="lblNone"> Leer (ohne Extras)</label><br />
     <br />
+    <input type="checkbox" id="chbPins" name="chbPins" checked><label for="chbPins" id="lblPins">Stecknadeln</label><br />
+    <input type="checkbox" id="chbTreasure" name="chbTreasure" checked><label for="chbTreasure" id="lblTreasure">Schatztruhen</label>
+    <br /><br />
     <span class="subtitle">Optionen</span><br />
     <span class="text_button"><a href="javascript:PTC.Map.toggleSearchBar();">Suchleiste</a></span>
     <span class="text_button"><a href="javascript:PTC.Map.toggleQuickBar();">Schnellleiste</a></span>
@@ -197,7 +214,9 @@
 </div>
 
 <div id="bubbleWindow">
-	<a href="javascript:void(0)" onclick="showLightbox(box_rathaus)"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>
+	<span id="loginboxClose" class="close-btn-26" title="Close" onclick="">Close</span>
+
+	<a href="javascript:void(0)" onclick="showLightbox(box_rathaus)"><img class="teaser" src="content/teaser/rathaus.jpg"/></a>
 	<span class="editable" contenteditable="true">Das Augsburger Rathaus</span>
 	<hr class="divider" />
 	<p class="editable" contenteditable="true">Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.</p>
@@ -209,8 +228,43 @@
   <ul class="map_buttons">
 	  <li><span>Quick Bar</span></li>
 	  <li><a href="javascript:PTC.Map.centerMap()">Stadtmitte</a></li>
-	  <li><a href="javascript:PTC.Map.savePosition(); PTC.Map.loadMap(999);">Augsburger Rathaus</a></li>
-	  <li><a href="javascript:PTC.UI.Lightbox.show()">Panorama</a></li>
+	  <li><a href="">Augsburger Rathaus</a></li>
+	  <script>
+	  panorama = '<div id="panoramaview"></div>' +
+	  '<div class="navBtn navBtn1" onclick="javascript:movePanoramaRight();" style="top: 50%; margin-top: -16px;"></div>' +
+	  '<div class="navBtn navBtn3" onclick="javascript:movePanoramaLeft();" style="top: 50%; margin-top: -16px;"></div>';
+	  
+	  function movePanoramaLeft()
+	  {	    
+		if (parseInt($('#panoramaview').css('margin-left')) < -16)
+		{
+			if (parseInt($('#panoramaview').css('margin-left')) < -333)
+				$('#panoramaview').animate({marginLeft: '+=333px'}, animInterval * 2);
+			else
+				$('#panoramaview').animate({marginLeft: '+=' + (parseInt($('#panoramaview').css('margin-left')) * (-1) - 16) + 'px'}, animInterval * 2);
+		}
+	  }
+	  
+	  function movePanoramaRight()
+	  {
+
+		$('#panoramaview').animate({marginLeft: '-=333px'}, animInterval * 2);
+			
+	  }
+	  
+	  function showPanorama()
+	  {
+		if ($(window).height() > 550)
+			PTC.UI.Lightbox.setSize(0.8, 512);
+		else
+			PTC.UI.Lightbox.resetSize();
+			
+		PTC.UI.Lightbox.show(panorama);
+	  }
+	  
+	  
+	  </script>
+	  <li><a href="javascript:showPanorama();">Panorama</a></li>
   </ul>
 </div>
 

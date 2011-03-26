@@ -151,12 +151,15 @@ PTC.UI.Notification = (function(elementId, collapsed)
 	};
 });
 
+
 PTC.UI.Lightbox = function()
 {
 	var 
 	_whiteContent = '#lightboxContent',
 	_fadeContent = '#lightboxFade',
 	_innerContent = '#innerContent',
+	_sizeX = 0.8,
+	_sizeY = 0.8,
 	
 	init = function()
 	{
@@ -164,13 +167,33 @@ PTC.UI.Lightbox = function()
 		resize();
 	},
 	
+	setSize = function(sizeX, sizeY)
+	{
+		if ((sizeX != _sizeX) || (sizeY != _sizeY))
+		{
+			if (sizeX != _sizeX) _sizeX = sizeX;
+			if (sizeY != _sizeY) _sizeY = sizeY;
+			
+			resize();
+		}
+	},
+	
+	resetSize = function()
+	{
+		setSize(0.8, 0.8);
+	},
+	
 	resize = function()
 	{
 		$(_fadeContent).width($(window).width());
 		$(_fadeContent).height($(window).height());
 		
-		$(_whiteContent).width($(window).width() * 0.8);
-		$(_whiteContent).height($(window).height() * 0.8);
+		if (_sizeX <= 1.0) $(_whiteContent).width($(window).width() * _sizeX);
+		else $(_whiteContent).width(_sizeX + 16);
+		
+		if (_sizeY <= 1.0) $(_whiteContent).height($(window).height() * _sizeY);
+		else $(_whiteContent).height(_sizeY + 16);
+
 
 		$(_whiteContent).css("left", ( ($(window).width() - $(_whiteContent).outerWidth()) / 2) + "px");
 		$(_whiteContent).css("top", ( ($(window).height() - $(_whiteContent).outerHeight()) / 2) + "px");
@@ -207,6 +230,9 @@ PTC.UI.Lightbox = function()
 	$(window).resize(function() { resize(); });
 	
 	return {
+		setSize: setSize,
+		resetSize: resetSize,
+		
 		show: show,
 		hide: hide
 	};

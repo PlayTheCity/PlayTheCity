@@ -5,4 +5,5 @@
  */
  
  // Animation Interval: 300ms
-var animInterval = 300;
+var animInterval = 300,
+	contentDir = 'content';
