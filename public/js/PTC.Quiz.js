@@ -1,7 +1,39 @@
 resize = function() 
 {
 	$('#background').width($(window).width()); 
-	$('#background').height($(window).height() - $('footer').height());
+	$('#background').css('opacity', 0.8);
+	
+	if (Platform.isMobile())
+		$('#background').height($(window).height());
+	else
+		$('#background').height($(window).height() - $('footer').height());
+	
+	$('#background').css('background-image', 'url(' + PTC.Asset('background', PTC.AssetType.Scale) + ')');
+
+
+	switch (getDisplayOrientation())
+	{
+		case DisplayOrientation.Portrait:
+		{
+			
+			scaleMenuFactor = ($(window).height() < $('#menu').height()) ? getScaleFactor($('#menu').height(), $(window).height()) : 1.0;
+			
+			$('#background').css('background-position-x', -((nextImgDim() - $(window).height()) / 2) + 'px');
+			$('#background').css('background-position', '0px ' + -((nextImgDim() - $(window).height()) / 2) + 'px');
+			
+			break;
+		}
+		case DisplayOrientation.Landscape:
+		{	
+			
+			scaleMenuFactor = ($(window).width() < $('#menu').width()) ? getScaleFactor($('#menu').width(), $(window).width()) : 1.0;
+			
+			$('#background').css('background-position-y', -((nextImgDim() - $(window).width()) / 2) + 'px');
+			$('#background').css('background-position', -((nextImgDim() - $(window).width()) / 2) + 'px 0px');
+			
+			break;
+		}
+	}
 };
 
 $(document).ready(function() { resize(); });

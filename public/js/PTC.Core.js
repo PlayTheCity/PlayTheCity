@@ -157,7 +157,8 @@ DisplayOrientation =
 
 function getDisplayOrientation()
 {
-	return trunc($(window).width() / $(window).height());
+	if (trunc($(window).width() / $(window).height()) >= 1) return 1;
+	else return 0;
 }
 
 /**

@@ -18,7 +18,7 @@ PTC.View.Menu = function()
 		$('#background').css('background-image', 'url(' + PTC.Asset('background', PTC.AssetType.Scale) + ')');
 	
 		
-		switch (getDisplayOrientation)
+		switch (getDisplayOrientation())
 		{
 			case DisplayOrientation.Portrait:
 			{
