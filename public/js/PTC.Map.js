@@ -199,7 +199,7 @@ PTC.Map = function()
 		
 		CM.Event.addListener(map, "click", function()
 		{
-			$('#bubbleWindow').fadeOut(animInterval, function() { $('#bubbleWindow').hide(); });
+			PTC.UI.BubbleWindow.hide();
 		});
 		  
 		map.setSidebar(searchSidebar);
@@ -245,12 +245,9 @@ PTC.Map = function()
 			markerClick = wikimarker.getLatLng();
 			var point = map.fromLatLngToContainerPixel(wikimarker.getLatLng());
 			
-			$('#bubbleWindow').css('left', point.x - ($('#bubbleWindow').outerWidth() / 2) + 'px');
-			$('#bubbleWindow').css('top', point.y - $('#bubbleWindow').outerHeight() - 48 + 'px');
-
-			$('#bubbleWindow').show();
-			$('#bubbleWindow').css({opacity: 0.0});
-			$('#bubbleWindow').animate({opacity: 0.85}, animInterval);
+			PTC.UI.BubbleWindow.pos(point.x, point.y);
+			PTC.UI.BubbleWindow.show('Das Augsburger Rathaus', 'Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.');
+			
 		  });
 		
 		map.addOverlay(marker);
@@ -435,5 +432,5 @@ PTC.Map = function()
 function treasureClick(id)
 {
 	$('#' + id + '').css('background-image', 'url(../content/icons/treasure_open.png)');
-	PTC.Achievement.show('Schatzsucher');
+	PTC.Achievements.show('Schatzsucher');
 }

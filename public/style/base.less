@@ -1,0 +1,200 @@
+.transition(@property: all, @time: 300ms, @ease: linear, @delay: 0ms)
+{
+  transition: @property @time @ease @delay;
+  -webkit-transition: @property @time @ease @delay;
+  -moz-transition: @property @time @ease @delay;
+  -o-transition: @property @time @ease @delay;
+  -ms-transition: @property @time @ease @delay;
+}
+
+.transition_overwrite(@property: all, @time: 300ms, @ease: linear, @delay: 0ms)
+{
+  transition: @property @time @ease @delay !important;
+  -webkit-transition: @property @time @ease @delay !important;
+  -moz-transition: @property @time @ease @delay !important;
+  -o-transition: @property @time @ease @delay !important;
+  -ms-transition: @property @time @ease @delay !important;
+}
+
+
+.transform(@property)
+{
+  transform: @property;
+  -webkit-transform: @property;
+  -moz-transform: @property;
+  -o-transform: @property;
+  -ms-transform: @property;
+}
+
+.transform_overwrite(@property)
+{
+  transform: @property !important;
+  -webkit-transform: @property !important;
+  -moz-transform: @property !important;
+  -o-transform: @property !important;
+  -ms-transform: @property !important;
+}
+
+
+// Colors HAVE to be 6-digit hex in order to work correctly for all browsers
+.linearVertGradient(@startColor: #ffffff, @endColor: #000000)
+{
+  background-color: @startColor + @endColor / 2; // Fallback
+
+  background-image: linear-gradient(top, @startColor, @endColor); // for future browsers
+  background-image: -webkit-linear-gradient(top, @startColor, @endColor); // Webkit nightly
+  background-image: -webkit-gradient(linear, left top, left bottom, from(@startColor), to(@endColor)); // for webkit browsers
+  background-image: -moz-linear-gradient(top, @startColor, @endColor); // for firefox 3.6+
+  background-image: -o-linear-gradient(top, @startColor, @endColor); // for Opera
+
+  // IE6 & 7
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d,endColorstr=%d)", @startColor, @endColor));
+  // IE8
+  -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=%d, endColorstr=%d)", @startColor, @endColor);
+
+}
+
+// Colors HAVE to be 6-digit hex in order to work correctly for all browsers
+.linearHorzGradient(@startColor: #ffffff, @endColor: #000000)
+{
+  background-color: @startColor + @endColor / 2; // Fallback
+
+  background-image: linear-gradient(left, @startColor, @endColor); // for future browsers
+  background-image: -webkit-linear-gradient(left, @startColor, @endColor); // Webkit nightly
+  background-image: -webkit-gradient(linear, left top, right top, from(@startColor), to(@endColor)); // for webkit browsers
+  background-image: -moz-linear-gradient(left, @startColor, @endColor); // for firefox 3.6+
+  background-image: -o-linear-gradient(left, @startColor, @endColor); // for Opera
+
+  // IE6 & 7
+  filter: e(%("progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=%d,endColorstr=%d)", @startColor, @endColor));
+  // IE8
+  -ms-filter: %("progid:DXImageTransform.Microsoft.gradient(GradientType=1,startColorstr=%d, endColorstr=%d)", @startColor, @endColor);
+}
+
+.border-radius(@strength: 4px)
+{
+  border-radius: @strength @strength @strength @strength;
+  -moz-border-radius: @strength;
+  -webkit-border-radius: @strength;
+}
+
+.border-radius_overwrite(@strength: 4px)
+{
+  border-radius: @strength @strength @strength @strength !important;
+  -moz-border-radius: @strength !important;
+  -webkit-border-radius: @strength !important;
+}
+
+
+.box-shadow(@x: 0px, @y: 0px, @blur: 8px, @color: #000)
+{
+  -moz-box-shadow: @x @y @blur @color;
+  -webkit-box-shadow: @x @y @blur @color;
+  -o-box-shadow: @x @y @blur @color;
+  -ms-box-shadow: @x @y @blur @color;
+  box-shadow: @x @y @blur @color;
+}
+
+.box-shadow_overwrite(@x: 0px, @y: 0px, @blur: 8px, @color: #000)
+{
+  -moz-box-shadow: @x @y @blur @color !important;
+  -webkit-box-shadow: @x @y @blur @color !important;
+  -o-box-shadow: @x @y @blur @color !important;
+  -ms-box-shadow: @x @y @blur @color !important;
+  box-shadow: @x @y @blur @color !important;
+}
+
+
+.box-shadow-inset(@x: 0px, @y: 0px, @blur: 8px, @color: #000)
+{
+  -moz-box-shadow: inset @x @y @blur @color;
+  -webkit-box-shadow: inset @x @y @blur @color;
+  -o-box-shadow: inset @x @y @blur @color;
+  -ms-box-shadow: inset @x @y @blur @color;
+  box-shadow: inset @x @y @blur @color;
+}
+
+.multiple-box-shadow(@shadows)
+{
+  -moz-box-shadow: @shadows;
+  -webkit-box-shadow: @shadows;
+  -o-box-shadow: @shadows;
+  -ms-box-shadow: @shadows;
+  box-shadow: @shadows;
+}
+
+.opacity(@alpha: 0.5)
+{
+  opacity: @alpha;
+  -moz-opacity: @alpha;
+  -webkit-opacity: @alpha;
+  -khtml-opacity: @alpha;
+  
+  // IE6 & 7
+  filter: e(%("alpha(opacity=%d)", @alpha * 100));
+  // IE8
+  -ms-filter: %("alpha(opacity=%d)", @alpha * 100);
+}
+
+.opacity_overwrite(@alpha: 0.5)
+{
+  opacity: @alpha !important;
+  -moz-opacity: @alpha !important;
+  -webkit-opacity: @alpha !important;
+  -khtml-opacity: @alpha !important;
+}
+
+.user-select(@property: text)
+{
+  -moz-user-select: @property;
+  -webkit-user-select: @property;
+  -o-user-select: @property;
+  -khtml-user-select: @property;
+  user-select: @property;
+}
+
+.user-select_overwrite(@property: text)
+{
+  -moz-user-select: @property !important;
+  -webkit-user-select: @property !important;
+  -o-user-select: @property !important;
+  -khtml-user-select: @property !important;
+  user-select: @property !important;
+}
+
+
+.user-modify(@property: read-only)
+{
+  -moz-user-modify: @property;
+  -webkit-user-modify: @property;
+  user-modify: @property;
+}
+
+.user-modify_overwrite(@property: read-only)
+{
+  -moz-user-modify: @property !important;
+  -webkit-user-modify: @property !important;
+  user-modify: @property !important;
+}
+
+
+.align(@x: 50%, @y: 50%, @width: 100px, @height: 100px)
+{
+  position: absolute;
+
+  left: @x;
+  top: @y;
+  
+  width: @width;
+  height: @height;
+  
+  margin-left: @width * (-0.5);
+  margin-top: @height * (-0.5);
+}
+
+.background-position(@x, @y)
+{
+	background-position-x: @x;
+	background-position-y: @y;
+	background-position: @x @y;
+}

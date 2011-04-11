@@ -37,7 +37,7 @@ app.configure(function(){
   // Enable Less later on - when we're really using Less
   // Do not activate unless you are sure what you're doing
   // It will overwrite current stylesheets
-  app.use(express.compiler({ src: __dirname + config.publicDir + config.styleDir, enable: ['less'] }));
+  app.use(express.compiler({ src: __dirname + config.publicDir, enable: ['less'] }));
   
   app.use(app.router);
   app.use(express.static(__dirname + config.publicDir));

@@ -237,3 +237,67 @@ PTC.UI.Lightbox = function()
 		hide: hide
 	};
 }();
+
+
+
+PTC.UI.BubbleWindow = function()
+{
+	var
+	_bubbleWindow,
+	
+	pos = function(posx, posy)
+	{
+		$('#bubbleWindow').css('left', posx - ($('#bubbleWindow').outerWidth() / 2) + 'px');
+		$('#bubbleWindow').css('top', posy - $('#bubbleWindow').outerHeight() - 48 + 'px');
+	},
+	
+	show = function(title, content, teaser, moreFunc, editable)
+	{
+		if (typeof(content) !== "undefined") return;
+		
+		if ((typeof(title) === "string") && (title != ""))
+		{
+			$('#BW_title').html(title);
+			
+			$('#BW_title').show();
+			$('#BW_title_divider').show();
+		}
+		else
+		{
+			$('#BW_title').hide();
+			$('#BW_title_divider').hide();
+		}
+		
+		$('#BW_content').html(content);
+		
+		
+		if (typeof(moreFunc))
+		
+		
+		if (editable) $('#BW_actions').hide();
+		
+		$('#bubbleWindow').show();
+		$('#bubbleWindow').css({opacity: 0.0});
+		$('#bubbleWindow').animate({opacity: 0.85}, animInterval);
+	},
+	
+	hide = function()
+	{
+		$('#bubbleWindow').fadeOut(animInterval, function() { $('#bubbleWindow').hide(); });
+	},
+	
+	toggleEdit = function()
+	{
+		if ($('#BW_title').hasClass('editable')) $('#BW_title').removeClass('editable');
+		else $('#BW_title').addClass('editable');
+		
+		if ($('#BW_content').hasClass('editable')) $('#BW_content').removeClass('editable');
+		else $('#BW_content').addClass('editable');
+	};
+	
+	return {
+		show: show,
+		hide: hide,
+		toggleEdit: toggleEdit
+	};
+}();

@@ -1,0 +1,41 @@
+Play The City
+=============
+
+What is this?
+-------------
+Play The City is a web application build on node.js which allows you
+to explore different cities in Germany in a playful matter.
+
+This project has been founded in Summer 2009 during the 5-Euro-Business
+and has been developed on ever since.
+
+Currently Play The City resolves in and around Augsburg.
+
+
+How to get this working?
+------------------------
+First of all, you need node.js (http://nodejs.org) and npm (http://npmjs.org) installed.
+Type in your terminal
+	npm install express ejs less express-dialect mongoose nodemon
+
+Now just type
+	nodemon server.js
+to start the application.
+
+
+License
+-------
+Basically, we settled for a "Free for non-commercial use" license:
+http://creativecommons.org/licenses/by-nc-nd/3.0/
+http://creativecommons.org/licenses/by-nc-nd/3.0/deed.de (German version)
+
+If you wish to use Play The City in a commercial environment please
+contact us at info@playthecity.de
+
+
+Coyright holders
+----------------
+Christian Fuchs
+Jesse Klugmann (http://github.com/JesseKlugmann)
+Johannes Stein (http://github.com/Stoney-FD)
+Timm Traenkler

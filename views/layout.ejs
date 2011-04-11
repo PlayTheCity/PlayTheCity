@@ -9,9 +9,9 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   
-	<% if (typeof(title) == 'undefined') { %>
+	<% if ((typeof(title) === 'undefined') || (title == '')) { %>
 		<title>Play The City</title>
-	<% } else if (title != '') { %>
+	<% } else { %>
 		<title>Play The City - <%=title%></title>
 	<% } %>
 	
@@ -56,12 +56,124 @@
 	
 	
 	<script>		
+		var _visual = 'high',
+			_animation = 'on';
+	
+	
 		// http://blog.mixable.de/jquery-unterschied-zwischen-document-ready-und-window-load/
 		// Hide load div after everything has been loaded
 		$(window).load(function() 
 		{
 			$('#loading').hide();
 		});
+		
+		function quality(prop, value)
+		{
+			if (typeof(prop) !== "string") return;
+			
+			switch (prop)
+			{
+				case 'visual':
+				{
+					if (typeof(value) === "undefined") return _visual;
+					else if (_visual != value) _visual = value;
+					
+					switch (_visual)
+					{
+						case 'low':
+						{
+							if (!$('div').hasClass('lowQuality')) $('div').addClass('lowQuality');
+							if (!$('span').hasClass('lowQuality')) $('span').addClass('lowQuality');
+							if (!$('input').hasClass('lowQuality')) $('input').addClass('lowQuality');
+							if (!$('header').hasClass('lowQuality')) $('input').addClass('lowQuality');
+							if (!$('footer').hasClass('lowQuality')) $('input').addClass('lowQuality');
+							
+							if ($('div').hasClass('avrQuality')) $('div').removeClass('avrQuality');
+							if ($('span').hasClass('avrQuality')) $('span').removeClass('avrQuality');
+							if ($('input').hasClass('avrQuality')) $('input').removeClass('avrQuality');
+							if ($('header').hasClass('avrQuality')) $('span').removeClass('avrQuality');
+							if ($('footer').hasClass('avrQuality')) $('input').removeClass('avrQuality');
+							
+							// If Quality checkbox exists, check that one.
+							if ($('#rbtnQualityLow').length) $('#rbtnQualityLow').attr('checked', 'checked');
+							
+							break;
+						}
+						case 'avr':
+						{
+							if ($('div').hasClass('lowQuality')) $('div').removeClass('lowQuality');
+							if ($('span').hasClass('lowQuality')) $('span').removeClass('lowQuality');
+							if ($('input').hasClass('lowQuality')) $('input').removeClass('lowQuality');
+							if ($('header').hasClass('lowQuality')) $('input').removeClass('lowQuality');
+							if ($('footer').hasClass('lowQuality')) $('input').removeClass('lowQuality');
+							
+							if (!$('div').hasClass('avrQuality')) $('div').addClass('avrQuality');
+							if (!$('span').hasClass('avrQuality')) $('span').addClass('avrQuality');
+							if (!$('input').hasClass('avrQuality')) $('input').addClass('avrQuality');
+							if (!$('header').hasClass('avrQuality')) $('span').addClass('avrQuality');
+							if (!$('footer').hasClass('avrQuality')) $('input').addClass('avrQuality');
+							
+							// If Quality checkbox exists, check that one.
+							if ($('#rbtnQualityAvr').length) $('#rbtnQualityAvr').attr('checked', 'checked');
+							
+							break;
+						}
+						case 'high':
+						{
+							if ($('div').hasClass('lowQuality')) $('div').removeClass('lowQuality');
+							if ($('span').hasClass('lowQuality')) $('span').removeClass('lowQuality');
+							if ($('input').hasClass('lowQuality')) $('input').removeClass('lowQuality');
+							if ($('header').hasClass('lowQuality')) $('input').removeClass('lowQuality');
+							if ($('footer').hasClass('lowQuality')) $('input').removeClass('lowQuality');
+							
+							if ($('div').hasClass('avrQuality')) $('div').removeClass('avrQuality');
+							if ($('span').hasClass('avrQuality')) $('span').removeClass('avrQuality');
+							if ($('input').hasClass('avrQuality')) $('input').removeClass('avrQuality');
+							if ($('header').hasClass('avrQuality')) $('span').removeClass('avrQuality');
+							if ($('footer').hasClass('avrQuality')) $('input').removeClass('avrQuality');
+							
+							// If Quality checkbox exists, check that one.
+							if ($('#rbtnQualityHigh').length) $('#rbtnQualityHigh').attr('checked', 'checked');
+							
+							break;
+						}
+					}
+					
+					if (window.localStorage) window.localStorage["PlayTheCity.Config.VisualQuality"] = _visual;
+					
+					break;
+				}
+				
+				case 'animation':
+				{
+					if (typeof(value) === "undefined") return _animation;
+					else if (_animation != value) _animation = value;
+					
+					switch (_animation)
+					{
+						case 'on': 
+						{
+							$.fx.off = false; 
+							if ($('#btnAnimation').length) $('#btnAnimation').html('Animationen: An');
+							
+							break;
+						}	
+							
+						case 'off': 
+						{
+							$.fx.off = true;
+							if ($('#btnAnimation').length) $('#btnAnimation').html('Animationen: Aus');
+							
+							break;
+						}
+					}
+					
+					if (window.localStorage) window.localStorage["PlayTheCity.Config.Animations"] = _animation;
+					
+					break;
+				}
+			}
+		}
 		
 		function loginHandler()
 		{
@@ -102,6 +214,26 @@
 				else loginHandler();
 			}
 			else loginHandler();
+			
+			// Load configuration from LocalStorage if available
+			if (window.localStorage)
+            {
+            	if ((typeof(window.localStorage["PlayTheCity.Config.Animations"]) != "undefined") && (window.localStorage["PlayTheCity.Config.Animations"] != null) && (window.localStorage["PlayTheCity.Config.Animations"] != ""))
+            	  quality('animation', window.localStorage["PlayTheCity.Config.Animations"]);
+            	else
+            	  quality('animation', 'on');
+            	
+            	if ((typeof(window.localStorage["PlayTheCity.Config.VisualQuality"]) !== "undefined") && (window.localStorage["PlayTheCity.Config.VisualQuality"] != null) && (window.localStorage["PlayTheCity.Config.VisualQuality"] != ""))
+            	  quality('visual', window.localStorage["PlayTheCity.Config.VisualQuality"]);
+            	else
+            	  quality('visual', 'high');
+            }
+            else
+            {
+				// Default settings
+				quality('animation', 'on');
+				quality('visual', 'high');
+			}
 		});
 	</script>
   </head>
