@@ -9,12 +9,12 @@ to explore different cities in Germany in a playful matter.
 This project has been founded in Summer 2009 during the 5-Euro-Business
 and has been developed on ever since.
 
-Currently Play The City resolves in and around Augsburg.
+Currently Play The City revolves in and around Augsburg.
 
 
 How to get this working?
 ------------------------
-First of all, you need node.js (http://nodejs.org) and npm (http://npmjs.org) installed.
+First of all, you need [node.js](http://nodejs.org) and [npm](http://npmjs.org) installed.
 Type in your terminal
 	npm install express ejs less express-dialect mongoose nodemon
 
@@ -25,9 +25,9 @@ to start the application.
 
 License
 -------
-Basically, we settled for a "Free for non-commercial use" license:
-http://creativecommons.org/licenses/by-nc-nd/3.0/
-http://creativecommons.org/licenses/by-nc-nd/3.0/deed.de (German version)
+Basically, we settled for a "Free for non-commercial use" license:  
+[CC-BY-NC-ND](http://creativecommons.org/licenses/by-nc-nd/3.0/)  
+[German version](http://creativecommons.org/licenses/by-nc-nd/3.0/deed.de)  
 
 If you wish to use Play The City in a commercial environment please
 contact us at info@playthecity.de
@@ -35,7 +35,7 @@ contact us at info@playthecity.de
 
 Coyright holders
 ----------------
-Christian Fuchs
-Jesse Klugmann (http://github.com/JesseKlugmann)
-Johannes Stein (http://github.com/Stoney-FD)
+Christian Fuchs  
+[Jesse Klugmann](http://github.com/JesseKlugmann)  
+[Johannes Stein](http://github.com/Stoney-FD)  
 Timm Traenkler
