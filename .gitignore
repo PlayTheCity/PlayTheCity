@@ -1,1 +1,7 @@
+# Backup not needed
 _backup/
+
+# OS generated files 
+.DS_Store?
+ehthumbs.db
+Thumbs.db
