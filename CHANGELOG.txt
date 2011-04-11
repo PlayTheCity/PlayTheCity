@@ -1,4 +1,4 @@
-Version: 0.1.1@Octopus (2011/04/11)
+Version: 0.2.0@Octopus (2011/04/11)
 -----------------------------------
 Primarily a bugfix release  
   
@@ -8,6 +8,8 @@ Fixed: Profile screen
 Added: Settings screen
 Fixed: Treasure chests' visibility is now correctly toggled
 Added: More features for Bubble Window in map
+Added: Bubble windows shows up at Panorama and treasure chest in the city center
+As well as some small fixes and some visual improvements
 
 
 Version: 0.1.0@Tux (2011/03/26)
