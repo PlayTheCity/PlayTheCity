@@ -12,29 +12,6 @@ if (typeof (PTC.UI) === 'undefined') PTC.UI = {};
 // TODO: Use desktop notifications where available
 
 
-/*
- * Play The City Lightbox pseudo-class
- * 
- * 
- */
-
-PTC.UI.Lightbox = (function()
-{
-	var 
-	show = function()
-	{
-		
-	},
-	hide = function()
-	{
-		
-	};
-	
-	return {
-		show: show,
-		hide: hide
-	};
-});
 
 /*
  * Play The City Notification pseudo-class
@@ -151,12 +128,16 @@ PTC.UI.Notification = (function(elementId, collapsed)
 	};
 });
 
-
+/*
+ * Play The City Lightbox pseudo-class
+ * 
+ * 
+ */
 PTC.UI.Lightbox = function()
 {
 	var 
-	_whiteContent = '#lightboxContent',
-	_fadeContent = '#lightboxFade',
+	_whiteContent = '.lightbox.content',
+	_fadeContent = '.lightbox.fade',
 	_innerContent = '#innerContent',
 	_sizeX = 0.8,
 	_sizeY = 0.8,
@@ -244,6 +225,14 @@ PTC.UI.BubbleWindow = function()
 {
 	var
 	_bubbleWindow,
+	_showSettings =
+	{
+		title: "",
+		content: "",
+		teaser: "",
+		moreFunc: null,
+		editable: false
+	},
 	
 	pos = function(posx, posy)
 	{
@@ -251,30 +240,53 @@ PTC.UI.BubbleWindow = function()
 		$('#bubbleWindow').css('top', posy - $('#bubbleWindow').outerHeight() - 48 + 'px');
 	},
 	
+	// TODO: Change parameter to object literal
 	show = function(title, content, teaser, moreFunc, editable)
 	{
-		if (typeof(content) !== "undefined") return;
+		if (typeof(content) === "undefined") return;
 		
 		if ((typeof(title) === "string") && (title != ""))
 		{
-			$('#BW_title').html(title);
+			$('#bubbleWindow #title').html(title);
 			
-			$('#BW_title').show();
-			$('#BW_title_divider').show();
+			$('#bubbleWindow #title').show();
+			$('#bubbleWindow #title_divider').show();
 		}
 		else
 		{
-			$('#BW_title').hide();
-			$('#BW_title_divider').hide();
+			$('#bubbleWindow #title').hide();
+			$('#bubbleWindow #title_divider').hide();
 		}
 		
-		$('#BW_content').html(content);
+		$('#bubbleWindow #content').html(content);
+		
+		if ((typeof(teaser) === "string") && (teaser != ""))
+		{
+			$('#bubbleWindow #teaser').attr('src', teaser);
+			
+			$('#bubbleWindow #teaser').show();
+		}
+		else
+		{
+			$('#bubbleWindow #teaser').hide();
+		}
 		
 		
-		if (typeof(moreFunc))
+		if ((typeof(moreFunc) !== "undefined") && (moreFunc != "") && (moreFunc != null)) 
+		{
+			$('#bubbleWindow .func').click(moreFunc);
+			
+			$('#bubbleWindow #clickMore').show();
+			$('#bubbleWindow #func_divider').show();
+		}
+		else
+		{
+			$('#bubbleWindow #clickMore').hide();
+			$('#bubbleWindow #func_divider').hide();
+		}
+			
 		
-		
-		if (editable) $('#BW_actions').hide();
+		if (!editable) $('#bubbleWindow #actions').hide();
 		
 		$('#bubbleWindow').show();
 		$('#bubbleWindow').css({opacity: 0.0});
@@ -288,14 +300,15 @@ PTC.UI.BubbleWindow = function()
 	
 	toggleEdit = function()
 	{
-		if ($('#BW_title').hasClass('editable')) $('#BW_title').removeClass('editable');
-		else $('#BW_title').addClass('editable');
+		if ($('#bubbleWindow #title').hasClass('editable')) $('#bubbleWindow #title').removeClass('editable');
+		else $('#bubbleWindow #title').addClass('editable');
 		
-		if ($('#BW_content').hasClass('editable')) $('#BW_content').removeClass('editable');
-		else $('#BW_content').addClass('editable');
+		if ($('#bubbleWindow #content').hasClass('editable')) $('#bubbleWindow #content').removeClass('editable');
+		else $('#bubbleWindow #content').addClass('editable');
 	};
 	
 	return {
+		pos: pos,
 		show: show,
 		hide: hide,
 		toggleEdit: toggleEdit

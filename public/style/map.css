@@ -63,11 +63,11 @@
   border: 1px solid #bf930f;
   width: 100px;
   height: 310px;
-  transition: all 600ms linear 0ms;
-  -webkit-transition: all 600ms linear 0ms;
-  -moz-transition: all 600ms linear 0ms;
-  -o-transition: all 600ms linear 0ms;
-  -ms-transition: all 600ms linear 0ms;
+  transition: all 300ms linear 0ms;
+  -webkit-transition: all 300ms linear 0ms;
+  -moz-transition: all 300ms linear 0ms;
+  -o-transition: all 300ms linear 0ms;
+  -ms-transition: all 300ms linear 0ms;
   border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px;
   -webkit-border-radius: 10px;
@@ -77,23 +77,11 @@
   -ms-box-shadow: 0px 0px 12px #888888;
   box-shadow: 0px 0px 12px #888888;
   background-color: #ffffff;
-  /* Fallback */
-
   background-image: linear-gradient(top, #fefefe, #efefef);
-  /* for future browsers */
-
   background-image: -webkit-linear-gradient(top, #fefefe, #efefef);
-  /* Webkit nightly */
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#efefef));
-  /* for webkit browsers */
-
   background-image: -moz-linear-gradient(top, #fefefe, #efefef);
-  /* for firefox 3.6+ */
-
   background-image: -o-linear-gradient(top, #fefefe, #efefef);
-  /* for Opera */
-
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fefefe,endColorstr=#efefef);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fefefe, endColorstr=#efefef)";
   opacity: 0.6;
@@ -146,6 +134,14 @@
   left: 0;
   margin-left: 2px;
   background-image: url(../content/buttons/navleft.png);
+}
+#BW_actions {
+  position: absolute;
+  display: none;
+  left: 8px;
+  top: 8px;
+  width: 80px;
+  height: 30px;
 }
 #slider {
   position: absolute;
@@ -216,11 +212,11 @@
   z-index: 5;
 }
 #panoramaview {
-  transition: all 600ms linear 0ms;
-  -webkit-transition: all 600ms linear 0ms;
-  -moz-transition: all 600ms linear 0ms;
-  -o-transition: all 600ms linear 0ms;
-  -ms-transition: all 600ms linear 0ms;
+  transition: all 300ms linear 0ms;
+  -webkit-transition: all 300ms linear 0ms;
+  -moz-transition: all 300ms linear 0ms;
+  -o-transition: all 300ms linear 0ms;
+  -ms-transition: all 300ms linear 0ms;
   background-image: url(../content/scalable/panorama_512.jpg);
   background-repeat: repeat-x;
   background-size: auto 100%;
@@ -346,16 +342,32 @@
   -khtml-opacity: 0;
   filter: alpha(opacity=0);
   -ms-filter: "alpha(opacity=0)";
-  z-index: 2000;
+  z-index: 5;
 }
-/*.wml-info-window-content
-{
-  background:#333 !important;
-  border: 0px !important;
-  padding: 4px !important;
-}*/
 #bubbleWindow p {
   margin: 5px 0;
+}
+#bubbleWindow #actions {
+  position: absolute;
+  top: 10px;
+  left: 14px;
+  padding: 4px;
+  background: #000;
+  opacity: 0.9;
+  -moz-opacity: 0.9;
+  -webkit-opacity: 0.9;
+  -khtml-opacity: 0.9;
+  filter: alpha(opacity=90);
+  -ms-filter: "alpha(opacity=90)";
+  border-radius: 8px 8px 8px 8px;
+  -moz-border-radius: 8px;
+  -webkit-border-radius: 8px;
+  border: 1px solid #888;
+  -moz-box-shadow: 0px 0px 4px #444444;
+  -webkit-box-shadow: 0px 0px 4px #444444;
+  -o-box-shadow: 0px 0px 4px #444444;
+  -ms-box-shadow: 0px 0px 4px #444444;
+  box-shadow: 0px 0px 4px #444444;
 }
 #bubbleWindow span {
   display: block;
@@ -378,7 +390,7 @@
 #bubbleWindow img {
   vertical-align: bottom;
 }
-img.teaser {
+#bubbleWindow #teaser {
   cursor: pointer;
   float: left;
   border-width: 0;
@@ -393,10 +405,22 @@ img.teaser {
   margin-right: 8px;
   margin-bottom: 8px;
 }
-hr.divider {
+#bubbleWindow hr {
   border: 0;
   height: 1px;
   background-color: #696969;
+}
+#bubbleWindow #clickMore {
+  transition: all 300ms linear 0ms;
+  -webkit-transition: all 300ms linear 0ms;
+  -moz-transition: all 300ms linear 0ms;
+  -o-transition: all 300ms linear 0ms;
+  -ms-transition: all 300ms linear 0ms;
+  cursor: pointer;
+  font-weight: bold;
+}
+#bubbleWindow #clickMore:hover {
+  color: #cccc00;
 }
 #quickbar {
   background: #e0e0e0;
@@ -415,20 +439,12 @@ ul.map_buttons, ul.map_buttons li {
 ul.map_buttons li {
   float: left;
 }
-/*.map_buttons
-{
-  
-  
-  .box-shadow(0px, 0px, 12px, #888);
-  
-  .border-radius(8px);
-}*/
 .map_buttons a {
-  transition: all 600ms linear 0ms;
-  -webkit-transition: all 600ms linear 0ms;
-  -moz-transition: all 600ms linear 0ms;
-  -o-transition: all 600ms linear 0ms;
-  -ms-transition: all 600ms linear 0ms;
+  transition: all 300ms linear 0ms;
+  -webkit-transition: all 300ms linear 0ms;
+  -moz-transition: all 300ms linear 0ms;
+  -o-transition: all 300ms linear 0ms;
+  -ms-transition: all 300ms linear 0ms;
   -moz-box-shadow: 0px 0px 8px #f8f8f8;
   -webkit-box-shadow: 0px 0px 8px #f8f8f8;
   -o-box-shadow: 0px 0px 8px #f8f8f8;
@@ -451,46 +467,22 @@ ul.map_buttons li {
 .map_buttons a:hover {
   color: #fff;
   background-color: #5f5f5f;
-  /* Fallback */
-
   background-image: linear-gradient(top, #565656, #111111);
-  /* for future browsers */
-
   background-image: -webkit-linear-gradient(top, #565656, #111111);
-  /* Webkit nightly */
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#565656), to(#111111));
-  /* for webkit browsers */
-
   background-image: -moz-linear-gradient(top, #565656, #111111);
-  /* for firefox 3.6+ */
-
   background-image: -o-linear-gradient(top, #565656, #111111);
-  /* for Opera */
-
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#565656,endColorstr=#111111);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#565656, endColorstr=#111111)";
 }
 .map_buttons a:active {
   color: #fff;
   background-color: #3c3c3c;
-  /* Fallback */
-
   background-image: linear-gradient(top, #111111, #565656);
-  /* for future browsers */
-
   background-image: -webkit-linear-gradient(top, #111111, #565656);
-  /* Webkit nightly */
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#565656));
-  /* for webkit browsers */
-
   background-image: -moz-linear-gradient(top, #111111, #565656);
-  /* for firefox 3.6+ */
-
   background-image: -o-linear-gradient(top, #111111, #565656);
-  /* for Opera */
-
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#111111,endColorstr=#565656);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#111111, endColorstr=#565656)";
 }
@@ -506,23 +498,11 @@ ul.map_buttons li {
   text-decoration: none;
   color: #fff;
   background-color: #4c4c4c;
-  /* Fallback */
-
   background-image: linear-gradient(top, #434343, #111111);
-  /* for future browsers */
-
   background-image: -webkit-linear-gradient(top, #434343, #111111);
-  /* Webkit nightly */
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#434343), to(#111111));
-  /* for webkit browsers */
-
   background-image: -moz-linear-gradient(top, #434343, #111111);
-  /* for firefox 3.6+ */
-
   background-image: -o-linear-gradient(top, #434343, #111111);
-  /* for Opera */
-
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#434343,endColorstr=#111111);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#434343, endColorstr=#111111)";
   -moz-box-shadow: 0px 0px 8px #f8f8f8;

@@ -355,82 +355,95 @@ background-position: -22px 0px;
 
 #bubbleWindow
 {
-display:none;
-position: absolute;
-cursor: default;
-border:2px solid #fefefe;
-padding:7px 10px;
-background:#333;
-color:#fff !important;
-width:360px;
-font-size:11px;
+	display:none;
+	position: absolute;
+	cursor: default;
+	border:2px solid #fefefe;
+	padding:7px 10px;
+	background:#333;
+	color:#fff !important;
+	width:360px;
+	font-size:11px;
 
-.border-radius(8px);
+	.border-radius(8px);
 
-.box-shadow(0px, 0px, 12px, #888);
+	.box-shadow(0px, 0px, 12px, #888);
 
-/* We have a nice jQuery effect here :) */
-.opacity(0.0);
+	/* We have a nice jQuery effect here :) */
+	.opacity(0.0);
 
-z-index: 2000;
-}
+	z-index: 5;
+	
+	p { margin:5px 0; }
+	
+	#actions
+	{
+		position: absolute;
+		top: 10px;
+		left: 14px;
+		
+		padding: 4px;
+		
+		background: #000;
+		.opacity(0.9);
+		.border-radius(8px);
+		
+		border: 1px solid #888;
+		.box-shadow(0px, 0px, 4px, #444);
+	}
+	
+	span
+	{
+		display: block;
+		font-size: 12px;
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	a
+	{
+		text-align: center;
+		font-weight: bold;
 
-/*.wml-info-window-content
-{
-  background:#333 !important;
-  border: 0px !important;
-  padding: 4px !important;
-}*/
+		.transition(color, 300ms);
+		
+		&:hover { color: #ffff00; }
+	}
+	
+	img { vertical-align:bottom; }
+	
+	#teaser
+	{
+	  cursor: pointer;
+	  float: left;
 
-#bubbleWindow p {
-margin:5px 0;
-}
+	  border-width: 0;
+	  
+	  .border-radius(4px);
+	  
+	  .box-shadow(0px, 0px, 8px, #888);
 
-#bubbleWindow span
-{
-display: block;
-font-size: 12px;
-font-weight: bold;
-text-align: center;
-}
-
-#bubbleWindow a
-{
-text-align: center;
-font-weight: bold;
-
-.transition(color, 300ms);
-}
-
-#bubbleWindow a:hover
-{
-color: #ffff00;
-}
-
-#bubbleWindow img {
-vertical-align:bottom;
-}
-
-img.teaser
-{
-  cursor: pointer;
-  float: left;
-
-  border-width: 0;
-  
-  .border-radius(4px);
-  
-  .box-shadow(0px, 0px, 8px, #888);
-
-  margin-right: 8px;
-  margin-bottom: 8px;
-}
-
-hr.divider
-{
-  border: 0;
-  height: 1px;
-  background-color: #696969;
+	  margin-right: 8px;
+	  margin-bottom: 8px;
+	}
+	
+	hr
+	{
+	  border: 0;
+	  height: 1px;
+	  background-color: #696969;
+	}
+	
+	#clickMore
+	{
+		.transition;
+		
+		cursor: pointer;
+		
+		font-weight: bold;
+		
+		&:hover { color: #cccc00; }
+	}
 }
 
 
@@ -458,77 +471,70 @@ ul.map_buttons li {
 float:left;
 }
 
-/*.map_buttons
+.map_buttons
 {
+	a
+	{  
+	  .transition;
+
+	  .box-shadow(0px, 0px, 8px, @lightGray);
+
+	  .border-radius(8px);
+	  
+	  display:block;
+	  float:left;
+	  font-size:12px;
+	  margin-right:4px;
+	  outline:none;
+	  padding:8px;
+	  text-decoration:none;
+
+	  border: 1px solid @darkOrange;
+	  font-weight: bold;
+
+	  color: #111;
+	  
+	  &:hover
+	  {
+		  color: #fff;
+		  
+		  .linearVertGradient(#565656, #111111);
+	  }
+	  
+	  &:active
+	  {
+		  color: #fff;
+		  
+		  .linearVertGradient(#111111, #565656);
+	  }
+	}
   
-  
-  .box-shadow(0px, 0px, 12px, #888);
-  
-  .border-radius(8px);
-}*/
+	span
+	{
+	  border: 1px solid #111;
+	  
+	  display:block;
+	  float:left;
+	  font-size:11px;
+	  line-height:28px;
+	  margin-right:4px;
+	  outline:none;
+	  padding:0 15px;
+	  text-decoration:none;
 
-.map_buttons a
-{  
-  .transition;
+	  //background: #111;
+	  color: #fff;
+	  
+	  .linearVertGradient(#434343, #111111);
+	  
+	  .box-shadow(0px, 0px, 8px, @lightGray);
 
-  .box-shadow(0px, 0px, 8px, @lightGray);
+	  .border-radius(8px);
 
-  .border-radius(8px);
-  
-  display:block;
-  float:left;
-  font-size:12px;
-  margin-right:4px;
-  outline:none;
-  padding:8px;
-  text-decoration:none;
-
-  border: 1px solid @darkOrange;
-  font-weight: bold;
-
-  color: #111;
+	  font-weight: bold;
+	}
 }
 
-.map_buttons a:hover
-{
-  //background: #111111;
-  color: #fff;
-  
-  .linearVertGradient(#565656, #111111);
-}
-
-.map_buttons a:active
-{
-  //background: #454545;
-  color: #fff;
-  
-  .linearVertGradient(#111111, #565656);
-}
-
-.map_buttons span
-{
-  border: 1px solid #111;
-  
-  display:block;
-  float:left;
-  font-size:11px;
-  line-height:28px;
-  margin-right:4px;
-  outline:none;
-  padding:0 15px;
-  text-decoration:none;
-
-  //background: #111;
-  color: #fff;
-  
-  .linearVertGradient(#434343, #111111);
-  
-  .box-shadow(0px, 0px, 8px, @lightGray);
-
-  .border-radius(8px);
-
-  font-weight: bold;
-}
 
 a {
 color:#fff;

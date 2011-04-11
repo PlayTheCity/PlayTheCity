@@ -1,6 +1,8 @@
-#lightboxFade {
-  display: none;
+.lightbox {
   position: absolute;
+  display: none;
+}
+.lightbox.fade {
   top: 0px;
   left: 0px;
   height: 100%;
@@ -13,9 +15,7 @@
   filter: alpha(opacity=0);
   -ms-filter: "alpha(opacity=0)";
 }
-#lightboxContent {
-  display: none;
-  position: absolute;
+.lightbox.content {
   left: 50%;
   top: 50%;
   padding: 16px;
@@ -33,14 +33,15 @@
   -moz-border-radius: 8px;
   -webkit-border-radius: 8px;
 }
-#lightboxContent #innerContent {
+.lightbox.content #innerContent {
   position: absolute;
   left: 0px;
   top: 0px;
   padding: 8px;
   overflow: hidden;
 }
-.lb_title {
+.lightbox .title {
+  display: block !important;
   text-align: center;
   font-weight: bold;
   font-size: 24px;

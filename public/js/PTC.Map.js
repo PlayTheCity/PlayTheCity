@@ -222,12 +222,8 @@ PTC.Map = function()
 			markerClick = marker.getLatLng();
 			var point = map.fromLatLngToContainerPixel(marker.getLatLng());
 			
-			$('#bubbleWindow').css('left', point.x - ($('#bubbleWindow').outerWidth() / 2) + 'px');
-			$('#bubbleWindow').css('top', point.y - $('#bubbleWindow').outerHeight() - 48 + 'px');
-
-			$('#bubbleWindow').show();
-			$('#bubbleWindow').css({opacity: 0.0});
-			$('#bubbleWindow').animate({opacity: 0.85}, animInterval);
+			PTC.UI.BubbleWindow.pos(point.x, point.y);
+			PTC.UI.BubbleWindow.show('Das Augsburger Rathaus', 'Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.', 'content/teaser/rathaus.jpg', null, true);
 		  });
 
 		  var wikimarker = new CM.Marker(new CM.LatLng(48.368, 10.8974));
@@ -235,7 +231,7 @@ PTC.Map = function()
 		  CM.Event.addListener(wikimarker, "click", function()
 		  {
 			/*marker.openInfoWindow(
-				'<a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')"><img class="teaser" src="content/teaser_rathaus.jpg"/></a>' +
+				'<a href="javascript:void(0)" onclick="showLightbox(\'box_augsburg_wiki\')"><img class="teaser" src=/></a>' +
 				'<span>Wikipedia: Augsburg</span>' +
 				'<hr class="divider" />' +
 				'<p>Zeigt den Wikipedia-Artikel über Augsburg.</p>' +
@@ -245,9 +241,9 @@ PTC.Map = function()
 			markerClick = wikimarker.getLatLng();
 			var point = map.fromLatLngToContainerPixel(wikimarker.getLatLng());
 			
-			PTC.UI.BubbleWindow.pos(point.x, point.y);
-			PTC.UI.BubbleWindow.show('Das Augsburger Rathaus', 'Das Augsburger Rathaus wurde zwischen 1615 und 1620 von Elias Holl erbaut und stellt durch seine Größe und Pracht das Selbstbewußtsein der ehemals freien Reichsstadt dar. Es beherbergt den Prunksaal "Goldener Saal", welcher zu den bedeutendsten Kulturdenkmälern der Spätrenaissance zählt.');
 			
+			PTC.UI.BubbleWindow.pos(point.x, point.y);
+			PTC.UI.BubbleWindow.show('Augsburg Panorama', 'Zeigt das Panorama aus der Sicht des Perlachturms.', 'content/teaser/panorama.jpg', showPanorama, true);
 		  });
 		
 		map.addOverlay(marker);
@@ -357,8 +353,8 @@ PTC.Map = function()
 			showTreasures =! showTreasures; 
 			if (map.getZoom() > 16)
 			{
-				if ($('.treasures').is(':visible') && showTreasures) $('.treasures').hide();
-				else $('.treasures').show();
+				if ($('.treasure').is(':visible') && !showTreasures) $('.treasure').hide();
+				else $('.treasure').show();
 			}
 		});
 	},
@@ -433,4 +429,18 @@ function treasureClick(id)
 {
 	$('#' + id + '').css('background-image', 'url(../content/icons/treasure_open.png)');
 	PTC.Achievements.show('Schatzsucher');
+	
+	PTC.UI.BubbleWindow.pos($('#' + id + '').position().left, $('#' + id + '').position().top);
+	
+	switch (id)
+	{
+		case 't1':
+		{
+			PTC.UI.BubbleWindow.show('Schatzkiste', 'Diese Schatzkisten sind auf der ganzen Karte verteilt. Finde sie, in jeder ist eine Überraschung versteckt.');
+			break;
+		}
+		
+		default:
+			break;
+	}
 }

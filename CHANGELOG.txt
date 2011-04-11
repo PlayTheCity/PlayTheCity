@@ -1,0 +1,15 @@
+Version: 0.1.1@Octopus (2011/04/11)
+-----------------------------------
+Primarily a bugfix release  
+  
+Fixed: Treasure and Panormama achievement are now correctly displayed  
+Fixed: Background in circle buttons (main menu) are now correctly displayed in Mozilla-based browsers  
+Fixed: Profile screen
+Added: Settings screen
+Fixed: Treasure chests' visibility is now correctly toggled
+Added: More features for Bubble Window in map
+
+
+Version: 0.1.0@Tux (2011/03/26)
+-------------------------------
+Initial release

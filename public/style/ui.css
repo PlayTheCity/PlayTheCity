@@ -485,7 +485,7 @@ input[type=radio] {
   font-weight: bold;
   cursor: text;
 }
-.text_button a {
+span.button a {
   transition: all 300ms linear 0ms;
   -webkit-transition: all 300ms linear 0ms;
   -moz-transition: all 300ms linear 0ms;
@@ -514,48 +514,24 @@ input[type=radio] {
   color: #111;
   font-weight: bold;
 }
-.text_button a:hover {
+span.button a:hover {
   color: #fff;
   background-color: #5f5f5f;
-  /* Fallback */
-
   background-image: linear-gradient(top, #565656, #111111);
-  /* for future browsers */
-
   background-image: -webkit-linear-gradient(top, #565656, #111111);
-  /* Webkit nightly */
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#565656), to(#111111));
-  /* for webkit browsers */
-
   background-image: -moz-linear-gradient(top, #565656, #111111);
-  /* for firefox 3.6+ */
-
   background-image: -o-linear-gradient(top, #565656, #111111);
-  /* for Opera */
-
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#565656,endColorstr=#111111);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#565656, endColorstr=#111111)";
 }
-.text_button a:active {
+span.button a:active {
   background-color: #3c3c3c;
-  /* Fallback */
-
   background-image: linear-gradient(top, #111111, #565656);
-  /* for future browsers */
-
   background-image: -webkit-linear-gradient(top, #111111, #565656);
-  /* Webkit nightly */
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#111111), to(#565656));
-  /* for webkit browsers */
-
   background-image: -moz-linear-gradient(top, #111111, #565656);
-  /* for firefox 3.6+ */
-
   background-image: -o-linear-gradient(top, #111111, #565656);
-  /* for Opera */
-
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#111111,endColorstr=#565656);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#111111, endColorstr=#565656)";
   color: #fff;
@@ -567,23 +543,11 @@ input[type=radio] {
   -o-transition: all 300ms linear 0ms;
   -ms-transition: all 300ms linear 0ms;
   background-color: #ffffff;
-  /* Fallback */
-
   background-image: linear-gradient(top, #fefefe, #eaeaea);
-  /* for future browsers */
-
   background-image: -webkit-linear-gradient(top, #fefefe, #eaeaea);
-  /* Webkit nightly */
-
   background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#eaeaea));
-  /* for webkit browsers */
-
   background-image: -moz-linear-gradient(top, #fefefe, #eaeaea);
-  /* for firefox 3.6+ */
-
   background-image: -o-linear-gradient(top, #fefefe, #eaeaea);
-  /* for Opera */
-
   filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fefefe,endColorstr=#eaeaea);
   -ms-filter: "progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr=#fefefe, endColorstr=#eaeaea)";
   border-radius: 20px 20px 20px 20px;
@@ -615,7 +579,7 @@ input[type=radio] {
   filter: alpha(opacity=100);
   -ms-filter: "alpha(opacity=100)";
 }
-div#achievement_box {
+.achievement {
   display: none;
   font-weight: bold;
   opacity: 1;

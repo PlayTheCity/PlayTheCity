@@ -56,7 +56,7 @@ PTC.Achievements = function()
 		for (var i in array)
 		{
 			if (array[i]["active"]) result += '<div class="ach_box unlocked"><span class="ach_unlocked">' + i + '</span><br /><span class="ach_details">' + array[i]["description"] + '</span></div><br /><br />';
-			else result += '<div class="ach_box locked"><span class="ach_locked">' + i + '</span><br /><span class="ach_details">' + array[i]["description"] + '</span></div><br /><br />';
+			else result += '<div class="achievement locked"><span class="ach_locked">' + i + '</span><br /><span class="ach_details">' + array[i]["description"] + '</span></div><br /><br />';
 		}
 		
 		return result;
@@ -72,15 +72,15 @@ PTC.Achievements = function()
 			if ((typeof(array[text].icon) != "undefined") && (array[text].icon != "")) $('#achievement_box').css("background-image", "url(" + array[text].icon + ")");
 			
 			
-			$('#ach_text').html(text);
-			$('#achievement_box').show();
-			$('#achievement_box').css({opacity: 0.0});
+			$('#status.achievement #text').html(text);
+			$('#status.achievement').show();
+			$('#status.achievement').css({opacity: 0.0});
 			
-			$('#achievement_box').animate({opacity: 1.0, bottom: '8px'}, 750);
+			$('#status.achievement').animate({opacity: 1.0, bottom: '8px'}, 750);
 			
 			setTimeout(function() 
 			{ 
-			  $('#achievement_box').animate({opacity: 0.0, bottom: '-120px'}, 750, "linear", function() { $('#achievement_box').hide(); });
+			  $('#status.achievement').animate({opacity: 0.0, bottom: '-120px'}, 750, "linear", function() { $('#achievement_box').hide(); });
 			}, 3000);
 			
 			array[text].active = true;

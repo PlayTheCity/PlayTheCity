@@ -40,26 +40,26 @@
     <input type="checkbox" id="chbTreasure" name="chbTreasure" checked><label for="chbTreasure" id="lblTreasure">Schatztruhen</label>
     <br /><br />
     <span class="subtitle">Optionen</span><br />
-    <span class="text_button"><a href="javascript:PTC.Map.toggleSearchBar();">Suchleiste</a></span>
-    <span class="text_button"><a href="javascript:PTC.Map.toggleQuickBar();">Schnellleiste</a></span>
-    <span class="text_button"><a href="javascript:PTC.Map.toggleMiniMap();">Minikarte</a></span>
-    <span class="text_button"><a href="javascript:PTC.Map.toggleControls();">Steuerung</a></span>
+    <span class="button"><a href="javascript:PTC.Map.toggleSearchBar();">Suchleiste</a></span>
+    <span class="button"><a href="javascript:PTC.Map.toggleQuickBar();">Schnellleiste</a></span>
+    <span class="button"><a href="javascript:PTC.Map.toggleMiniMap();">Minikarte</a></span>
+    <span class="button"><a href="javascript:PTC.Map.toggleControls();">Steuerung</a></span>
 </div>
 
 <div id="bubbleWindow">
 	<span id="loginboxClose" class="close-btn-26" title="Close" onclick="javascript:PTC.UI.BubbleWindow.hide()">Close</span>
 
-	<img id="BW_teaser" class="teaser BW_func" src="content/teaser/rathaus.jpg" alt="Teaser" />
-	<div id="BW_actions">
+	<img id="teaser" class="func" src="content/teaser/rathaus.jpg" alt="Teaser" />
+	<div id="actions">
 		<a href="javascript:void(0)" onclick="PTC.UI.BubbleWindow.toggleEdit()"><img id="actEdit" src="content/icons/action_edit.png" alt="Editieren" /></a>
 		<a href="javascript:void(0)" onclick=""><img id="actFav" src="content/icons/action_favorite.png" alt="Als Favorit markieren" /></a>
 		<a href="javascript:void(0)" onclick=""><img id="actMove" src="content/icons/action_move.png" alt="Verschieben" /></a>
 	</div>
-	<span id="BW_title"></span>
-	<hr id="BW_title_divider" class="divider" />
-	<p id="BW_content"></p>
-	<hr id="BW_func_divider" class="divider" />
-	<span class="BW_func">Hier klicken für genauere Informationen</span>
+	<span id="title"></span>
+	<hr id="title_divider" />
+	<p id="content"></p>
+	<hr id="func_divider" />
+	<span id="clickMore" class="func">Hier klicken für genauere Informationen</span>
 </div>
 
 <div id="quickbar">
@@ -71,7 +71,7 @@
 	  panorama = '<div id="panoramaview"></div>' +
 	  '<div class="navBtn navBtn1" onclick="javascript:movePanoramaRight();" style="top: 50%; margin-top: -16px;"></div>' +
 	  '<div class="navBtn navBtn3" onclick="javascript:movePanoramaLeft();" style="top: 50%; margin-top: -16px;"></div>' + 
-	  '<br /><span class="lb_title">Augsburg Panorama</span>';
+	  '<br /><span class="title">Augsburg Panorama</span>';
 	  
 	  var posx;
 	  

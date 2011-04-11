@@ -151,7 +151,7 @@ input[type=radio]
 
 
 // Usual text button, as used for quickbar/Login button
-.text_button a
+span.button a
 {
   .transition;
 
@@ -178,23 +178,20 @@ input[type=radio]
   color: #111;
   
   font-weight: bold;
-}
-
-.text_button a:hover
-{
-  color: #fff;
   
-  .linearVertGradient(#565656, #111111);
+  &:hover
+  {
+	  color: #fff;
+	  
+	  .linearVertGradient(#565656, #111111);
+  }
   
-  //background: #111111;
-}
+  &:active
+  {
+	  .linearVertGradient(#111111, #565656);
 
-.text_button a:active
-{
-  .linearVertGradient(#111111, #565656);
-
-  //background: #454545;
-  color: #fff;
+	  color: #fff;
+  }
 }
 
 
@@ -226,7 +223,8 @@ input[type=radio]
   .opacity(1.0);
 }
 
-div#achievement_box {
+.achievement 
+{
   display: none;
   font-weight: bold;
   .opacity(1.0);
