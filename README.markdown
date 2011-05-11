@@ -21,6 +21,7 @@ Type in your terminal
 Now just type
 	nodemon server.js
 to start the application.
+The application usually runs on localhost:3000.
 
 
 License
