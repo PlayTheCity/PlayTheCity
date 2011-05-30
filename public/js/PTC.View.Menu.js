@@ -57,7 +57,7 @@ PTC.View.Menu = function()
 		PTC.UI.Lightbox.show(
 			'<span class="title">Willkommen bei Play The City</span><br /><br />' + 
 			'<img src="' + PTC.Asset('small', PTC.AssetType.Logo) + '"><br /><br />' + 
-			'Die Play The City Webversion befindet sich noch im frühen Alphazustand. Einige Funktionen werden vermutlich nicht funktionieren. Generell wird jede zweite Woche eine Version veröffentlicht. Der nächste Release ist für den 23. April 2011 geplant.<br /><br />' +
+			'Die Play The City Webversion befindet sich noch im frühen Alphazustand. Einige Funktionen werden vermutlich nicht funktionieren.<br /><br />' +
 			'<a href="http://changelog.playthecity.info" target="_blank">Aktuelle Änderungen (Changelog)</a><br /><br />' +
 			'<a href="http://blog.playthecity.info" target="_blank">Play The City Blog</a><br />' +
 			'<a href="http://forum.playthecity.info" target="_blank">Play The City Forum</a><br />' + 
